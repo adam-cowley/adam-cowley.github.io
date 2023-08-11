@@ -5,6 +5,9 @@ import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 import { FaAddressCard, FaEnvelope, FaPhoneAlt } from "react-icons/fa/index.js";
 
+import Social from "@components/Social.astro";
+import social from "@config/social.json";
+
 const entry = await getEntryBySlug("pages", "contact");
 const { contact_form_action } = config.params;
 const { address, email, phone } = config.contactinfo;
@@ -21,8 +24,13 @@ const { title, description, meta_title, image } = entry.data;
     <div class="container">
       <h1 set:html={markdownify(title)} class="h2 page-heading" />
       <div class="row md:gx-5 gy-5">
-        <div class="sm:col-5 md:col-4">
+        <div class="sm:col-12 text-center">
+          <p>You can find me on the social links below.</p>
+        </div>
+
+        <!-- <div class="sm:col-5 md:col-4">
           <p class="mb-8 text-2xl font-bold text-theme-dark">Contact Info</p>
+          <Social source={social} className="social-icons mb-8" />
           <ul class="flex flex-col space-y-8">
             <li>
               <div class="flex text-theme-dark items-center text-xl">
@@ -73,7 +81,7 @@ const { title, description, meta_title, image } = entry.data;
               <button class="btn btn-primary mt-2">Submit Now</button>
             </div>
           </form>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

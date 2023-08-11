@@ -6,7 +6,7 @@ import { getSinglePage } from "@lib/contentParser.astro";
 import dateFormat from "@lib/utils/dateFormat";
 import similerItems from "@lib/utils/similarItems";
 import { humanize,markdownify,slugify } from "@lib/utils/textConverter";
-import { BiCalendarEdit,BiCategoryAlt } from "react-icons/bi/index.js";
+import { BiCalendarAlt, BiTagAlt } from "react-icons/bi/index.js";
 
 const allAuthors = await getSinglePage("authors");
 const posts = await getSinglePage("posts");
@@ -51,11 +51,11 @@ const { title, description, authors, categories, image, date, tags } =
             }
           </li>
           <li class="mx-3 flex items-center flex-wrap font-medium">
-            <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
+            <BiCalendarAlt className="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(date)}</>
           </li>
           <li class="mx-3 flex items-center flex-wrap">
-            <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
+            <BiTagAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
             <>
             <ul>
               {
@@ -111,7 +111,7 @@ const { title, description, authors, categories, image, date, tags } =
             className="social-share mb-4"
             title={title}
             description={description}
-            slug={post.slug}
+            slug={`/posts/${post.slug}`}
           />
         </div>
       </div>

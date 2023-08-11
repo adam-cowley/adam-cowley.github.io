@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "Bookworm Light Astro | Blog Template",
-    "base_url": "https://bookworm-light-astro.vercel.app",
+    "title": "Adam Cowley | Full Stack, Graphs, Neo4j",
+    "base_url": "https://adamcowley.co.uk",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
+
     "logo_width": "200",
     "logo_height": "34",
-    "logo_text": "Bookworm Light"
+    "logo_text": "Adam Cowley"
   },
 
   "settings": {
@@ -17,14 +17,15 @@
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Adam Cowley",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Bookworm Light Astro Blog Template"
+    "meta_description": "Adam Cowley | Full Stack, Graphs, Neo4j"
   },
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright © 2023 a theme by [Themefisher](https://themefisher.com)"
+    "copyright": "Copyright © 2023 Adam Cowley.",
+    "acknowledgement": "Original theme by [Themefisher](https://themefisher.com)"
   },
 
   "contactinfo": {

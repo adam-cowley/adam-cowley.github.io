@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 
-export const getSinglePage = async (collection: any) => {
+export async function getSinglePage<T>(collection: any): Promise<T[]> {
   const allPage = await getCollection(collection);
-  const removeIndex = allPage.filter((data) => data.id.match(/^(?!-)/));
-  const removeDrafts = removeIndex.filter((data) => !data.draft);
-  return removeDrafts;
+  const removeIndex = allPage.filter((data: any) => data.id.match(/^(?!-)/));
+  const removeDrafts = removeIndex.filter((data: any) => !data.draft);
+  return removeDrafts as T[];
 };
 ---

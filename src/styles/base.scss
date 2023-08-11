@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply bg-body font-primary font-normal leading-relaxed text-text;
+  @apply bg-body font-primary font-normal leading-relaxed text-text border-t-4 border-t-primary;
 }
 
 h1,
@@ -43,4 +43,8 @@ h5,
 h6,
 .h6 {
   @apply text-h6;
+}
+
+a {
+  @apply font-bold hover:underline hover:text-primary transition-colors;
 }

@@ -32,4 +32,11 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  redirects: {
+    '/neo4j/analysing-football-events-neo4j/': '/neo4j/analysing-football-events-neo4j/',
+    '/neo4j/importing-wikipedia-data-into-neo4j/': '/posts/importing-wikipedia-data-into-neo4j/',
+    '/neo4j/sharding-neo4j-4.0/': '/posts/sharding-neo4j-4.0/',
+    '/neo4j/multi-tenancy-neo4j-4.0/': '/posts/multi-tenancy-neo4j-4.0/',
+    '/neo4j/social-feed-cursor-based-pagination/': '/social-feed-cursor-based-pagination/',
+  }
 });
