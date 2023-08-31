@@ -44,10 +44,11 @@ RETURN COUNT { (p:Person)-[:ACTED_IN]->() } AS roles,
 
 ### No More `UNION`s
 
-This also means no more unions as each subquery is planned seperately.  The following query calculate the percentage of `(:HelpfulResponse)`s compared to the overall number of `(:Response)`s.
+This also means no more unions as each subquery is planned seperately.  The following query calculates the percentage of `(:HelpfulResponse)`s compared to the overall number of `(:Response)`s.
 
 ```cypher
-WITH COUNT { (r:Response) } as total, COUNT { (r:HelpfulResponse) } AS helpful
+WITH COUNT { (r:Response) } as total,
+     COUNT { (r:HelpfulResponse) } AS helpful
 RETURN round(100.0 * helpful / total, 2) +'%'
 ```
 
