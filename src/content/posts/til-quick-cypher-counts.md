@@ -11,11 +11,9 @@ tags:
 - cypher
 ---
 
-I'm a little late to the party on this one, but since the around the *5.6 release* of Neo4j, you are now able to  [Cypher Subqueries Neo4j *5.0*](https://neo4j.com/docs/getting-started/cypher-intro/subqueries/)
+I'm a little late to the party on this one, but since the around the *5.6 release* of Neo4j, you are now able to use [Cypher Subqueries Neo4j *5.0*](https://neo4j.com/docs/getting-started/cypher-intro/subqueries/) to get node and relationship counts from the count store in Neo4j.
 
-there has been a quicker way to get counts of nodes and relationships in Neo4j.
-
-I've been stuck using the old way for a while:
+For as long as I can remember, I have been writing the following Cypher statement to get a count of nodes with a label.
 
 ```cypher
 MATCH (p:Person) RETURN count(p) AS count
@@ -36,6 +34,15 @@ RETURN COUNT { (p:Person) }
 ```
 
 That's 42 characters reduced to 28 - 66.666% less.  I estimate I write a query like this 5-10 times a day, so over 48 working weeks a year, that means a **saving of 67 200 characters a year**.
+
+Here is an example that counts the number of `:ACTED_IN` relationships from a `(:Person)` node and the total count of `:REVIEWED` relationships.
+
+```cypher
+RETURN COUNT { (p:Person)-[:ACTED_IN]->() } AS roles,
+    COUNT { ()-[:REVIEWED]->() } AS reviews
+```
+
+### No More `UNION`s
 
 This also means no more unions as each subquery is planned seperately.  The following query calculate the percentage of `(:HelpfulResponse)`s compared to the overall number of `(:Response)`s.
 
