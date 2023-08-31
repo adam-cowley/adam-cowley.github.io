@@ -129,7 +129,7 @@ export default function SearchBar({ searchList }: Props) {
             </ul>
 
             <h3 className="mb-2">
-              <a href={`/${item.slug}`} className="block hover:text-primary transition duration-300">
+              <a href={`/posts/${item.slug}`} className="block hover:text-primary transition duration-300">
                 {item.data.title}
               </a>
             </h3>
