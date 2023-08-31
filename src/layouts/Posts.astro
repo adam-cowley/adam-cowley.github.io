@@ -15,7 +15,7 @@ const { className, posts, fluid } = Astro.props;
       <div class={i === 0 && fluid != false ? "col-12" : "col-12 sm:col-6"}>
 
         {post.data.short && <div class="p-1 lg:p-0 lg:float-right lg:ml-4 rounded-lg overflow-hidden bg-slate-200">
-          <iframe class="m-auto" src={`https://www.youtube.com/embed/${post.data.short}`} width={i == 0 ? 210 : 120} height={i == 0 ? 373 : 213}>
+          <iframe class="m-auto" src={`https://www.youtube.com/embed/${post.data.short}`} width={i == 0 ? 210 : 131} height={i == 0 ? 373 : 233}>
             View video at <a href={`https://www.youtube.com/shorts/${post.data.short}`} target="_blank">https://www.youtube.com/embed/{post.data.short}</a>
           </iframe>
         </div>}

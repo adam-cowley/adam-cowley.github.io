@@ -11,7 +11,7 @@ tags:
 
 > As long as I can remember I've always wanted to ~~be a gangster~~ _analyse sports data_.
 
-There's an interesting intersection between my love for [football](https://en.wikipedia.org/wiki/Association_football) and data.  I loved the movie [Moneyball](https://www.imdb.com/title/tt1210166/) and I've read countless books on how data is being used by clubs to improve their recruitment processes.  But aside from crunching some basic experiements with key metrics like goals and assists to help pick a fantasy football team for World Cup 2018 I hadn't ever looked in any more detail.
+There's an interesting intersection between my love for [football](https://en.wikipedia.org/wiki/Association_football) and data.  I loved the movie [Moneyball](https://www.imdb.com/title/tt1210166/) and I've read countless books on how data is being used by clubs to improve their on-field performance and  recruitment processes.  But aside from crunching some basic experiements with key metrics like goals and assists to help pick a fantasy football team for World Cup 2018 I hadn't ever looked in any more detail.
 
 A couple of months ago, I saw a [tweet from Statsbomb](https://twitter.com/StatsBomb/status/1419993688558739457) with a beginners guide to analysing their data with Python or R.  After taking a look at [the statsbombpy repo](https://github.com/statsbomb/statsbombpy) I found that their [StatsBomb Open Data](https://github.com/statsbomb/open-data) repo which has a set of JSON files containing matches, lineups and event data.  I starred the repo and went on with my day...
 
