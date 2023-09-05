@@ -30,7 +30,7 @@ Neo4j 4.0 has a huge update, named **Fabric**.  According to the [Neo4j Operatio
 
 Simple, right?  In essence, Fabric comes with it's own database that acts as an entry point to the Neo4j environment.  A driver will connect to a _proxy_ server or cluster of proxy servers with a set of configuration on it to give it a picture of each shard.  There is then a new [Cypher `USE` keyword](https://neo4j.com/docs/operations-manual/4.0-preview/fabric/queries/) introduced in 4.0 that will allow you to query across shards.
 
-![Neo4j Fabric Setup](https://neo4j.com/docs/operations-manual/4.0-preview/images/fabric-single-instance.png "A single instance setup of Neo4j Fabric proxy server sitting between the User and 3 Neo4j Databases")
+<!-- ![Neo4j Fabric Setup](https://neo4j.com/docs/operations-manual/4.0-preview/images/fabric-single-instance.png "A single instance setup of Neo4j Fabric proxy server sitting between the User and 3 Neo4j Databases") -->
 
 ## Something to consider
 
@@ -98,6 +98,7 @@ You could easily build some sort of script to automate this if necessary:
 
 
 <div class="file">cypher/constraints.cypher</div>
+
 ```cypher
 CREATE CONSTRAINT ON (a:Airport) ASSERT a.code IS UNIQUE;
 CREATE CONSTRAINT ON (f:Flight) ASSERT f.id IS UNIQUE;
@@ -145,19 +146,19 @@ You can also query across shards using an _anonymous procedure call_.  For examp
 CALL {
   // Query January 20202 for a flight
   USE fabric.january2020
-  MATCH 
-    (flight:Flight {id: "2013-1-1--1545"})-[:ORIGIN]->(o:Airport), 
-    (flight)-[:DESTINATION]->(d:Airport) 
+  MATCH
+    (flight:Flight {id: "2013-1-1--1545"})-[:ORIGIN]->(o:Airport),
+    (flight)-[:DESTINATION]->(d:Airport)
   RETURN flight, o, d
-} 
+}
 
 // You cannot access a node inside another call, so take the property values
-// that we'll need to look up 
+// that we'll need to look up
 WITH flight, o.code AS originCode, d.code AS destinationCode
 
 CALL {
-  // Take variables from previous 
-  WITH originCode, destinationCode  
+  // Take variables from previous
+  WITH originCode, destinationCode
 
   // Find the nodes in the airports shard
   USE fabric.airports
@@ -170,7 +171,7 @@ CALL {
 RETURN flight, origin, destination
 ```
 
-![Cross-Shard Querying](/uploads/sharding-neo4j-4.0/cross-shard-result.png "A neo4j result window with the properties of flight, origin and destination nodes")
+<!-- ![Cross-Shard Querying](/uploads/sharding-neo4j-4.0/cross-shard-result.png "A neo4j result window with the properties of flight, origin and destination nodes") -->
 
 
 Node values cannot be passed across shards, so the line:
@@ -181,7 +182,7 @@ Node values cannot be passed across shards, so the line:
 
 ## Loading the Data via the Proxy
 
-Now that the proxy and shards are configured, and we know how to query across it's time to add some data to the shard.  Because javascript is my language of choice, I'll put together some code that will take a CSV file, and separate the rows out into their shards.  Beyond that the same rules around importing data apply, so I will send the updates to neo4j in batches. 
+Now that the proxy and shards are configured, and we know how to query across it's time to add some data to the shard.  Because javascript is my language of choice, I'll put together some code that will take a CSV file, and separate the rows out into their shards.  Beyond that the same rules around importing data apply, so I will send the updates to neo4j in batches.
 
 
 ```js
@@ -268,12 +269,12 @@ const importMonth = async (driver, key, data) => {
     const query = `
         USE fabric.${shard}
         UNWIND $batch AS row
-        
+
         MERGE (origin:Airport {code: row.origin})
         MERGE (destination:Airport {code: row.dest})
-        
+
         MERGE (f:Flight {id: row.year +'-'+ row.month +'-'+ row.day +'--'+ row.flight})
-        
+
         MERGE (f)-[:ORIGIN]->(origin)
         MERGE (f)-[:DESTINATION]->(destination)
     `

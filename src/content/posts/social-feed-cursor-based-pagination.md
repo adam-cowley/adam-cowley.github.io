@@ -1,6 +1,7 @@
 ---
 title: "Social Feed Cursor Based Pagination"
 description: How to squeeze as much peformance out of a high-traffic, high-volume social feed using Neo4j's Core API.
+image: /images/posts/social-feed-cursor-based-pagination/01-follows-model.svg
 date: 2019-07-03T14:21:20+01:00
 url: /neo4j/social-feed-cursor-based-pagination/
 categories:
@@ -79,7 +80,7 @@ The *TL;DR* of the post is that Neo4j is optimised for traversing relationship t
 
 For now, I'll concentrate on `:Post`s from `User`s that a particular User `FOLLOWS`.  For the posted relationship, the date is encoded as `POSTED_ON_{YYYY}_{MM}_{DD}` format.  Depending on the level of granularity required, you could just encode the year, or you could go down further to dates and times.
 
-![(:User)-[:FOLLOWS]->(:User)-[:POSTED_ON_2019_06_30]->(:Post)](/blog/social-feed-cursor-based-pagination/01-follows-model.svg)
+![(:User)-[:FOLLOWS]->(:User)-[:POSTED_ON_2019_06_30]->(:Post)](/images/posts/social-feed-cursor-based-pagination/01-follows-model.svg)
 
 This will allow us to get posts from a User on a particular day.
 

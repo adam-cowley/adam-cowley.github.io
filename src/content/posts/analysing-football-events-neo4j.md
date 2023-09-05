@@ -2,6 +2,7 @@
 title: "Analysing Football Events in a Graph Database"
 date: 2021-08-30T11:01:43+01:00
 description: How Graph Databases can be used to analyse event sequences in sports
+image: /uploads/analysing-football-events-neo4j/statsbomb-graph.svg
 categories:
 - neo4j
 tags:
