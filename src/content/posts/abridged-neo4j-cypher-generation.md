@@ -10,7 +10,7 @@ tags:
 - llms
 ---
 
-In this post, I will provide the abridged version of the Neo4j & LLM Fundamentals course on GraphAcademy.
+In this post, I will provide the abridged version of the [Neo4j & LLM Fundamentals course on GraphAcademy](https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=adam).
 
 The objective is to build a [Langchain Agent](https://python.langchain.com/docs/modules/agents/) that is capable of providing movie recommendations based on the information from the Recommendations dataset in Neo4j Sandbox.  But, I want to do this by writing as little code as possible.   I will demonstrate how to build a conversational agent that is capable of querying a Neo4j database using existing tools, and with as little code as possible.  I will also address some of the challenges you may face along the way if you are trying to do something similar.
 
