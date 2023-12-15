@@ -1,7 +1,7 @@
 ---
-title: "Passing Output Parameters Between Jobs in Github Actions"
+title: "TIL: Passing Output Parameters Between Jobs in Github Actions"
 date: 2023-12-12T10:00:40+01:00
-description: TIL
+description: How to pass the output of one command to another in a GitHub Action
 image: /images/posts/til-github-action-output-parameters.webp
 categories:
 - til
