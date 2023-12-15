@@ -3,7 +3,7 @@ import Base from "@layouts/Base.astro";
 import Posts from "@layouts/Posts.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import { sortByDate } from "@lib/utils/sortFunctions";
+import { sortByDateAndPinned } from "@lib/utils/sortFunctions";
 import taxonomyFilter from "@lib/utils/taxonomyFilter";
 import { humanize } from "@lib/utils/textConverter";
 
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { category } = Astro.params;
 
 const posts = await getSinglePage("posts");
-const filterByCategory = sortByDate(taxonomyFilter(posts, "categories", category));
+const filterByCategory = sortByDateAndPinned(taxonomyFilter(posts, "categories", category));
 
 
 const title = humanize(category || "")

@@ -3,6 +3,7 @@ title: "The Abridged Guide to Neo4j Cypher Generation with OpenAI GPT-4"
 date: 2023-09-28T15:00:40+01:00
 description: Learn how to build a chatbot that connects to Neo4j with minimal code and minimal Cypher.
 image: /images/posts/abridged-neo4j-cypher-generation.jpg
+pinned: true
 categories:
 - neo4j
 tags:
@@ -831,6 +832,3 @@ I have personally found through building [the GraphAcademy Chatbot](https://medi
 Using a database to feed data to an LLM can be more beneficial than a vector search as it provides structured, accurate, and real-world data, enabling the LLM to produce more precise and contextually relevant responses; in contrast, a vector search, which identifies similar items in high-dimensional space, may not ensure the reliability or accuracy of the information.
 
 The major benefits of an LLM generating a Cypher statement to answer a user's question on the fly include enhanced responsiveness and accuracy in providing user-specific information. This capability allows the LLM to interact dynamically with the Neo4j database, extracting real-time, precise, and structured data relevant to the user’s inquiry. It negates the need for predefined queries or static data sets, enabling more flexible, adaptive, and contextually appropriate responses, thus significantly improving the user experience and the reliability of the provided information.
-
-
-

@@ -8,6 +8,21 @@ export const sortByDate = (array: any[]) => {
   return sortedArray;
 };
 
+export const sortByDateAndPinned = (array: any[]): any[] => {
+  return array.sort((a, b) => {
+    // Compare pinned status
+    if (a.data.pinned && !b.data.pinned) {
+      return -1;
+    }
+    if (!a.data.pinned && b.data.pinned) {
+      return 1;
+    }
+
+    return a.data.date > b.data.date ? -1 : 1;
+  });
+};
+
+
 // sort product by weight
 export const sortByWeight = (array: any[]) => {
   const withWeight = array.filter(
