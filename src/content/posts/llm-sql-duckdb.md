@@ -13,7 +13,7 @@ tags:
 - python
 ---
 
-A lot of my reporting these days seems to revolve around pandas.  I like how `DataFrame`s can be quickly turned [into charts using matplotlib](https://adamcowley.co.uk/posts/til-neo4j-result-matplotlib/).  I often find myself
+A lot of my reporting these days seems to revolve around pandas.  I like how `DataFrame`s can be quickly turned [into charts using matplotlib](https://adamcowley.co.uk/posts/til-neo4j-result-matplotlib/).  I often find myself pulling data into a dataframe, filtering and [using the `.plot` options to visualise the data](/posts/til-neo4j-result-matplotlib/).
 
 Since [Mark Needham](https://www.youtube.com/watch?v=XFTFEKYLxyU&t=3s) posed the question _"Can an LLM write better pandas than me?"_ (TL;DR: it doesn't at the moment), I have been wondering whether text-to-SQL (text-to-cypher's more popular cousin) could yield better results.  Naturally, there's only one tool for the job: [DuckDB](https://duckdb.org).
 
