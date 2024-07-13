@@ -24,7 +24,7 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright © 2023 Adam Cowley.",
+    "copyright": "Copyright © {year} Adam Cowley.",
     "acknowledgement": "Original theme by [Themefisher](https://themefisher.com)"
   },
 

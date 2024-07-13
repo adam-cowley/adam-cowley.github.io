@@ -23,7 +23,7 @@ import { markdownify } from "@lib/utils/textConverter";
     {/* social icons */}
     <Social source={social} className="social-icons mb-8" />
     {/* copyright */}
-    <p set:html={markdownify(config.params.copyright)} class="text-white/75 text-sm mb-1" />
+    <p set:html={markdownify(config.params.copyright.replace('{year}', new Date().getFullYear()))} class="text-white/75 text-sm mb-1" />
     <p set:html={markdownify(config.params.acknowledgement)} class="text-white/75 text-xs" />
     <p></p>
   </div>
