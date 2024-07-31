@@ -6,7 +6,7 @@ import { getEntryBySlug } from "astro:content";
 
 const entry = await getEntryBySlug("about", "index");
 const { Content } = await entry.render();
-const { title, description, meta_title, image, what_i_do } = entry.data;
+const { title, subtitle, description, meta_title, image, what_i_do } = entry.data;
 ---
 
 <Base
@@ -18,8 +18,8 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
   <section class="section">
     <div class="container">
       <div class="row md:gx-4">
-        <div class="sm:col-5 md:col-4">
-          {image && (
+        <div class="xs:col-12 md:col-5 md:offset-1">
+          {image ? (
             <div class="img-cover mb-8">
               <Image
                 src={image}
@@ -29,8 +29,7 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
                 class="rounded-lg w-full"
               />
             </div>
-          )}
-          {!image && (
+          ) : (
             <div class="flex flex-col align-middle justify-center text-center h-64 rounded-xl bg-primary text-white">
               <span class="text-8xl flex flex-col tracking-tighter justify-center align-middle m-auto bg-white text-primary rounded-full w-44 h-44">
                 ac
@@ -38,9 +37,14 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
             </div>
           )}
         </div>
-        <div class="sm:col-7 md:col-8">
+        <div class="xs:col-12 md:col-6">
           <h1 set:html={markdownify(title)} class="h3 mb-8" />
 
+          <p class="subtitle text-xl font-bold italic text-slate-500 mb-12">{subtitle}</p>
+        </div>
+      </div>
+      <div class="row md:gx-4">
+        <div class="sm:col-12 md:col-8 md:offset-2">
           <div class="content">
             <Content />
           </div>

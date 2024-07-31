@@ -1,5 +1,6 @@
 ---
 title: "Hey, I'm Adam."
+subtitle: "I like to solve problems with code"
 meta_title: "About"
 image: "/images/picture-blurred.png"
 draft: false
@@ -18,8 +19,6 @@ draft: false
 
 ---
 
-I like to solve problems with code.
-
 From my first professional development job at 14, back when the internet was built with `<table>`s, I have been building websites, mobile apps and mobile applications.
 
 I'm a 30-something digital technologist born and raised in [Swindon, Wiltshire, UK](https://en.wikipedia.org/wiki/Swindon).  Since my first professional project at 14, I have worked across the tech sector doing everything from building websites and mobile apps to consulting with some of the worlds largest companies.
@@ -28,7 +27,7 @@ In 2017, I joined [Neo4j](https://neo4j.com) as a Field Engineer/Professional Se
 
 During the day I work as a **Developer Advocate** at [Neo4j](https://neo4j.com), teaching Developers and Data Scientists how to build applications through [GraphAcademy](https://graphacademy.neo4j.com).
 
-Away from the computer, I am a sports fan - in particular I enjoy watching live football, playing snooker and pool.
+Away from the computer, I am a sports fan - in particular I enjoy [watching (and analysing) football](/posts/analysing-football-events-neo4j), playing snooker and pool.
 
 
 ## Speaker Bio
