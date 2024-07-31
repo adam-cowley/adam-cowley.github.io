@@ -1,7 +1,7 @@
 ---
 title: "Hey, I'm Adam."
 meta_title: "About"
-# image: "/images/author.png"
+image: "/images/picture-blurred.png"
 draft: false
 
 # what_i_do:
