@@ -1,9 +1,10 @@
-import image from "@astrojs/image";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
+import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,24 +12,22 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
-    react(),
     sitemap(),
     tailwind({
       config: {
-        applyBaseStyles: false,
-      },
+        applyBaseStyles: false
+      }
     }),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
+    react(),
+    mdx()
   ],
   markdown: {
     remarkPlugins: [],
     shikiConfig: {
       theme: "one-dark-pro",
-      wrap: true,
+      wrap: true
     },
-    extendDefaultPlugins: true,
+    extendDefaultPlugins: true
   },
   redirects: {
     '/neo4j/analysing-football-events-neo4j/': '/neo4j/analysing-football-events-neo4j/',
@@ -41,6 +40,6 @@ export default defineConfig({
     '/neo4j/calculating-tf-idf-score-cypher/': '/posts/calculating-tf-idf-score-cypher/',
     '/neo4j/importing-google-analytics-to-neo4j-via-bigquery-using-apoc-jdbc/': '/posts/importing-google-analytics-to-neo4j-via-bigquery-using-apoc-jdbc/',
     '/javascript/using-the-neo4j-driver-with-nodejs/': '/posts/using-the-neo4j-driver-with-nodejs/',
-    '/neo4j/temporal-native-dates/': '/posts/temporal-native-dates/',
+    '/neo4j/temporal-native-dates/': '/posts/temporal-native-dates/'
   }
 });
