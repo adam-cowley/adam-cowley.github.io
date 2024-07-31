@@ -4,13 +4,13 @@ date: 2024-04-11T20:00:00+01:00
 description: Using DuckDB to perform natural language search on a Pandas DataFrame
 # theme: nord
 image: "/images/posts/llm-sql-duckdb.png"
-pinned: true
 categories:
 - genai
 tags:
 - duckdb
 - llms
 - python
+- langchain
 ---
 
 A lot of my reporting these days seems to revolve around pandas.  I like how `DataFrame`s can be quickly turned [into charts using matplotlib](https://adamcowley.co.uk/posts/til-neo4j-result-matplotlib/).  I often find myself pulling data into a dataframe, filtering and [using the `.plot` options to visualise the data](/posts/til-neo4j-result-matplotlib/).

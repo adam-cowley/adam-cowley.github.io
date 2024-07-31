@@ -3,7 +3,6 @@ title: "The Abridged Guide to Neo4j Cypher Generation with OpenAI GPT-4"
 date: 2023-09-28T15:00:40+01:00
 description: Learn how to build a chatbot that connects to Neo4j with minimal code and minimal Cypher.
 image: /images/posts/abridged-neo4j-cypher-generation.jpg
-pinned: true
 categories:
 - neo4j
 tags:
