@@ -1,26 +1,41 @@
 ---
-import { Image } from 'astro:assets';
-import config from "@config/config.json";
-import { getSinglePage } from "@lib/contentParser.astro";
+import { Image } from "astro:assets";
+import config from "@config/config.json";;
 import dateFormat from "@lib/utils/dateFormat";
-import { humanize,markdownify,slugify } from "@lib/utils/textConverter";
+import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
 import { BiCalendarAlt, BiTagAlt } from "react-icons/bi";
 const { summary_length } = config.settings;
 const { className, posts, fluid } = Astro.props;
 ---
 
-<div class={`row gy-5 gx-4 ${className} ${posts.length == 1 ? "justify-center" : ""} `}>
+<div
+  class={`row gy-5 gx-4 ${className} ${posts.length == 1 ? "justify-center" : ""} `}
+>
   {
     posts.map((post: any, i: number) => (
       <div class={i === 0 && fluid != false ? "col-12" : "col-12 sm:col-6"}>
-
-        {post.data.short && <div class="p-1 lg:p-0 lg:float-right lg:ml-4 rounded-lg overflow-hidden bg-slate-200">
-          <iframe class="m-auto" src={`https://www.youtube.com/embed/${post.data.short}`} width={i == 0 ? 210 : 131} height={i == 0 ? 373 : 233}>
-            View video at <a href={`https://www.youtube.com/shorts/${post.data.short}`} target="_blank">https://www.youtube.com/embed/{post.data.short}</a>
+        {post.data.short && (
+        <div class="p-1 lg:p-0 lg:float-right lg:ml-4 rounded-lg overflow-hidden bg-slate-200">
+          <iframe
+            class="m-auto"
+            src={`https://www.youtube.com/embed/${post.data.short}`}
+            width={i == 0 ? 210 : 131}
+            height={i == 0 ? 373 : 233}
+          >
+            {/* <a
+              href={`https://www.youtube.com/shorts/${post.data.short}`}
+              target="_blank"
+            >
+              View video at https://www.youtube.com/embed/{post.data.short}
+            </a> */}
           </iframe>
-        </div>}
+        </div>
+        )}
         {post.data.image && (
-          <a href={`/posts/${post.slug}`} class="rounded-lg block hover:text-primary overflow-hidden group">
+          <a
+            href={`/posts/${post.slug}`}
+            class="rounded-lg block hover:text-primary overflow-hidden group"
+          >
             <Image
               class="group-hover:scale-[1.03] transition duration-300 w-full"
               src={post.data.image}
@@ -31,7 +46,10 @@ const { className, posts, fluid } = Astro.props;
           </a>
         )}
         <h3 class="mb-4 mt-8">
-          <a href={`/posts/${post.slug}`} class="block hover:text-primary transition duration-300">
+          <a
+            href={`/posts/${post.slug}`}
+            class="block hover:text-primary transition duration-300"
+          >
             {post.data.title}
           </a>
         </h3>
@@ -75,7 +93,8 @@ const { className, posts, fluid } = Astro.props;
                       href={`/categories/${slugify(category)}`}
                       class="mr-2 hover:text-primary font-medium"
                     >
-                      {humanize(category)}{i !== post.data.categories.length - 1 && ","}
+                      {humanize(category)}
+                      {i !== post.data.categories.length - 1 && ","}
                     </a>
                   </li>
                 ))}
@@ -85,7 +104,17 @@ const { className, posts, fluid } = Astro.props;
         </ul>
 
         <p class="text-text">
-          {post.data.description || markdownify(post.body?.slice(0, Number(i === 0 && fluid != false ? summary_length * 2 : summary_length))) + '...'}
+          {post.data.description ||
+            markdownify(
+              post.body?.slice(
+                0,
+                Number(
+                  i === 0 && fluid != false
+                    ? summary_length * 2
+                    : summary_length
+                )
+              )
+            ) + "..."}
         </p>
       </div>
     ))

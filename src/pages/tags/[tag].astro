@@ -9,7 +9,7 @@ import { humanize } from "@lib/utils/textConverter";
 export async function getStaticPaths() {
   const tags = await getTaxonomy("posts", "tags");
 
-  return tags.map((tag) => {
+  return tags.map((tag: any) => {
     return {
       params: { tag },
     };

@@ -4,6 +4,9 @@ import config from "@config/config.json";
 import menu from "@config/menu.json";
 import social from "@config/social.json";
 import { markdownify } from "@lib/utils/textConverter";
+
+const date = new Date()
+const year = date.getFullYear().toString()
 ---
 
 <footer class="section bg-theme-dark">
@@ -23,13 +26,13 @@ import { markdownify } from "@lib/utils/textConverter";
     {/* social icons */}
     <Social source={social} className="social-icons mb-8" />
     {/* copyright */}
-    <p set:html={markdownify(config.params.copyright.replace('{year}', new Date().getFullYear()))} class="text-white/75 text-sm mb-1" />
+    <p set:html={markdownify(config.params.copyright.replace('{year}', year))} class="text-white/75 text-sm mb-1" />
     <p set:html={markdownify(config.params.acknowledgement)} class="text-white/75 text-xs" />
     <p></p>
   </div>
 </footer>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-3764211-9"></script>
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-3764211-9"></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
