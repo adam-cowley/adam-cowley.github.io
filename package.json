@@ -1,6 +1,6 @@
 {
   "name": "@adamcowley/blog",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
