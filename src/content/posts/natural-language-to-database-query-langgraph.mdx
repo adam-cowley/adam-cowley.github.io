@@ -784,9 +784,9 @@ return workflow.compile();
 ```
 
 
-As I have wrapped the workflow in a `initCypherQA()` function, I can call the `invoke()` method on the
+As I have wrapped the workflow in a `initCypherQA()` function, I can call the `invoke()` method to execute the workflow and generate a result.
 
-```
+```ts
 // src/index.ts
 const workflow = await initCypherQA();
 
