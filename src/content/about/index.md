@@ -32,6 +32,6 @@ Away from the computer, I am a sports fan - in particular I enjoy [watching (and
 
 ## Speaker Bio
 
-Adam Cowley is a dedicated developer with a keen interest in data and graph databases. Serving as a Staff Developer Advocate at Neo4j, Adam produces educational content for GraphAcademy, Neo4j's free, self-paced, online learning platform.
+Adam Cowley is a seasoned developer and passionate advocate for data-driven solutions, specializing in graph databases. As a Staff Developer Advocate at Neo4j, Adam creates educational content for GraphAcademy, Neo4j’s free, self-paced online learning platform.
 
-His technical experience spans two decades, developing websites, mobile apps and mixed reality experiences for budding startups to the world's biggest companies.
+With over 20 years of experience in the tech industry, Adam has developed a wide array of digital solutions, from websites and mobile apps to cutting-edge mixed-reality experiences. His diverse background includes working with innovative startups and some of the world’s most renowned companies.
