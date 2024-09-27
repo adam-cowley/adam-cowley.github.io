@@ -1,0 +1,26 @@
+---
+import { existsSync, readFileSync } from 'fs'
+import { resolve } from 'path'
+const { path } = Astro.props
+
+
+let contents
+let exists = false
+
+const includePath = resolve('src/content/includes', path)
+
+try {
+  exists = existsSync(includePath)
+  contents = readFileSync(
+    includePath
+  )
+
+}
+catch(e: any) {
+  contents = e.message
+}
+
+---
+<div class="include-file">
+  {contents}
+</div>

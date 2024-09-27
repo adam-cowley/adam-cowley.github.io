@@ -1,0 +1,26 @@
+---
+import { Code } from 'astro/components'
+import { existsSync, readFileSync } from 'fs'
+import { resolve } from 'path'
+import theme from '../../config/theme.json'
+const { path, language } = Astro.props
+
+let contents
+let exists = false
+
+const includePath = resolve('src/content/includes', path)
+
+try {
+  exists = existsSync(includePath)
+  contents = readFileSync(
+    includePath
+  ).toString()
+
+}
+catch(e: any) {
+  contents = e.message
+}
+
+---
+
+<Code code={contents} lang={language} theme={theme.shikiConfig.theme as any} />

@@ -54,7 +54,28 @@ a {
 details {
   @apply border border-slate-300 bg-slate-50 px-4 py-2 rounded-lg text-slate-600 ;
 
+  summary {
+    @apply cursor-pointer;
+  }
   summary::marker {
     @apply inline-block mr-8 text-primary;
   }
+}
+
+.dataframe {
+  @apply border border-slate-300 bg-slate-50 px-4 py-2 rounded-lg text-slate-600 ;
+
+  overflow-x: auto;
+
+  td, th {
+    vertical-align: top;
+  }
+
+  tbody th {
+    @apply py-2;
+  }
+}
+
+.content :where(ul > li):not(:where([class~="not-prose"],[class~="not-prose"] *))::marker {
+  color: #DDB13B !important;
 }

@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import theme from './src/config/theme.json'
 
 import mdx from "@astrojs/mdx";
 
@@ -23,10 +24,7 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [],
-    shikiConfig: {
-      theme: "one-dark-pro",
-      wrap: true
-    },
+    shikiConfig: theme.shikiConfig,
     extendDefaultPlugins: true
   },
   redirects: {

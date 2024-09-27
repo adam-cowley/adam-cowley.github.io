@@ -1,0 +1,10 @@
+---
+const { title, open, scrollable } = Astro.props
+
+const classes = scrollable ? 'max-h-80 overflow-auto' : ''
+---
+
+<details class={classes} open={open}>
+  <summary>{title}</summary>
+  <slot />
+</details>

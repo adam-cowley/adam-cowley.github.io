@@ -26,5 +26,9 @@
       "base": "16",
       "scale": "1.1250"
     }
+  },
+  "shikiConfig": {
+    "theme": "one-dark-pro",
+    "wrap": true
   }
 }
