@@ -1,0 +1,12 @@
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (t:Track)
+RETURN t
+ORDER BY t.bpm DESC
+LIMIT 1
+
+Full Context:
+[{'t': {'id': 'seven-feat-latto-explicit-ver--2023'}}]
+
+> Finished chain.

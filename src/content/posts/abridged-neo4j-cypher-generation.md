@@ -322,14 +322,14 @@ cypher_chain.run("Who acted in The Matrix and what roles did they play?")
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (m:Movie {title: 'The Matrix'})<-[:ACTED_IN]-(a:Actor)
-    RETURN a.name as Actor, a.role as Role[0m
+    MATCH (m:Movie {title: 'The Matrix'})<-[:ACTED_IN]-(a:Actor)
+    RETURN a.name as Actor, a.role as Role
     Full Context:
-    [32;1m[1;3m[][0m
+    []
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -406,15 +406,15 @@ cypher_chain.run("Who acted in The Matrix and what roles did they play?")
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (a:Actor)-[r:ACTED_IN]->(m:Movie)
+    MATCH (a:Actor)-[r:ACTED_IN]->(m:Movie)
     WHERE m.title = "Matrix, The"
-    RETURN a.name, r.role[0m
+    RETURN a.name, r.role
     Full Context:
-    [32;1m[1;3m[{'a.name': 'Hugo Weaving', 'r.role': 'Agent Smith'}, {'a.name': 'Laurence Fishburne', 'r.role': 'Morpheus'}, {'a.name': 'Keanu Reeves', 'r.role': 'Thomas A. Anderson / Neo'}, {'a.name': 'Carrie-Anne Moss', 'r.role': 'Trinity'}][0m
+    [{'a.name': 'Hugo Weaving', 'r.role': 'Agent Smith'}, {'a.name': 'Laurence Fishburne', 'r.role': 'Morpheus'}, {'a.name': 'Keanu Reeves', 'r.role': 'Thomas A. Anderson / Neo'}, {'a.name': 'Carrie-Anne Moss', 'r.role': 'Trinity'}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -435,14 +435,14 @@ cypher_chain.run("How many movies has Tom Hanks directed?")
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (d:Director {name: 'Tom Hanks'})-[:DIRECTED]->(m:Movie)
-    RETURN COUNT(m)[0m
+    MATCH (d:Director {name: 'Tom Hanks'})-[:DIRECTED]->(m:Movie)
+    RETURN COUNT(m)
     Full Context:
-    [32;1m[1;3m[{'COUNT(m)': 2}][0m
+    [{'COUNT(m)': 2}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -495,26 +495,26 @@ agent.run("How many films did Tom Hanks act in?")
 
 
 
-    [1m> Entering new AgentExecutor chain...[0m
-    [32;1m[1;3m```json
+    > Entering new AgentExecutor chain...
+    ```json
     {
         "action": "GraphCypherQAChain",
         "action_input": "MATCH (a:Actor {name: 'Tom Hanks'})-[:ACTED_IN]->(m:Movie) RETURN count(m)"
     }
-    ```[0m
+    ```
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (a:Actor {name: 'Tom Hanks'})-[:ACTED_IN]->(m:Movie) RETURN count(m)[0m
+    MATCH (a:Actor {name: 'Tom Hanks'})-[:ACTED_IN]->(m:Movie) RETURN count(m)
     Full Context:
-    [32;1m[1;3m[{'count(m)': 38}][0m
+    [{'count(m)': 38}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
-    Observation: [36;1m[1;3mTom Hanks has acted in 38 movies.[0m
-    [32;1m[1;3m[0m
+    Observation: [36;1m[1;3mTom Hanks has acted in 38 movies.
 
-    [1m> Finished chain.[0m
+
+    > Finished chain.
 
 
 
@@ -533,26 +533,26 @@ agent.run("and how many has he directed?")
 
 
 
-    [1m> Entering new AgentExecutor chain...[0m
-    [32;1m[1;3m```json
+    > Entering new AgentExecutor chain...
+    ```json
     {
         "action": "GraphCypherQAChain",
         "action_input": "MATCH (p:Person {name: 'Tom Hanks'})-[:DIRECTED]->(m:Movie) RETURN count(m)"
     }
-    ```[0m
+    ```
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (p:Person {name: 'Tom Hanks'})-[:DIRECTED]->(m:Movie) RETURN count(m)[0m
+    MATCH (p:Person {name: 'Tom Hanks'})-[:DIRECTED]->(m:Movie) RETURN count(m)
     Full Context:
-    [32;1m[1;3m[{'count(m)': 2}][0m
+    [{'count(m)': 2}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
-    Observation: [36;1m[1;3mTom Hanks has directed 2 movies.[0m
-    [32;1m[1;3m[0m
+    Observation: [36;1m[1;3mTom Hanks has directed 2 movies.
 
-    [1m> Finished chain.[0m
+
+    > Finished chain.
 
 
 
@@ -571,26 +571,26 @@ agent.run("What genres has he directed?")
 
 
 
-    [1m> Entering new AgentExecutor chain...[0m
-    [32;1m[1;3m```json
+    > Entering new AgentExecutor chain...
+    ```json
     {
         "action": "GraphCypherQAChain",
         "action_input": "MATCH (p:Person)-[:DIRECTED]->(m:Movie) WHERE p.name = 'Tom Hanks' RETURN m.genres"
     }
-    ```[0m
+    ```
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (p:Person)-[:DIRECTED]->(m:Movie) WHERE p.name = 'Tom Hanks' RETURN m.countries[0m
+    MATCH (p:Person)-[:DIRECTED]->(m:Movie) WHERE p.name = 'Tom Hanks' RETURN m.countries
     Full Context:
-    [32;1m[1;3m[{'m.countries': ['USA']}, {'m.countries': ['USA']}][0m
+    [{'m.countries': ['USA']}, {'m.countries': ['USA']}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
-    Observation: [36;1m[1;3mI'm sorry, but the provided information does not contain any details about the genres of movies directed by Tom Hanks.[0m
-    [32;1m[1;3m[0m
+    Observation: [36;1m[1;3mI'm sorry, but the provided information does not contain any details about the genres of movies directed by Tom Hanks.
 
-    [1m> Finished chain.[0m
+
+    > Finished chain.
 
 
 
@@ -650,15 +650,15 @@ fewshot_cypher_chain.run("What genre of film is Toy Story?")
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (m:Movie)-[:IN_GENRE]->(g)
+    MATCH (m:Movie)-[:IN_GENRE]->(g)
     WHERE m.title = "Toy Story"
-    RETURN m.title AS title, collect(g.name) AS genres[0m
+    RETURN m.title AS title, collect(g.name) AS genres
     Full Context:
-    [32;1m[1;3m[{'title': 'Toy Story', 'genres': ['Adventure', 'Animation', 'Children', 'Comedy', 'Fantasy']}][0m
+    [{'title': 'Toy Story', 'genres': ['Adventure', 'Animation', 'Children', 'Comedy', 'Fantasy']}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -677,14 +677,14 @@ fewshot_cypher_chain.run("What genres of film has Tom Hanks directed?")
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (p:Person {name: "Tom Hanks"})-[:DIRECTED]->(m:Movie)-[:IN_GENRE]->(g:Genre)
-    RETURN collect(distinct g.name) AS genres[0m
+    MATCH (p:Person {name: "Tom Hanks"})-[:DIRECTED]->(m:Movie)-[:IN_GENRE]->(g:Genre)
+    RETURN collect(distinct g.name) AS genres
     Full Context:
-    [32;1m[1;3m[{'genres': ['Drama', 'Comedy', 'Romance']}][0m
+    [{'genres': ['Drama', 'Comedy', 'Romance']}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -705,15 +705,15 @@ fewshot_cypher_chain.run("Can you recommend me a film similar to The Green Mile 
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (m:Movie)<-[:ACTED_IN]-(a:Actor {name: "Tom Hanks"}), (m2:Movie)<-[:ACTED_IN]-(a)
+    MATCH (m:Movie)<-[:ACTED_IN]-(a:Actor {name: "Tom Hanks"}), (m2:Movie)<-[:ACTED_IN]-(a)
     WHERE m.title = "Green Mile, The"
-    RETURN m2.title AS similar_movies[0m
+    RETURN m2.title AS similar_movies
     Full Context:
-    [32;1m[1;3m[{'similar_movies': 'Punchline'}, {'similar_movies': 'Catch Me If You Can'}, {'similar_movies': 'Dragnet'}, {'similar_movies': 'Saving Mr. Banks'}, {'similar_movies': 'Bachelor Party'}, {'similar_movies': 'Volunteers'}, {'similar_movies': 'Man with One Red Shoe, The'}, {'similar_movies': 'Splash'}, {'similar_movies': 'Big'}, {'similar_movies': 'Nothing in Common'}][0m
+    [{'similar_movies': 'Punchline'}, {'similar_movies': 'Catch Me If You Can'}, {'similar_movies': 'Dragnet'}, {'similar_movies': 'Saving Mr. Banks'}, {'similar_movies': 'Bachelor Party'}, {'similar_movies': 'Volunteers'}, {'similar_movies': 'Man with One Red Shoe, The'}, {'similar_movies': 'Splash'}, {'similar_movies': 'Big'}, {'similar_movies': 'Nothing in Common'}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 
@@ -795,20 +795,20 @@ fewshot_cypher_chain.run("Can you recommend me a film similar to The Green Mile 
 
 
 
-    [1m> Entering new GraphCypherQAChain chain...[0m
+    > Entering new GraphCypherQAChain chain...
     Generated Cypher:
-    [32;1m[1;3mMATCH (subject:Person)-[:ACTED_IN|DIRECTED]->(m:Movie)<-[:ACTED_IN|DIRECTED]-(p:Person),
+    MATCH (subject:Person)-[:ACTED_IN|DIRECTED]->(m:Movie)<-[:ACTED_IN|DIRECTED]-(p:Person),
       (p)-[role:ACTED_IN|DIRECTED]->(m2:Movie)
     WHERE subject.name = "Tom Hanks" AND m.title = "Green Mile, The"
     RETURN
       m2.title AS recommendation,
       collect([ p.name, type(role) ]) AS peopleInCommon,
       [ (m)-[:IN_GENRE]->(g:Genre)<-[:IN_GENRE]-(m2) | g.name ] AS genresInCommon
-    ORDER BY size(peopleInCommon) DESC, size(genresInCommon) DESC LIMIT 1[0m
+    ORDER BY size(peopleInCommon) DESC, size(genresInCommon) DESC LIMIT 1
     Full Context:
-    [32;1m[1;3m[{'recommendation': 'Negotiator, The', 'peopleInCommon': [['David Morse', 'ACTED_IN']], 'genresInCommon': ['Drama', 'Crime']}][0m
+    [{'recommendation': 'Negotiator, The', 'peopleInCommon': [['David Morse', 'ACTED_IN']], 'genresInCommon': ['Drama', 'Crime']}]
 
-    [1m> Finished chain.[0m
+    > Finished chain.
 
 
 

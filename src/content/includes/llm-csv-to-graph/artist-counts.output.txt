@@ -1,0 +1,13 @@
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (t:Track)
+    WITH t, COUNT { (t)-[:PERFORMED_BY]->(:Artist) }  as artist_count
+WHERE artist_count IS NOT NULL
+RETURN t.id AS track_id, t.name AS track_name, artist_count
+ORDER BY artist_count DESC
+
+Full Context:
+[{'track_id': 'los-del-espacio-2023', 'track_name': 'Los del Espacio', 'artist_count': 8}, {'track_id': 'se-le-ve-2021', 'track_name': 'Se Le Ve', 'artist_count': 8}, {'track_id': 'we-don-t-talk-about-bruno-2021', 'track_name': "We Don't Talk About Bruno", 'artist_count': 7}, {'track_id': 'cayï-ï-la-noche-feat-cruz-cafunï-ï-abhir-hathi-bejo-el-ima--2022', 'track_name': None, 'artist_count': 6}, {'track_id': 'jhoome-jo-pathaan-2022', 'track_name': 'Jhoome Jo Pathaan', 'artist_count': 6}, {'track_id': 'besharam-rang-from-pathaan--2022', 'track_name': None, 'artist_count': 6}, {'track_id': 'nobody-like-u-from-turning-red--2022', 'track_name': None, 'artist_count': 6}, {'track_id': 'ultra-solo-remix-2022', 'track_name': 'ULTRA SOLO REMIX', 'artist_count': 5}, {'track_id': 'angel-pt-1-feat-jimin-of-bts-jvke-muni-long--2023', 'track_name': None, 'artist_count': 5}, {'track_id': 'link-up-metro-boomin-don-toliver-wizkid-feat-beam-toian-spider-verse-remix-spider-man-across-the-spider-verse--2023', 'track_name': None, 'artist_count': 5}]
+
+> Finished chain.

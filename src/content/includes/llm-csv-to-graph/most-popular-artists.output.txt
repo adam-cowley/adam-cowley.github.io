@@ -1,0 +1,12 @@
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (:Track)-[:PERFORMED_BY]->(a:Artist)
+RETURN a.name, COUNT(*) AS popularity
+ORDER BY popularity DESC
+LIMIT 10
+
+Full Context:
+[{'a.name': 'Bad Bunny', 'popularity': 40}, {'a.name': 'Taylor Swift', 'popularity': 38}, {'a.name': 'The Weeknd', 'popularity': 36}, {'a.name': 'SZA', 'popularity': 23}, {'a.name': 'Kendrick Lamar', 'popularity': 23}, {'a.name': 'Feid', 'popularity': 21}, {'a.name': 'Drake', 'popularity': 19}, {'a.name': 'Harry Styles', 'popularity': 17}, {'a.name': 'Peso Pluma', 'popularity': 16}, {'a.name': '21 Savage', 'popularity': 14}]
+
+> Finished chain.
