@@ -1,5 +1,5 @@
 ---
-title: "TIL: R-strings Are Essential for Regex Pattern Matching in Text Splitting"
+title: "TIL: R-strings Are Essential for Regex Pattern Matching with RecursiveCharacterTextSplitter"
 date: 2024-11-29T00:25:00+00:00
 description: The quickest way to get counts of nodes and relationships in Cypher
 action: For more tips and tricks on Cypher and Neo4j in general,<br />head to <a href="https://graphacademy.neo4j.com/?ref=adam" target="_blank">Neo4j GraphAcademy and enrol now</a>.
