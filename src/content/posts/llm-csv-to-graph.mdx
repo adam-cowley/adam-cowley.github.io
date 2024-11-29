@@ -5,6 +5,7 @@ description: A guide to using LLMs to generate a Graph data model from flat CSV 
 # theme: nord
 image: "/images/posts/llm-csv-to-graph.png"
 action: To learn about how GraphRAG improves LLM responses<br /><a href="https://graphacademy.neo4j.com/?ref=adam" target="_blank">check out the Generative AI learning path on GraphAcademy</a>.
+pinned: true
 categories:
 - genai
 tags:
@@ -17,15 +18,15 @@ import Collapsible from '../../layouts/components/Collapsible.astro'
 import Scrollable from '../../layouts/components/Scrollable.astro'
 import IncludeCode from '../../layouts/components/IncludeCode.astro'
 
-For this week's experiment, I thought I'd see how LLMs fare when creating graph data models.
+As a Friday challenge, I thought I would see how LLMs fare when creating graphs from flat CSV files.
 
 ## Graph Modelling Fundamentals
 
 The [Graph Data Modeling Fundamentals course on GraphAcademy](https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=adam) guides you through the basics of modelling data in a graph, but as a first pass I use the following rules of thumb:
 
 * **Nouns** become labels - they describe the _thing_ that the node represents.
-* **Verbs** become relationship types - they describe how the _things_ are connected
-* Everything else (particularly **Adverbs**) become properties - you have a name, may drive a gray car.
+* **Verbs** become relationship types - they describe how _things_ are connected
+* Everything else (particularly **Adverbs**) becomes a property - you have a _name_, you may drive a _gray_ car.
 
 Verbs can also be Nodes, you may be  happy to know that a _person_ has _ordered_ a _product_ but that basic model doesn't allow you to know where and when the product was ordered.  In this case, Order becomes a new node in the model.
 
@@ -34,14 +35,14 @@ I'm sure this could be distilled into a prompt to create a zero-shot approach to
 
 ## An Iterative Approach
 
-I attempted this briefly a few months ago and found that the model I was using became easily distracted when dealing with larger schemas and the prompts quite quickly reach the token limits.
+I attempted this briefly a few months ago and found that the model I was using became easily distracted when dealing with larger schemas, and the prompts quite quickly reached the LLM's token limits.
 
-So for this approach, I thought I'd try an iterative approach - taking the keys one by one.  This should help avoid distraction because the LLM only needs to consider one item at a time.
+I thought I'd try an iterative approach this time - taking the keys one at a time.  This should help avoid distraction because the LLM only needs to consider one item at a time.
 
 The final approach used the following steps:
 
 1. Load the CSV file into a Pandas dataframe
-2. Analyse each column in the CSV and append it to a data model losely based on JSON Schema
+2. Analyse each column in the CSV and append it to a data model loosely based on JSON Schema
 3. Identify and add missing unique IDs for each entity
 4. Review the data model for accuracy
 5. Generate Cypher statements to import the nodes and relationships
