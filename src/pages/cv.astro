@@ -1,0 +1,285 @@
+---
+import Base from "@layouts/Base.astro";
+import { BsTools, BsBook, BsClock, BsAward, BsDatabase } from "react-icons/bs";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGlobe, FaLinkedin, FaGithub, FaTwitter, FaFutbol } from 'react-icons/fa';
+
+const title = 'Curriculum Vitae | Adam Cowley'
+const meta_title = 'Curriculum Vitae'
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  >
+  	<!-- image={image} -->
+
+	<div class="max-w-4xl mx-auto px-4 py-8">
+		<!-- Print-only message -->
+		<!-- <div class="print:block hidden">
+			<p class="text-center text-sm text-gray-500 mb-4">
+				Visit <a href="https://adamcowley.co.uk/cv" class="text-blue-500 hover:underline">adamcowley.co.uk/cv</a> for the full experience.
+			</p>
+		</div> -->
+
+		<!-- Header with profile picture -->
+		<div class="flex flex-row items-start gap-6 mb-8 pb-4 border-b-2 border-gray-200">
+			<!-- Profile Picture -->
+			<div class="w-32 h-32 flex-shrink-0">
+				<img src="/images/picture-blurred.png" alt="Adam Cowley" class="w-full h-full object-cover rounded-lg shadow-md" />
+			</div>
+			
+			<!-- Main Header Content -->
+			<div class="flex-grow flex flex-col justify-center">
+				<h1 class="text-3xl font-bold mb-2">Adam Cowley</h1>
+				<p class="text-xl text-gray-600 italic mb-4">Developer experience, education and expertise.</p>
+				
+				<!-- Contact Details with Icons -->
+				<div class="flex flex-wrap text-sm text-gray-700">
+					<div class="flex items-center pr-8">
+						<FaMapMarkerAlt className="text-gray-500 mr-2" />
+						<span class="font-bold text-blue-800">Wiltshire, UK</span>
+					</div>
+					<div class="flex items-center pr-8">
+						<FaEnvelope className="text-gray-500 mr-2" />
+						<a href="mailto:hello@adamcowley.co.uk" class="text-blue-800 hover:text-blue-600">hello@adamcowley.co.uk</a>
+					</div>
+					<!-- <div class="flex items-center gap-2 pr-8">
+						<FaGlobe className="text-gray-500" />
+						<a href="https://adamcowley.co.uk" class="hover:text-blue-600">adamcowley.co.uk</a>
+					</div> -->
+					<div class="flex items-center  pr-8">
+						<FaLinkedin className="text-gray-500 mr-2" />
+						<a href="https://linkedin.com/in/adamcowley" class="text-blue-800 hover:text-blue-600">/in/adamcowley</a>
+					</div>
+					<!-- <div class="flex items-center gap-2 pr-8">
+						<FaGithub className="text-gray-500" />
+						<a href="https://github.com/adam-cowley" class="hover:text-blue-600">adam-cowley</a>
+					</div> -->
+					<!-- <div class="flex items-center gap-2 pr-8">
+						<FaTwitter className="text-gray-500" />
+						<a href="https://twitter.com/adamcowley" class="hover:text-blue-600">@adamcowley</a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+
+		<div class="flex flex-col sm:flex-row gap-8 border-b-2 border-gray-200 pb-8">
+
+			<ul class="list-disc pl-4 text-lg">
+				<li>Multi-disciplinary developer with a passion for building products that help people.</li>
+				<li>20+ years of software development experience, data analytics and product development.</li> 
+				<li>Keen interest in Generative AI and its practical applications.</li>
+			</ul>
+		</div>
+
+		<!-- Main content container -->
+		<div class="flex flex-col sm:flex-row gap-8">
+			<!-- Left column (3/4 width) -->
+			<div class="sm:w-3/4 order-2 sm:order-1">
+				<!-- Employment History Timeline -->
+				<section>
+					<div class="flex items-center gap-2 mb-6">
+						<h2 class="text-2xl font-bold flex justify-center">
+							<!-- <BsClock className="text-2xl inline-flex mr-4 -ml-2 -mb-2" /> -->
+							Employment History</h2>
+					</div>
+					<div class="space-y-6">
+						<!-- Neo4j -->
+						<div>
+							<div class="mb-4">
+								<h3 class="font-bold text-lg">Professional Services &amp; Developer Advocacy - Neo4j</h3>
+								<!-- <p class="text-gray-600">July 2017 - Present</p> -->
+							</div>
+							<div class="pl-2">
+								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
+									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
+									<h4 class="font-semibold text-base">Staff Developer Advocate - Developer Education Lead</h4>
+									<p class="text-gray-600 text-sm mb-2">March 2021 - Present</p>
+									<ul class="list-disc pl-4">
+										<!-- <li>Lead developer education strategy within Developer Relations.</li> -->
+										<!-- <li>Created key learning resource across the company, used by professional services for training and workshops.</li> -->
+
+										<li>Transformed GraphAcademy from static web pages into an interactive learning experience using Neo4j tools.</li>
+										<li>Grew yearly enrolment numbers from 2k to over 150k.</li>
+										<li>Pioneered Generative AI driven learning experiences, including courses on Generative AI with Neo4j.</li>
+									</ul>
+									<!-- <p class="text-gray-700 mt-2">
+										Led the transformation of Neo4j's learning platform, resulting in improved developer engagement through hands-on, interactive courses. Developed and launched the new GraphAcademy platform, making Neo4j training more accessible and effective.
+									</p> -->
+								</div>
+
+								<div class="relative pl-8 border-l-2 border-gray-400  pb-4">
+									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
+									<h4 class="font-semibold text-base">Developer Experience Engineer</h4>
+									<p class="text-gray-600 text-sm mb-2">March 2020 - March 2021</p>
+									<ul class="list-disc pl-4">
+										<li>Led documentation migration to a modern build system, improving developer experience and collaboration.</li>
+										<li>Transformed developer feedback into actionable product improvements, addressing user pain points and improving developer experience.</li>
+										<li>Released and contributed to open-source libraries and tools to accelerate developer growth and onboarding.</li>
+									</ul>
+
+									<!-- <p class="text-gray-700 mt-2">
+										Improved developer experience through documentation improvements and open-source contributions. Created several Graph Apps and libraries to reduce boilerplate code and accelerate developer onboarding.
+									</p> -->
+								</div>
+
+								<div class="relative pl-8 border-l-2 border-white">
+									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
+									<h4 class="font-semibold text-base">Senior Professional Services Consultant</h4>
+									<p class="text-gray-600 text-sm mb-2">July 2017 - March 2020</p>
+									<ul class="list-disc pl-4">
+										<li>Delivered high-impact solutions across EMEA, including fraud detection systems for major banks and service routing engines for telecommunications companies.</li>
+										<li>Led innovation labs and training programs for enterprise clients.</li>
+									</ul>
+									<!-- <p class="text-gray-700 mt-2">
+										Delivered high-impact solutions across EMEA, including fraud detection systems for major banks and service routing engines for telecommunications companies. Led innovation labs and training programs for enterprise clients.
+									</p> -->
+								</div>
+							</div>
+						</div>
+
+						<!-- Commit -->
+						<div>
+							<div class="mb-4">
+								<h3 class="font-bold text-lg">Founder &amp; Lead Developer - Commit</h3>
+								<p class="text-gray-600">April 2015 - April 2019</p>
+							</div>
+							<ul class="list-disc pl-4">
+								<li>Founded and led a technology consultancy, delivering solutions for clients ranging from startups to global companies.</li>
+								<li>GWR - business critical </li>
+							</ul>
+
+							<!-- <p class="text-gray-700">
+								Founded and led a technology consultancy, delivering solutions for clients ranging from startups to global companies. Notable projects include a business forms portal for GWR that continues to be used today.
+							</p> -->
+						</div>
+
+						<!-- Eskimo Media -->
+						<div>
+							<div class="mb-4">
+								<h3 class="font-bold text-lg">Lead Developer - Eskimo Media and Technology</h3>
+								<p class="text-gray-600">June 2013 - June 2015</p>
+							</div>
+							<ul class="list-disc pl-4">
+								<li>HP Connected Music - streaming platform for HP and Universal Music; 20k+ MAUs. </li>
+								<li>Google NYC Popup - <a href="https://sensori.al/projects/google-nyc-popup/" target="_blank">interactive photosphere</a> for launch of Google Pixel</li>
+								<!-- <li>Led development of digital solutions for global clients, including a streaming platform for HP and Universal Music that provided advanced analytics capabilities.</li> -->
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<!-- Right column (1/4 width) -->
+			<div class="sm:w-1/4 order-1 sm:order-2">
+				<!-- Skills -->
+				<section class="mb-8">
+					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+						<BsTools className="inline" />
+						Skills
+					</h2>
+					<ul class="list-disc pl-4 text-gray-700">
+						<li class="mb-2">Software Development
+							<div class="text-sm text-gray-500">Agile, TDD, DDD</div>
+						</li>
+						<li class="mb-2">Frontend
+							<div class="text-sm text-gray-500">React, Vue, HTML/CSS</div>
+						</li>
+						<li class="mb-2">Backend
+							<div class="text-sm text-gray-500">TypeScript, Node.js, Java</div>
+						</li>
+						<li class="mb-2">Databases
+							<div class="text-sm text-gray-500">Neo4j, MongoDB, SQL</div>
+						</li>
+						<li class="mb-2">Data Analytics
+							<div class="text-sm text-gray-500">Python, pandas, duckdb</div>
+						</li>
+						<li class="mb-2">Generative AI
+							<div class="text-sm text-gray-500">LangChain, LangGraph, MCP</div>
+						</li>
+						<!-- <li>Docker & Cloud Platforms</li> -->
+					</ul>
+				</section>
+
+				<!-- Education -->
+				<section>
+					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+						<BsBook className="inline" />
+						Education
+					</h2>
+					<ul class="list-disc pl-4 text-gray-700">
+						<li>
+							<strong>HND Computing</strong>
+							<div class="text-sm text-gray-400">New College Swindon</div>
+							<div class="text-xs text-gray-400">2005 - 2007</div>
+						</li>
+					</ul>
+
+					<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+						<BsAward className="inline" />
+						Certifications
+					</h3>
+					<ul class="text-gray-700 text-sm">
+						<li class="mb-2"><BsDatabase className="inline mr-1" /> Neo4j Certified Developer</li>
+						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 1 Talent Identification</li>
+						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Opposition Analysis in Football</li>
+						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Technical Scouting in Football</li>
+					</ul>
+				</section>
+
+				<!-- Testimonials -->
+				<section class="mt-8">
+					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+						<BsAward className="inline" />
+						Testimonials
+					</h2>
+					<div>
+						<div class="mb-4">
+							<p class="text-gray-700 italic mb-0">"In three months, Adam has delivered what others have failed to deliver in more than 18 months."</p>
+							<div class="text-sm">
+								<div class="font-semibold text-gray-800">&ndash; George Hart</div>
+								<div class="text-gray-500 ml-3">Head of PMO, GWR</div>
+							</div>
+						</div>
+						<div>
+							<p class="text-gray-700 italic mb-0">"Adam is a superstar."</p>
+							<div class="text-sm">
+								<div class="font-semibold text-gray-800">&ndash; Stefan Wendin</div>
+								<div class="text-gray-500 ml-3">Head of Innovation Lab, Neo4j</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	/* Print-specific styles */
+	@media print {
+		/* Hide navigation and other non-essential elements */
+		nav, footer, .print\:hidden {
+			display: none !important;
+		}
+
+		/* Ensure the print message appears on each page */
+		@page {
+			margin-bottom: 2cm;
+		}
+
+		/* Add page break control */
+		section {
+			break-inside: avoid;
+		}
+
+		/* Ensure the layout works well in print */
+		.flex {
+			display: block !important;
+		}
+
+		.md\:w-3\/4, .md\:w-1\/4 {
+			width: 100% !important;
+		}
+	}
+</style> 
