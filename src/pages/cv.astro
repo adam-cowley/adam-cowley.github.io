@@ -13,7 +13,7 @@ const meta_title = 'Curriculum Vitae'
   >
   	<!-- image={image} -->
 
-	<div class="max-w-4xl mx-auto px-4 py-8">
+	<div class="max-w-4xl mx-auto px-4 py-8" id="cv">
 		<!-- Print-only message -->
 		<!-- <div class="print:block hidden">
 			<p class="text-center text-sm text-gray-500 mb-4">
@@ -22,16 +22,16 @@ const meta_title = 'Curriculum Vitae'
 		</div> -->
 
 		<!-- Header with profile picture -->
-		<div class="flex flex-row items-start gap-6 mb-8 pb-4 border-b-2 border-gray-200">
+		<div class="flex flex-row items-start gap-6 pb-4">
 			<!-- Profile Picture -->
-			<div class="w-32 h-32 flex-shrink-0">
+			<div class="w-32 h-32 flex-shrink-0 mb-6">
 				<img src="/images/picture-blurred.png" alt="Adam Cowley" class="w-full h-full object-cover rounded-lg shadow-md" />
 			</div>
 			
 			<!-- Main Header Content -->
 			<div class="flex-grow flex flex-col justify-center">
 				<h1 class="text-3xl font-bold mb-2">Adam Cowley</h1>
-				<p class="text-xl text-gray-600 italic mb-4">Developer experience, education and expertise.</p>
+				<p class="text-lg text-gray-600 italic mb-4">Developer experience, education and expertise.</p>
 				
 				<!-- Contact Details with Icons -->
 				<div class="flex flex-wrap text-sm text-gray-700">
@@ -63,52 +63,216 @@ const meta_title = 'Curriculum Vitae'
 			</div>
 		</div>
 
-		<div class="flex flex-col sm:flex-row gap-8 border-b-2 border-gray-200 pb-8">
+		<!-- Page 1 -->
+		<div class="flex flex-col gap-4 border-b-2 border-gray-200">
+			<!-- Overview -->
+			<section class="border-b border-gray-200 pb-8">
+				<ul class="list-disc pl-4 text-lg">
+					<li>Multi-disciplinary developer with a passion for building products that help people.</li>
+					<li>20+ years of software development experience, data analysis and product development.</li> 
+					<li>Public speaking experience presenting keynotes and workshops at conferences.</li>
+					<li>Keen interest in Generative AI and its practical applications.</li>
+				</ul>
+			</section>
 
-			<ul class="list-disc pl-4 text-lg">
-				<li>Multi-disciplinary developer with a passion for building products that help people.</li>
-				<li>20+ years of software development experience, data analytics and product development.</li> 
-				<li>Keen interest in Generative AI and its practical applications.</li>
-			</ul>
+			<!-- Main content for page 1 -->
+			<div class="flex flex-col sm:flex-row gap-8">
+				<!-- Left column (3/4 width) -->
+				<div class="sm:w-3/4 order-2 sm:order-1">
+					<!-- Timeline of Goals and Achievements -->
+					<section class="mb-8">
+						<div class="mt-4">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2024 - Started Data Analysis for Swindon Town</div>
+								<div class="text-gray-500 text-sm mt-1">Focussing on automating opposition reports and creating player profiles for recruitment.</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2023 - Launched Neo4j &amp; Generative AI Learning Experience</div>
+								<div class="text-gray-500 text-sm mt-1">Designed course curriculum and interactive learning platform for Neo4j and Generative AI.</div>
+								<div class="text-gray-500 text-sm mt-1">Launched Generative AI learning assistant chatbot to increase user engagement.</div>
+							</div>
+							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2023 - Launched Neo4j VS Code Extension via Neo4j Labs</div>
+							</div> -->
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2022 - Relaunched Interactive Learning Experience on GraphAcademy</div>
+								<div class="text-gray-500 text-sm mt-1">Designed course curriculum and developed an interactive learning platform used by over 150k learners a year.</div>
+								<div class="text-gray-500 text-sm mt-1">Grew yearly enrolments from 2k to over 150k, with an overall 44% completion rate.</div>
+								<!-- <div class="text-gray-500 text-sm mt-1">Re-designed Neo4j Certified Developer program.</div> -->
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2020 - Transitioned to Developer Relations at Neo4j</div>
+								<div class="text-gray-500 text-sm mt-1">Released several tools and libraries to improve developer experience and adoption including <a href="https://medium.com/neo4j/run-cypher-without-leaving-your-ide-with-neo4j-vscode-extension-85e0cbac99f2" target="_blank">Neo4j VSCode extension</a> and <a href="https://github.com/adam-cowley/neode" target="_blank">Neode</a>.</div>
+								<div class="text-gray-500 text-sm mt-1">Redesigned and migrated documentation to modern build system.</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2017 - Joined Neo4j as a Professional Services Consultant</div>
+								<div class="text-gray-500 text-sm mt-1">Consultancy, training and technical account management for key accounts across EMEA.</div>
+							</div>
+							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2017 - Released <code>neode</code></div>
+								<div class="text-gray-500 text-sm mt-1">Open-source TypeScript library to enhance developer experience and increase adoption.</div>
+							</div> -->
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2016 - Article published in <a href="https://en.wikipedia.org/wiki/Net_(magazine)" target="_blank">net Magazine</a> #300</div>
+								<div class="text-gray-500 text-sm mt-1">Introduction to Graph Databases</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2016 - Built interactive Photosphere for Google Pixel launch</div>
+								<!-- <div class="text-gray-500 text-sm mt-1">Interactive photosphere for Google popup store in NYC</div> -->
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2015 - Launched GWR Data Forms Portal</div>
+								<div class="text-gray-500 text-sm mt-1">Business critical data collection and reporting system used by 5000+ employees daily.</div>
+							</div>
+							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2015 - Launched Tesco Mobile POS System</div>
+								<div class="text-gray-500 text-sm mt-1">Point of sale application for retail management</div>
+							</div> -->
+							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2014 - Launched Husky Analytics Platform</div>
+								<div class="text-gray-500 text-sm mt-1">Whitelabel analytics platform built on graph database</div>
+							</div> -->
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2014 - Launched whitelabel Streaming Platform for HP and Universal Music</div>
+								<!-- <div class="text-gray-500 text-sm mt-1">Whitelabel solution with 20k+ MAUs.</div> -->
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2007 - Graduated from New College Swindon with HND Computing</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2006 - Migrated student record system at New College Systems</div>
+								<!-- <div class="text-gray-500 text-sm mt-1">Software development and reporting systems</div> -->
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2003 - Launched swindonmusic.co.uk</div>
+								<div class="text-gray-500 text-sm mt-1">Local music website and community forum.</div>
+								<div class="text-gray-500 text-sm mt-1">Lead to Radio 1 Big Weekend hosted in Swindon in 2009.</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2002 - First paid developer gig</div>
+								<!-- <div class="text-gray-500 text-sm mt-1">Started professional development career</div> -->
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- Right column (1/4 width) -->
+				<div class="sm:w-1/4 order-1 sm:order-2">
+					<!-- Skills -->
+					<section class="mb-8 -mt-8">
+						<h2 class="text-xl font-bold flex items-center gap-2">
+							<BsTools className="inline" />
+							Skills
+						</h2>
+						<ul class="list-disc pl-4 text-gray-700 mt-4">
+							<li class="mb-2">Software Development
+								<div class="text-sm text-gray-500">Agile, TDD, DDD</div>
+							</li>
+							<li class="mb-2">Frontend
+								<div class="text-sm text-gray-500">React, Vue, HTML/CSS</div>
+							</li>
+							<li class="mb-2">Backend
+								<div class="text-sm text-gray-500">TypeScript, Node.js, Java</div>
+							</li>
+							<li class="mb-2">Databases
+								<div class="text-sm text-gray-500">Neo4j, MongoDB, SQL</div>
+							</li>
+							<li class="mb-2">Data Analytics
+								<div class="text-sm text-gray-500">Python, pandas, duckdb</div>
+							</li>
+							<li class="mb-2">Generative AI
+								<div class="text-sm text-gray-500">LangChain, LangGraph, MCP</div>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Education -->
+					<!-- <section>
+						<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+							<BsBook className="inline" />
+							Education
+						</h2>
+						<ul class="list-disc pl-4 text-gray-700">
+							<li>
+								<strong>HND Computing</strong>
+								<div class="text-sm text-gray-400">New College Swindon</div>
+								<div class="text-xs text-gray-400">2005 - 2007</div>
+							</li>
+						</ul>
+
+						<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+							<BsAward className="inline" />
+							Certifications
+						</h3>
+						<ul class="text-gray-700 text-sm">
+							<li class="mb-2"><BsDatabase className="inline mr-1" /> Neo4j Certified Developer</li>
+							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 1 Talent Identification</li>
+							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Opposition Analysis in Football</li>
+							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Technical Scouting in Football</li>
+						</ul>
+					</section> -->
+
+					<!-- Hobbies and Interests -->
+					<section class="mt-8">
+						<h2 class="text-xl font-bold mb-4">Hobbies & Interests</h2>
+						<ul class="list-disc pl-4 text-gray-700">
+							<li class="mb-2">Football data analysis</li>
+							<li class="mb-2">Playing snooker and pool</li>
+							<!-- <li class="mb-2">Generative AI and machine learning</li> -->
+							<li class="mb-2">Open source development</li>
+							<li class="mb-2">Technical writing and public speaking</li>
+						</ul>
+					</section>
+				</div>
+			</div>
 		</div>
 
-		<!-- Main content container -->
-		<div class="flex flex-col sm:flex-row gap-8">
-			<!-- Left column (3/4 width) -->
-			<div class="sm:w-3/4 order-2 sm:order-1">
-				<!-- Employment History Timeline -->
-				<section>
-					<div class="flex items-center gap-2 mb-6">
-						<h2 class="text-2xl font-bold flex justify-center">
-							<!-- <BsClock className="text-2xl inline-flex mr-4 -ml-2 -mb-2" /> -->
-							Employment History</h2>
-					</div>
-					<div class="space-y-6">
-						<!-- Neo4j -->
-						<div>
+		<!-- Page 2 -->
+		<div class="flex flex-col gap-8">
+			<!-- Employment History Timeline -->
+			<section>
+				<!-- <div class="flex items-center gap-2 mb-6">
+					<h2 class="text-2xl font-bold flex justify-center">Employment History</h2>
+				</div> -->
+				<div class="space-y-2">
+					<!-- Neo4j -->
+					<div class="flex flex-col sm:flex-row gap-8">
+						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Professional Services &amp; Developer Advocacy - Neo4j</h3>
-								<!-- <p class="text-gray-600">July 2017 - Present</p> -->
 							</div>
 							<div class="pl-2">
 								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
 									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Staff Developer Advocate - Developer Education Lead</h4>
+									<h4 class="font-semibold text-base">Developer Advocate - Developer Education Lead</h4>
 									<p class="text-gray-600 text-sm mb-2">March 2021 - Present</p>
 									<ul class="list-disc pl-4">
-										<!-- <li>Lead developer education strategy within Developer Relations.</li> -->
-										<!-- <li>Created key learning resource across the company, used by professional services for training and workshops.</li> -->
-
-										<li>Grew yearly enrolments from <b>2k to over 150k</b>, with an overall <b>44% completion rate</b>.</li>
+										<li>Levelled from Senior to Staff Developer Advocate focussing on developer education.</li>
 										<li><a href="https://medium.com/neo4j/building-an-educational-platform-on-neo4j-d7dc195b9466" target="_blank">Transformed GraphAcademy</a> from static web pages into an interactive learning experience using Neo4j tools.</li>
+										<li>Grew yearly enrolments from <b>2k to over 150k</b>, with an overall <b>44% completion rate</b>.</li>
 										<li>Pioneered Generative AI driven learning experiences, including <a href="https://medium.com/neo4j/building-an-educational-chatbot-for-graphacademy-with-neo4j-f707c4ce311b" target="_blank">learning assistant chatbot</a> and <a href="https://graphacademy.neo4j.com/categories/generative-ai/" target="_blank">courses on Generative AI with Neo4j</a>.</li>
 									</ul>
-									<!-- <p class="text-gray-700 mt-2">
-										Led the transformation of Neo4j's learning platform, resulting in improved developer engagement through hands-on, interactive courses. Developed and launched the new GraphAcademy platform, making Neo4j training more accessible and effective.
-									</p> -->
 								</div>
 
-								<div class="relative pl-8 border-l-2 border-gray-400  pb-4">
+								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
 									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
 									<h4 class="font-semibold text-base">Developer Experience Engineer</h4>
 									<p class="text-gray-600 text-sm mb-2">March 2020 - March 2021</p>
@@ -118,10 +282,6 @@ const meta_title = 'Curriculum Vitae'
 										<li>Transformed developer feedback into actionable product improvements, addressing user pain points to improve developer experience.</li>
 										<li>Released and contributed to open-source libraries and tools to accelerate developer growth and onboarding.</li>
 									</ul>
-
-									<!-- <p class="text-gray-700 mt-2">
-										Improved developer experience through documentation improvements and open-source contributions. Created several Graph Apps and libraries to reduce boilerplate code and accelerate developer onboarding.
-									</p> -->
 								</div>
 
 								<div class="relative pl-8 border-l-2 border-white">
@@ -132,15 +292,24 @@ const meta_title = 'Curriculum Vitae'
 										<li>Delivered high-impact graph-based solutions across EMEA.</li>
 										<li>Led innovation labs and training programs for enterprise clients.</li>
 									</ul>
-									<!-- <p class="text-gray-700 mt-2">
-										Delivered high-impact solutions across EMEA, including fraud detection systems for major banks and service routing engines for telecommunications companies. Led innovation labs and training programs for enterprise clients.
-									</p> -->
 								</div>
 							</div>
 						</div>
+						<div class="sm:w-1/4">
+							<div class="bg-gray-50 p-4 rounded-lg mt-10 mb-8">
+								<p class="text-gray-700 italic mb-3">"Adam is a superstar."</p>
+								<div class="text-sm">
+									<div class="font-semibold text-gray-800">&ndash; Stefan Wendin</div>
+									<div class="text-gray-500 ml-3">Head of Innovation Lab</div>
+									<div class="text-gray-500 ml-3 text-xs">Neo4j</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-						<!-- Commit -->
-						<div>
+					<!-- Commit -->
+					<div class="flex flex-col sm:flex-row gap-8">
+						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Founder &amp; Lead Developer - Commit</h3>
 								<p class="text-gray-600">April 2015 - April 2019</p>
@@ -150,114 +319,73 @@ const meta_title = 'Curriculum Vitae'
 								<li>Business critical data collection and reporting tool for GWR.</li>
 								<li><a href="https://sensori.al/projects/google-nyc-popup/" target="_blank">Interactive photosphere</a> for a Google popup store in NYC.</li>
 							</ul>
-
-							<!-- <p class="text-gray-700">
-								Founded and led a technology consultancy, delivering solutions for clients ranging from startups to global companies. Notable projects include a business forms portal for GWR that continues to be used today.
-							</p> -->
 						</div>
+						<div class="sm:w-1/4">
+							<div class="bg-gray-50 p-4 rounded-lg">
+								<p class="text-gray-700 italic mb-3">"In three months, Adam has delivered a system that is critical to our business what others have failed to deliver in more than 18 months.</p>
+								<p class="text-gray-700 italic mb-3">He quickly understood our business needs and delivered a reliable solution that met every requirement."</p>
+								<div class="text-sm">
+									<div class="font-semibold text-gray-800">&ndash; George Hart</div>
+									<div class="text-gray-500 ml-3">Head of PMO</div>
+									<div class="text-gray-500 ml-3 text-xs">Great Western Railway (GWR)</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-						<!-- Eskimo Media -->
-						<div>
+					<!-- Eskimo Media -->
+					<div class="flex flex-col sm:flex-row gap-8">
+						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Lead Developer - Eskimo Media and Technology</h3>
 								<p class="text-gray-600">June 2013 - June 2015</p>
 							</div>
 							<ul class="list-disc pl-4">
-								<li>HP Connected Music - streaming platform for HP and Universal Music; 20k+ MAUs. </li>
-								<!-- <li>Led development of digital solutions for global clients, including a streaming platform for HP and Universal Music that provided advanced analytics capabilities.</li> -->
+								<li>HP Connected Music - streaming platform for HP and Universal Music; 20k+ MAUs.</li>
 							</ul>
 						</div>
-					</div>
-				</section>
-			</div>
-
-			<!-- Right column (1/4 width) -->
-			<div class="sm:w-1/4 order-1 sm:order-2">
-				<!-- Skills -->
-				<section class="mb-8">
-					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-						<BsTools className="inline" />
-						Skills
-					</h2>
-					<ul class="list-disc pl-4 text-gray-700">
-						<li class="mb-2">Software Development
-							<div class="text-sm text-gray-500">Agile, TDD, DDD</div>
-						</li>
-						<li class="mb-2">Frontend
-							<div class="text-sm text-gray-500">React, Vue, HTML/CSS</div>
-						</li>
-						<li class="mb-2">Backend
-							<div class="text-sm text-gray-500">TypeScript, Node.js, Java</div>
-						</li>
-						<li class="mb-2">Databases
-							<div class="text-sm text-gray-500">Neo4j, MongoDB, SQL</div>
-						</li>
-						<li class="mb-2">Data Analytics
-							<div class="text-sm text-gray-500">Python, pandas, duckdb</div>
-						</li>
-						<li class="mb-2">Generative AI
-							<div class="text-sm text-gray-500">LangChain, LangGraph, MCP</div>
-						</li>
-						<!-- <li>Docker & Cloud Platforms</li> -->
-					</ul>
-				</section>
-
-				<!-- Education -->
-				<section>
-					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-						<BsBook className="inline" />
-						Education
-					</h2>
-					<ul class="list-disc pl-4 text-gray-700">
-						<li>
-							<strong>HND Computing</strong>
-							<div class="text-sm text-gray-400">New College Swindon</div>
-							<div class="text-xs text-gray-400">2005 - 2007</div>
-						</li>
-					</ul>
-
-					<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-						<BsAward className="inline" />
-						Certifications
-					</h3>
-					<ul class="text-gray-700 text-sm">
-						<li class="mb-2"><BsDatabase className="inline mr-1" /> Neo4j Certified Developer</li>
-						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 1 Talent Identification</li>
-						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Opposition Analysis in Football</li>
-						<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Technical Scouting in Football</li>
-					</ul>
-				</section>
-
-				<!-- Testimonials -->
-				<section class="mt-8">
-					<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-						<BsAward className="inline" />
-						Testimonials
-					</h2>
-					<div>
-						<div class="mb-4">
-							<p class="text-gray-700 italic mb-0">"In three months, Adam has delivered what others have failed to deliver in more than 18 months."</p>
-							<div class="text-sm">
-								<div class="font-semibold text-gray-800">&ndash; George Hart</div>
-								<div class="text-gray-500 ml-3">Head of PMO, GWR</div>
-							</div>
+						<div class="sm:w-1/4">
+							<!-- Empty space for alignment -->
 						</div>
-						<div>
-							<p class="text-gray-700 italic mb-0">"Adam is a superstar."</p>
-							<div class="text-sm">
-								<div class="font-semibold text-gray-800">&ndash; Stefan Wendin</div>
-								<div class="text-gray-500 ml-3">Head of Innovation Lab, Neo4j</div>
+					</div>
+
+					<!-- New College Swindon -->
+					<div class="flex flex-col sm:flex-row gap-8">
+						<div class="sm:w-3/4">
+							<div class="mb-4">
+								<h3 class="font-bold text-lg">Systems Developer - New College Swindon</h3>
+								<p class="text-gray-600">June 2006 - May 2010</p>
+							</div>
+							<ul class="list-disc pl-4">
+								<li>Mapped and migrated over 50k student records to new system.</li>
+								<li>Replaced week-long manual allocation process with 10-second automated system.</li>
+							</ul>
+						</div>
+						<div class="sm:w-1/4">
+							<div class="bg-gray-50 p-4 rounded-lg">
+								<p class="text-gray-700 italic mb-3">"Adam is a very dedicated person, with great knowledge of systems development. A great team player, and with a very positive attitude. Easy going, and approachable, always willing to help with requests."</p>
+								<div class="text-sm">
+									<div class="font-semibold text-gray-800">&ndash; Ben Sonoiki</div>
+									<div class="text-gray-500 ml-3">Learner Data Manager</div>
+									<div class="text-gray-500 ml-3 text-xs">New College Swindon</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
 		</div>
 	</div>
 </Base>
 
 <style>
 	/* Print-specific styles */
+	#cv {
+		padding-left: 40px !important;
+		padding-right: 40px !important;
+		background: white;
+	}
+
 	@media print {
 		/* Hide navigation and other non-essential elements */
 		nav, footer, .print\:hidden {
@@ -274,13 +402,73 @@ const meta_title = 'Curriculum Vitae'
 			break-inside: avoid;
 		}
 
-		/* Ensure the layout works well in print */
-		.flex {
-			display: block !important;
+		/* Maintain column layout in print */
+		.flex-col {
+			flex-direction: column !important;
 		}
 
-		.md\:w-3\/4, .md\:w-1\/4 {
-			width: 100% !important;
+		.flex-row {
+			flex-direction: row !important;
+		}
+
+		/* Keep column widths */
+		.sm\:w-3\/4 {
+			width: 75% !important;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.sm\:w-1\/4 {
+			width: 25% !important;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		/* Add page break between pages */
+		.mb-12 {
+			break-after: page;
+		}
+
+		/* Hide the border on print */
+		.border-b-2 {
+			border-bottom: none !important;
+		}
+
+		/* Ensure proper spacing in print */
+		.gap-8 {
+			gap: 1rem !important;
+		}
+
+		/* Ensure testimonials stay with their jobs */
+		.sm\:flex-row > div {
+			break-inside: avoid;
+		}
+
+		/* Ensure proper container width */
+		.max-w-4xl {
+			max-width: none !important;
+		}
+
+		/* Add padding for print */
+		.max-w-4xl {
+			padding: 1.5rem !important;
+		}
+
+		/* Remove horizontal padding from inner elements */
+		.px-4 {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+
+		/* Ensure flex containers maintain their layout */
+		.flex {
+			display: flex !important;
+		}
+
+		/* Ensure flex row containers maintain their layout */
+		.sm\:flex-row {
+			display: flex !important;
+			flex-direction: row !important;
 		}
 	}
 </style> 
