@@ -23,15 +23,13 @@ From my first professional development job at 14, back when the internet was bui
 
 I'm a 30-something digital technologist born and raised in [Swindon, Wiltshire, UK](https://en.wikipedia.org/wiki/Swindon).  Since my first professional project at 14, I have worked across the tech sector doing everything from building websites and mobile apps to consulting with some of the worlds largest companies.
 
-In 2017, I joined [Neo4j](https://neo4j.com) as a Field Engineer/Professional Services Consultant and have since travelled across Europe, training users to be successful with Neo4j and contributing to projects for startups to household companies.
+In 2017, I joined [Neo4j](https://neo4j.com) as a Field Engineer/Professional Services Consultant and have since travelled across Europe, training users to be successful with Neo4j and contributing to projects for everyone from startups to household companies.
 
-During the day I work as a **Developer Advocate** at [Neo4j](https://neo4j.com), teaching Developers and Data Scientists how to build applications through [GraphAcademy](https://graphacademy.neo4j.com).
+During the day, I work as a **Developer Advocate** at [Neo4j](https://neo4j.com), teaching Developers and Data Scientists how to build applications through [GraphAcademy](https://graphacademy.neo4j.com).
 
 Away from the computer, I am a sports fan - in particular I enjoy [watching (and analysing) football](/posts/analysing-football-events-neo4j), playing snooker and pool.
 
 
 ## Speaker Bio
 
-Adam Cowley is a seasoned developer and passionate advocate for data-driven solutions, specializing in graph databases. As a Staff Developer Advocate at Neo4j, Adam creates educational content for GraphAcademy, Neo4j’s free, self-paced online learning platform.
-
-With over 20 years of experience in the tech industry, Adam has developed a wide array of digital solutions, from websites and mobile apps to cutting-edge mixed-reality experiences. His diverse background includes working with innovative startups and some of the world’s most renowned companies.
+Adam Cowley is a Staff Developer Advocate at Neo4j with two decades of experience spanning software development, data analysis, and product ownership. At Neo4j, he leads developer educational initiatives, including GraphAcademy, Neo4j’s free, self-paced learning platform. Drawing on his analytical mindset and cross-functional background—from data analyst to product owner—he champions data-driven solutions. He is passionate about Generative AI and the potential for personalised educational experiences for developers and data scientists. Outside of work, you’ll find him exploring football analytics or wielding a cue over a baize table.
