@@ -1,0 +1,129 @@
+---
+const size = 400;
+const center = size / 2;
+const radius = size * 0.4;
+
+// Fixed points for a hexagonal radar chart
+const points = [
+  { name: 'Technical Leadership', x: center + radius * Math.cos(-Math.PI/2), y: center + radius * Math.sin(-Math.PI/2), value: 90 },
+  { name: 'Software Development', x: center + radius * Math.cos(-Math.PI/6), y: center + radius * Math.sin(-Math.PI/6), value: 95 },
+  { name: 'Data Analysis', x: center + radius * Math.cos(Math.PI/6), y: center + radius * Math.sin(Math.PI/6), value: 85 },
+  { name: 'Public Speaking', x: center + radius * Math.cos(Math.PI/2), y: center + radius * Math.sin(Math.PI/2), value: 80 },
+  { name: 'Team Collaboration', x: center + radius * Math.cos(5*Math.PI/6), y: center + radius * Math.sin(5*Math.PI/6), value: 85 },
+  { name: 'Product Strategy', x: center + radius * Math.cos(7*Math.PI/6), y: center + radius * Math.sin(7*Math.PI/6), value: 75 }
+];
+
+// Calculate data points based on values
+const dataPoints = points.map(point => {
+  const value = point.value / 100;
+  const angle = Math.atan2(point.y - center, point.x - center);
+  return {
+    ...point,
+    x: center + radius * value * Math.cos(angle),
+    y: center + radius * value * Math.sin(angle)
+  };
+});
+---
+
+<div class="skills-radar">
+  <svg viewBox={`0 0 ${size} ${size}`}>
+    <!-- Background grid -->
+    {[0.2, 0.4, 0.6, 0.8, 1].map(level => (
+      <polygon 
+        points={points.map(p => {
+          const angle = Math.atan2(p.y - center, p.x - center);
+          const x = center + radius * level * Math.cos(angle);
+          const y = center + radius * level * Math.sin(angle);
+          return `${x},${y}`;
+        }).join(' ')}
+        class="grid-line"
+      />
+    ))}
+
+    <!-- Axis lines -->
+    {points.map(point => (
+      <line 
+        x1={center} 
+        y1={center} 
+        x2={point.x} 
+        y2={point.y} 
+        class="axis-line" 
+      />
+    ))}
+
+    <!-- Data polygon -->
+    <polygon 
+      points={dataPoints.map(p => `${p.x},${p.y}`).join(' ')}
+      class="data-line"
+    />
+
+    <!-- Data points -->
+    {dataPoints.map(point => (
+      <circle 
+        cx={point.x} 
+        cy={point.y} 
+        r="4" 
+        class="data-point" 
+      />
+    ))}
+
+    <!-- Labels -->
+    {points.map(point => {
+      const angle = Math.atan2(point.y - center, point.x - center);
+      const labelRadius = radius + 30;
+      const x = center + labelRadius * Math.cos(angle);
+      const y = center + labelRadius * Math.sin(angle);
+      const anchor = x > center ? "start" : x < center ? "end" : "middle";
+      const baseline = y > center ? "hanging" : y < center ? "auto" : "middle";
+      return (
+        <text 
+          x={x} 
+          y={y} 
+          text-anchor={anchor} 
+          dominant-baseline={baseline}
+          class="label"
+        >
+          {point.name}
+        </text>
+      );
+    })}
+  </svg>
+</div>
+
+<style>
+  .skills-radar {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .grid-line {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1;
+  }
+
+  .axis-line {
+    stroke: rgba(0, 0, 0, 0.2);
+    stroke-width: 1;
+  }
+
+  .data-line {
+    fill: rgba(54, 162, 235, 0.2);
+    stroke: rgb(54, 162, 235);
+    stroke-width: 2;
+  }
+
+  .data-point {
+    fill: rgb(54, 162, 235);
+    stroke: white;
+    stroke-width: 2;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 500;
+    fill: #4a5568;
+  }
+</style> 
