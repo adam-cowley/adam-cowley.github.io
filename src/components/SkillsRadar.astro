@@ -1,10 +1,17 @@
 ---
+interface Point {
+  name: string;
+  x: number;
+  y: number;
+  value: number;
+}
+
 const size = 400;
 const center = size / 2;
 const radius = size * 0.4;
 
 // Fixed points for a hexagonal radar chart
-const points = [
+const points: Point[] = [
   { name: 'Technical Leadership', x: center + radius * Math.cos(-Math.PI/2), y: center + radius * Math.sin(-Math.PI/2), value: 90 },
   { name: 'Software Development', x: center + radius * Math.cos(-Math.PI/6), y: center + radius * Math.sin(-Math.PI/6), value: 95 },
   { name: 'Data Analysis', x: center + radius * Math.cos(Math.PI/6), y: center + radius * Math.sin(Math.PI/6), value: 85 },
@@ -14,7 +21,7 @@ const points = [
 ];
 
 // Calculate data points based on values
-const dataPoints = points.map(point => {
+const dataPoints: Point[] = points.map(point => {
   const value = point.value / 100;
   const angle = Math.atan2(point.y - center, point.x - center);
   return {
@@ -29,7 +36,7 @@ const dataPoints = points.map(point => {
   <svg viewBox={`0 0 ${size} ${size}`}>
     <!-- Background grid -->
     {[0.2, 0.4, 0.6, 0.8, 1].map(level => (
-      <polygon 
+      <polygon
         points={points.map(p => {
           const angle = Math.atan2(p.y - center, p.x - center);
           const x = center + radius * level * Math.cos(angle);
@@ -42,28 +49,28 @@ const dataPoints = points.map(point => {
 
     <!-- Axis lines -->
     {points.map(point => (
-      <line 
-        x1={center} 
-        y1={center} 
-        x2={point.x} 
-        y2={point.y} 
-        class="axis-line" 
+      <line
+        x1={center}
+        y1={center}
+        x2={point.x}
+        y2={point.y}
+        class="axis-line"
       />
     ))}
 
     <!-- Data polygon -->
-    <polygon 
+    <polygon
       points={dataPoints.map(p => `${p.x},${p.y}`).join(' ')}
       class="data-line"
     />
 
     <!-- Data points -->
     {dataPoints.map(point => (
-      <circle 
-        cx={point.x} 
-        cy={point.y} 
-        r="4" 
-        class="data-point" 
+      <circle
+        cx={point.x}
+        cy={point.y}
+        r="4"
+        class="data-point"
       />
     ))}
 
@@ -76,10 +83,10 @@ const dataPoints = points.map(point => {
       const anchor = x > center ? "start" : x < center ? "end" : "middle";
       const baseline = y > center ? "hanging" : y < center ? "auto" : "middle";
       return (
-        <text 
-          x={x} 
-          y={y} 
-          text-anchor={anchor} 
+        <text
+          x={x}
+          y={y}
+          text-anchor={anchor}
           dominant-baseline={baseline}
           class="label"
         >
@@ -126,4 +133,4 @@ const dataPoints = points.map(point => {
     font-weight: 500;
     fill: #4a5568;
   }
-</style> 
+</style>

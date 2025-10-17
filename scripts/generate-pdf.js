@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 async function generatePDF() {
   try {
@@ -49,4 +49,4 @@ async function generatePDF() {
   }
 }
 
-generatePDF(); 
+generatePDF();

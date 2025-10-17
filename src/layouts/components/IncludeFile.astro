@@ -1,16 +1,14 @@
 ---
-import { existsSync, readFileSync } from 'fs'
+import { readFileSync } from 'fs'
 import { resolve } from 'path'
 const { path } = Astro.props
 
 
 let contents
-let exists = false
 
 const includePath = resolve('src/content/includes', path)
 
 try {
-  exists = existsSync(includePath)
   contents = readFileSync(
     includePath
   )
