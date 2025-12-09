@@ -1,0 +1,106 @@
+---
+description: Writing rules for blog posts and markdown content
+globs:
+  - "content/posts/*.md"
+---
+
+# Writing Rules for Markdown Content
+
+Apply these rules when editing or creating markdown files in this repository.
+
+## No Vague Hand-Waving
+
+Avoid phrases that sound meaningful but say nothing:
+
+- ❌ "X flips this around"
+- ❌ "The real power comes from..."
+- ❌ "do some incredible things"
+- ❌ "This is where X shines"
+- ❌ "provides the plumbing"
+- ❌ "bridges the gap"
+- ❌ "unlocks new possibilities"
+
+## No Marketing Speak or Hype
+
+Avoid superlatives that sound like you're trying to sell:
+
+- ❌ "game-changing"
+- ❌ "revolutionary"
+- ❌ "powerful"
+- ❌ "seamless"
+- ❌ "robust"
+- ❌ "cutting-edge"
+- ❌ "best-in-class"
+- ❌ "almost limitless possibilities"
+- ❌ "This powerful plugin"
+
+This is educational content, not a sales pitch.
+
+Use plain terms instead of jargon:
+- ❌ "portability" → ✅ "use the same tools in different applications without rewriting code"
+- ❌ "separation of concerns" → explain the concrete benefit or delete it
+
+## Don't describe anything as easy
+
+- ❌ "this simple prompt"
+
+
+## Every Sentence Must Say Something Concrete
+
+If a sentence can be deleted without losing information, delete it:
+
+- ❌ "This topic has been on my mind for some time"
+- ❌ "The challenge is making that connection"
+- ❌ "Let's dive in"
+
+Be specific about mechanisms:
+- ❌ "Dashboards require learning a new tool"
+- ✅ "Dashboards require knowing which filters to apply and which charts to read"
+
+## If You Claim Something, Explain How It Works
+
+Don't make claims without explaining the mechanism:
+
+- ❌ "The knowledge graph resolves ambiguity by letting the model ask clarifying questions"
+- ✅ "When the model queries the graph and finds multiple matching profiles, it can list the options and ask the user which one they mean"
+
+## Be Honest About Limitations
+
+- Don't overstate what a system does
+- ❌ "years of experience" when you mean "definitions for abbreviations"
+- Acknowledge when something won't be perfect
+
+## Don't Try to Be Clever
+
+Avoid quips and wordplay that don't add information:
+
+- ❌ "Natural language requires... talking"
+- ❌ Ending sections with clever one-liners
+
+## No Negative-Then-Flip Pattern
+
+Don't start with what something isn't, then flip to what it is:
+
+- ❌ "It's not about X - it's about Y"
+- ❌ "This isn't replacing analysts. It's giving them a better way to share what they know."
+
+Just state what it is directly.
+
+## No Em-Dashes
+
+Use commas, periods, or restructure the sentence instead:
+
+- ❌ "The model queries the graph—finding multiple profiles—and asks the user"
+- ✅ "The model queries the graph, finds multiple profiles, and asks the user"
+
+## Formatting Preferences
+
+- Prefer sentences over bullet points when content flows naturally
+- Use code examples to show concrete implementations
+- Use mermaid diagrams to illustrate flows and relationships
+
+## Each Word Has a Purpose
+
+Before including a sentence, ask: "What specific information does this add?"
+
+If the answer is "it sounds good" or "it's a nice transition", delete it.
