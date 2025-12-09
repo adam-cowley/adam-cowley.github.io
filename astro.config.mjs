@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import mermaid from "astro-mermaid";
 import theme from './src/config/theme.json'
 
 import mdx from "@astrojs/mdx";
@@ -20,7 +21,33 @@ export default defineConfig({
       }
     }),
     react(),
-    mdx()
+    mdx(),
+    mermaid({
+      theme: "base",
+      mermaidConfig: {
+        fontFamily: "Mulish",
+        themeVariables: {
+          background: "#FAFAFA",
+          primaryColor: "#FAFAFA",
+          primaryTextColor: "#152035",
+          primaryBorderColor: "#cbd5e1",
+          secondaryColor: "#fff",
+          secondaryTextColor: "#333333",
+          secondaryBorderColor: "#cbd5e1",
+          tertiaryColor: "#fff",
+          tertiaryTextColor: "#333333",
+          tertiaryBorderColor: "#cbd5e1",
+          lineColor: "#a1a5ae",
+          textColor: "#152035",
+          mainBkg: "#FAFAFA",
+          nodeBorder: "#cbd5e1",
+          clusterBkg: "#fff",
+          clusterBorder: "#cbd5e1",
+          titleColor: "#152035",
+          edgeLabelBackground: "#fff",
+        }
+      }
+    })
   ],
   markdown: {
     remarkPlugins: [],

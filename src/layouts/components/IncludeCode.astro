@@ -7,7 +7,7 @@ const { path, language } = Astro.props
 
 let contents
 
-const includePath = resolve('src/content/includes', path)
+const includePath = resolve('src/content/_includes', path)
 
 try {
   contents = readFileSync(

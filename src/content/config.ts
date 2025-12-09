@@ -51,9 +51,28 @@ const pagesCollection = defineCollection({
   }),
 });
 
+// About collection schema
+const aboutCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    meta_title: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    draft: z.boolean().optional(),
+  }),
+});
+
+// Includes collection consists of code snippets and text files
+const includesCollection = defineCollection({
+  type: 'data',
+});
+
 // Export collections
 export const collections = {
   posts: postsCollection,
   pages: pagesCollection,
   authors: authorsCollection,
+  about: aboutCollection,
+  includes: includesCollection,
 };
