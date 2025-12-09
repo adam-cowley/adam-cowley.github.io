@@ -60,6 +60,13 @@ const aboutCollection = defineCollection({
     description: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().optional(),
+    what_i_do: z.object({
+      title: z.string(),
+      items: z.array(z.object({
+        title: z.string(),
+        description: z.string(),
+      })),
+    }).optional(),
   }),
 });
 

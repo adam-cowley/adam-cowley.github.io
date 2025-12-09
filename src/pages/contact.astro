@@ -1,9 +1,10 @@
 ---
 import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
-const entry = await getEntryBySlug("pages", "contact");
+const entry = await getEntry("pages", "contact");
+if (!entry) throw new Error("Contact page not found");
 const { title, description, meta_title, image } = entry.data;
 ---
 
