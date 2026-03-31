@@ -5,8 +5,120 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import mermaid from "astro-mermaid";
 import theme from './src/config/theme.json'
-
 import mdx from "@astrojs/mdx";
+import { codeToHtml } from 'shiki';
+
+// Output is always 1360×708px (680×354 logical at deviceScaleFactor 2).
+const VIEWPORT = { w: 680, h: 354 }
+
+function screenshotHtml({ highlighted, bg, fontSize }) {
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      width: ${VIEWPORT.w}px;
+      height: ${VIEWPORT.h}px;
+      overflow: hidden;
+    }
+    body {
+      width: ${VIEWPORT.w}px;
+      height: ${VIEWPORT.h}px;
+      background: ${bg};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .window {
+      border-radius: 12px;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.12),
+        0 8px 24px rgba(0,0,0,0.28),
+        0 24px 64px rgba(0,0,0,0.32),
+        0 0 0 1px rgba(255,255,255,0.08);
+      overflow: hidden;
+      max-width: calc(${VIEWPORT.w}px - 60px);
+    }
+    .titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.06);
+    }
+    .dot {
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0.5px rgba(0,0,0,0.25);
+    }
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green  { background: #28c840; }
+    .window pre {
+      margin: 0 !important;
+      padding: 24px 30px 28px !important;
+      border-radius: 0 !important;
+      overflow-x: auto;
+    }
+    .window pre code, .window pre span {
+      font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Menlo', monospace !important;
+      font-size: ${fontSize}px !important;
+      line-height: 1.65 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    ${highlighted}
+  </div>
+</body>
+</html>`
+}
+
+/** @type {import('vite').Plugin} */
+const screenshotPlugin = {
+  name: 'screenshot-dev',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use(async (req, res, next) => {
+      const url = new URL(req.url ?? '/', 'http://localhost')
+      if (url.pathname !== '/screenshot') return next()
+
+      try {
+        const code     = url.searchParams.get('code') ?? ''
+        const lang     = url.searchParams.get('lang') || 'plaintext'
+        const hlTheme  = url.searchParams.get('theme') || theme.shikiConfig.theme
+        const bg       = url.searchParams.get('bg') || 'linear-gradient(135deg, #a8bbc8 0%, #b0c4d0 50%, #9fb8c4 100%)'
+        const fontSize = parseInt(url.searchParams.get('fontSize') || '13', 10)
+
+        let highlighted = ''
+        if (code) {
+          try {
+            highlighted = await codeToHtml(code, { lang, theme: hlTheme })
+          } catch {
+            highlighted = await codeToHtml(code, { lang: 'plaintext', theme: hlTheme })
+          }
+        }
+
+        res.setHeader('Content-Type', 'text/html; charset=utf-8')
+        res.end(screenshotHtml({ highlighted, bg, fontSize }))
+      } catch (err) {
+        next(err)
+      }
+    })
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,6 +161,9 @@ export default defineConfig({
       }
     })
   ],
+  vite: {
+    plugins: [screenshotPlugin],
+  },
   markdown: {
     remarkPlugins: [],
     shikiConfig: theme.shikiConfig,

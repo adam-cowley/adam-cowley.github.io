@@ -10,6 +10,7 @@ tags:
 - football
 - llms
 - genai
+- talks
 action: Head over to GraphAcademy to  <a href="https://graphacademy.neo4j.com/courses/genai-mcp-neo4j-tools/?ref=adam" target="_blank">learn more about MCP</a> and  <a href="https://graphacademy.neo4j.com/courses/genai-mcp-build-custom-tools-python//?ref=adam" target="_blank">build your own GraphRAG MCP tools</a>.
 ---
 
