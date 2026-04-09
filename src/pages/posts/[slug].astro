@@ -1,6 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
 import PostSingle from "@layouts/PostSingle.astro";
+import ThoughtSingle from "@layouts/ThoughtSingle.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import type { CollectionEntry } from "astro:content";
 
@@ -16,8 +17,8 @@ export async function getStaticPaths() {
 type Props = { post: CollectionEntry<'posts'> };
 
 const { post } = Astro.props;
-const { title, meta_title, description, image } = post.data
-
+const { title, meta_title, description, image, categories } = post.data
+const isThought = categories.includes("thoughts");
 ---
 
 <Base
@@ -26,7 +27,5 @@ const { title, meta_title, description, image } = post.data
   description={description}
   image={image}
 >
-  {
-    <PostSingle post={post} />
-  }
+  {isThought ? <ThoughtSingle post={post} /> : <PostSingle post={post} />}
 </Base>

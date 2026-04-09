@@ -1,0 +1,55 @@
+---
+import Share from "@components/Share.astro";
+import dateFormat from "@lib/utils/dateFormat";
+import { markdownify, slugify, humanize } from "@lib/utils/textConverter";
+import { BiCalendarAlt } from "react-icons/bi";
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, description, date, tags } = post.data;
+---
+
+<section class="section">
+  <div class="container">
+    <article class="row justify-center">
+      <div class="md:col-10 text-center">
+        <p class="text-sm uppercase tracking-widest text-gray-400 mb-2">Thought</p>
+        <h1 set:html={markdownify(title)} class="h2" />
+        <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
+          <li class="mx-3 flex items-center flex-wrap font-medium">
+            <BiCalendarAlt className="mr-1 h-5 w-5 text-gray-600" />
+            <>{dateFormat(date)}</>
+          </li>
+        </ul>
+      </div>
+
+      <div class="md:col-10 mt-10">
+        <div class="content mb-16 text-left">
+          <Content />
+        </div>
+        <div class="flex flex-wrap items-center justify-between">
+          <ul class="mr-4 mb-4 space-x-3">
+            {
+              tags.map((tag: string) => (
+                <li class="inline-block">
+                  <a
+                    href={`/tags/${slugify(tag)}`}
+                    class="block rounded-lg bg-theme-light px-4 py-2 font-semibold text-dark text-sm hover:text-primary transition duration-300"
+                  >
+                    #{humanize(tag)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <Share
+            className="social-share mb-4"
+            title={title}
+            description={description}
+            slug={`/posts/${post.slug}`}
+          />
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

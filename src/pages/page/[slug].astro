@@ -7,7 +7,8 @@ import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDateAndPinned } from "@lib/utils/sortFunctions";
 
 export async function getStaticPaths() {
-  const posts = await getSinglePage("posts");
+  const allPosts = await getSinglePage("posts");
+  const posts = allPosts.filter((post: any) => !post.data.categories.includes("thoughts"));
   const totalPages = Math.ceil(posts.length / config.settings.pagination);
   const paths = [];
 
@@ -22,7 +23,8 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const posts = await getSinglePage("posts");
+const allPosts = await getSinglePage("posts");
+const posts = allPosts.filter((post: any) => !post.data.categories.includes("thoughts"));
 const sortedPosts = sortByDateAndPinned(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;

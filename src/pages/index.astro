@@ -6,7 +6,8 @@ import Posts from "@layouts/Posts.astro";
 import { getSinglePage } from "@lib/contentParser.astro";
 import { sortByDateAndPinned } from "@lib/utils/sortFunctions";
 
-const posts = await getSinglePage("posts");
+const allPosts = await getSinglePage("posts");
+const posts = allPosts.filter((post: any) => !post.data.categories.includes("thoughts"));
 const sortedPosts = sortByDateAndPinned(posts);
 const totalPages = Math.ceil(posts.length / config.settings.pagination);
 const currentPosts = sortedPosts.slice(0, config.settings.pagination);
