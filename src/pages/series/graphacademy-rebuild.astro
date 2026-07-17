@@ -1,0 +1,172 @@
+---
+import Base from "@layouts/Base.astro";
+import { getSinglePage } from "@lib/contentParser.astro";
+import { slugify } from "@lib/utils/textConverter";
+import dateFormat from "@lib/utils/dateFormat";
+
+// Category that a post opts into to appear in this series. Publishing a post
+// with this category (and a `series_order`) automatically flips the matching
+// entry below from "coming soon" to a live, linked post — no hand-editing.
+const SERIES_CATEGORY = "graphacademy-rebuild";
+
+const title = "Rebuilding GraphAcademy";
+const description =
+  "How I rebuilt GraphAcademy in 90 days, working heavily with Claude Code — the decisions, what worked, what didn't, and what I'd do differently.";
+
+// The planned shape of the series, in reading order. This is the single place
+// the titles + teasers (and the "coming soon" copy) live. Published status is
+// derived from the posts themselves, so this list never needs hand-maintaining
+// as posts go live — a post with `series_order: N` fills slot N automatically.
+const seriesEntries = [
+  {
+    order: 1,
+    title: "The decision",
+    teaser:
+      "The real story of why I rebuilt GraphAcademy: a business problem, a personal curiosity about AI-native builds, and an MCP epiphany that tied them together.",
+  },
+  {
+    order: 2,
+    title: "Where AI helped",
+    teaser:
+      "Twenty years as a developer, and I haven't written a line of code this year — here's what it actually took to make that true.",
+  },
+  {
+    order: 3,
+    title: "Where it went wrong",
+    teaser:
+      "Parallel branches, vanishing commits, and a logo that got reverted and no one — including me — knows why.",
+  },
+  {
+    order: 4,
+    title: "The design pivot",
+    teaser:
+      "Switching to Claude's design tooling mid-project: impressive on day one, hard to sustain by week six.",
+  },
+  {
+    order: 5,
+    title: "What I'd do differently",
+    teaser:
+      "Set your project up for success before you start — the skills, guardrails, and design decisions you skip early cost far more to retrofit later.",
+  },
+  {
+    order: 6,
+    title: "Tooling and workflow",
+    teaser:
+      "The handful of prompts, structures, and living docs that made the difference — and where the inspiration came from.",
+  },
+];
+
+// All published posts (drafts are already excluded by getSinglePage) that opt
+// into this series via the category.
+const allPosts = (await getSinglePage("posts")) as any[];
+const seriesPosts = allPosts.filter((post: any) =>
+  (post.data.categories || [])
+    .map((c: string) => slugify(c))
+    .includes(SERIES_CATEGORY),
+);
+
+// Match posts to their manifest slot by `series_order`.
+const postByOrder = new Map<number, any>();
+for (const post of seriesPosts) {
+  if (typeof post.data.series_order === "number") {
+    postByOrder.set(post.data.series_order, post);
+  }
+}
+
+// Merge the manifest with any live posts.
+const entries = seriesEntries.map((entry) => {
+  const post = postByOrder.get(entry.order);
+  return {
+    ...entry,
+    published: Boolean(post),
+    slug: post?.slug as string | undefined,
+    date: post?.data.date as Date | undefined,
+  };
+});
+
+// "Start here" points at the natural entry point: the earliest post in the
+// series (lowest `series_order`, then oldest). This lets a standalone overview
+// post sit at `series_order: 0`, ahead of the six numbered parts. Rendered only
+// when something is actually published, so the intro never carries a dead link.
+const startHere = [...seriesPosts].sort((a: any, b: any) => {
+  const ao = a.data.series_order ?? Number.MAX_SAFE_INTEGER;
+  const bo = b.data.series_order ?? Number.MAX_SAFE_INTEGER;
+  if (ao !== bo) return ao - bo;
+  return new Date(a.data.date).getTime() - new Date(b.data.date).getTime();
+})[0];
+---
+
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <p class="mb-2 text-center font-medium uppercase tracking-wide text-light">
+            A blog series
+          </p>
+          <h1 class="h2 mb-6 text-center text-primary">{title}</h1>
+          <p class="mb-8 text-center text-lg text-text">
+            {description}
+            {
+              startHere && (
+                <>
+                  {" "}
+                  <a
+                    href={`/posts/${startHere.slug}`}
+                    class="font-semibold text-primary hover:underline"
+                  >
+                    Start with &ldquo;{startHere.data.title}&rdquo;
+                  </a>
+                  .
+                </>
+              )
+            }
+          </p>
+
+          <ol class="mt-16 space-y-8">
+            {
+              entries.map((entry) => (
+                <li class="flex gap-4 sm:gap-6">
+                  <span
+                    class={`mt-1 flex h-9 w-9 flex-none items-center justify-center rounded-full text-lg font-bold ${
+                      entry.published
+                        ? "bg-primary text-white"
+                        : "bg-theme-light text-light"
+                    }`}
+                  >
+                    {entry.order}
+                  </span>
+                  <div class="flex-1">
+                    {entry.published ? (
+                      <h2 class="h4 mb-1">
+                        <a
+                          href={`/posts/${entry.slug}`}
+                          class="transition hover:text-primary"
+                        >
+                          {entry.title}
+                        </a>
+                      </h2>
+                    ) : (
+                      <h2 class="h4 mb-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-light">
+                        <span>{entry.title}</span>
+                        <span class="rounded-full bg-theme-light px-3 py-1 text-xs font-semibold uppercase tracking-wide text-light">
+                          Coming soon
+                        </span>
+                      </h2>
+                    )}
+                    <p class="text-text">{entry.teaser}</p>
+                    {entry.published && entry.date && (
+                      <p class="mt-2 text-sm text-light">
+                        {dateFormat(entry.date)}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

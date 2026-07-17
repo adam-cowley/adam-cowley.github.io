@@ -16,6 +16,11 @@ const postsCollection = defineCollection({
     action: z.string().optional(),
     short: z.string().optional(),
     pinned: z.boolean().optional(),
+    // Series metadata. `series_order` slots a post into its position on a
+    // series landing page (e.g. /series/graphacademy-rebuild); `series` is an
+    // optional identifier for future multi-series support.
+    series: z.string().optional(),
+    series_order: z.number().optional(),
   }),
 });
 
