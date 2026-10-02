@@ -1,7 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
 import { BsTools } from "react-icons/bs";
-import { FaEnvelope, FaMapMarkerAlt, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaMedium } from 'react-icons/fa';
 
 const title = 'Curriculum Vitae | Adam Cowley'
 const meta_title = 'Curriculum Vitae'
@@ -31,7 +31,7 @@ const meta_title = 'Curriculum Vitae'
 			<!-- Main Header Content -->
 			<div class="flex-grow flex flex-col justify-center">
 				<h1 class="text-3xl font-bold mb-2">Adam Cowley</h1>
-				<p class="text-lg text-gray-600 italic mb-4">Developer experience, education and expertise.</p>
+				<p class="text-lg text-gray-600 italic mb-4">I design and build systems — in code and beyond — using AI to make them faster to build and better over time.</p>
 
 				<!-- Contact Details with Icons -->
 				<div class="flex flex-wrap text-sm text-gray-700">
@@ -51,6 +51,10 @@ const meta_title = 'Curriculum Vitae'
 						<FaLinkedin className="text-gray-500 mr-2" />
 						<a href="https://linkedin.com/in/adamcowley" class="text-blue-800 hover:text-blue-600">/in/adamcowley</a>
 					</div>
+					<!-- <div class="flex items-center  pr-8">
+						<FaMedium className="text-gray-500 mr-2" />
+						<a href="https://medium.com/@adam.cowley" class="text-blue-800 hover:text-blue-600">@adam.cowley</a>
+					</div> -->
 					<!-- <div class="flex items-center gap-2 pr-8">
 						<FaGithub className="text-gray-500" />
 						<a href="https://github.com/adam-cowley" class="hover:text-blue-600">adam-cowley</a>
@@ -67,11 +71,13 @@ const meta_title = 'Curriculum Vitae'
 		<div class="flex flex-col gap-4 border-b-2 border-gray-200">
 			<!-- Overview -->
 			<section class="border-b border-gray-200 pb-8">
-				<ul class="list-disc pl-4 text-lg">
-					<li>Multi-disciplinary developer with a passion for building products that help people.</li>
-					<li>20+ years of software development experience, data analysis and product development.</li>
-					<li>Public speaking experience presenting keynotes and workshops at conferences.</li>
-					<li>Keen interest in Generative AI and its practical applications.</li>
+				<ul class="list-disc pl-4 text-base">
+					<li>Designs and builds systems — and the teams that ship them — leading Generative AI education at Neo4j. <!-- &mdash; from frontier-model product builds to the teams that ship them.--></li>
+					<!--
+					<li>Builds agents, platforms and ecosystems with Generative AI that whole teams can contribute to.</li>
+					-->
+					<li>Rebuilt GraphAcademy as an agent-led product &mdash; scaling the team from two to six and enrolments from <b>2k to 150k+ a year</b> at <b>44% completion</b>.</li>
+					<li>International conference speaker on Generative AI, MCP, GraphRAG and agents.</li>
 				</ul>
 			</section>
 
@@ -82,35 +88,36 @@ const meta_title = 'Curriculum Vitae'
 					<!-- Timeline of Goals and Achievements -->
 					<section class="mb-8">
 						<div class="mt-4">
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2023 - Started Data Analysis for Swindon Town</div>
-								<div class="text-gray-500 text-sm mt-1">Focussing on automating opposition reports and creating player profiles for recruitment.</div>
+								<div class="font-semibold">2026 - <a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c" target="_blank">Rebuilt GraphAcademy</a> with frontier models &mdash; 90%+ AI-generated, placing AI front and centre</div>
+								<div class="text-gray-500 text-sm mt-1">Complete rebuild in three months; replaced the RAG chatbot with an agent that acts on the learner's behalf.</div>
 							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2023 - Launched Neo4j &amp; Generative AI Learning Experience</div>
-								<div class="text-gray-500 text-sm mt-1">Designed course curriculum and interactive learning platform for Neo4j and Generative AI.</div>
-								<div class="text-gray-500 text-sm mt-1">Launched Generative AI learning assistant chatbot to increase user engagement.</div>
+								<div class="font-semibold">2025 - Promoted to Manager, Developer Education</div>
+								<div class="text-gray-500 text-sm mt-1">Took formal ownership of Generative AI strategy for developer enablement, growing the team from two to six.</div>
+							</div>
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
+								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
+								<div class="font-semibold">2023 - Data analysis for Swindon Town FC &mdash; contributed to several first-team signings</div>
+								<div class="text-gray-500 text-sm mt-1">Applied AI and data automation to opposition scouting and player profiling for recruitment.</div>
 							</div>
 							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2023 - Launched Neo4j VS Code Extension via Neo4j Labs</div>
 							</div> -->
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2022 - Relaunched Interactive Learning Experience on GraphAcademy</div>
-								<div class="text-gray-500 text-sm mt-1">Designed course curriculum and developed an interactive learning platform used by over 150k learners a year.</div>
-								<div class="text-gray-500 text-sm mt-1">Grew yearly enrolments from 2k to over 150k, with an overall 44% completion rate.</div>
-								<!-- <div class="text-gray-500 text-sm mt-1">Re-designed Neo4j Certified Developer program.</div> -->
+								<div class="font-semibold">2022 - <a href="https://medium.com/neo4j/introducing-the-new-graphacademy-fd9b1dbce753" target="_blank">Relaunched GraphAcademy</a>, growing enrolments from 2k to over 150k a year</div>
+								<div class="text-gray-500 text-sm mt-1">Rebuilt the platform as a hands-on, interactive product from the ground up.</div>
 							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2020 - Transitioned to Developer Relations at Neo4j</div>
-								<div class="text-gray-500 text-sm mt-1">Released several tools and libraries to improve developer experience and adoption including <a href="https://medium.com/neo4j/run-cypher-without-leaving-your-ide-with-neo4j-vscode-extension-85e0cbac99f2" target="_blank">Neo4j VSCode extension</a> and <a href="https://github.com/adam-cowley/neode" target="_blank">Neode</a>.</div>
-								<div class="text-gray-500 text-sm mt-1">Redesigned and migrated documentation to modern build system.</div>
+								<div class="text-gray-500 text-sm mt-1">Built open-source tools and libraries to improve developer experience and adoption.</div>
 							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2017 - Joined Neo4j as a Professional Services Consultant</div>
 								<div class="text-gray-500 text-sm mt-1">Consultancy, training and technical account management for key accounts across EMEA.</div>
@@ -120,56 +127,29 @@ const meta_title = 'Curriculum Vitae'
 								<div class="font-semibold">2017 - Released <code>neode</code></div>
 								<div class="text-gray-500 text-sm mt-1">Open-source TypeScript library to enhance developer experience and increase adoption.</div>
 							</div> -->
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
+							<div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2016 - Article published in <a href="https://en.wikipedia.org/wiki/Net_(magazine)" target="_blank">net Magazine</a> #300</div>
-								<div class="text-gray-500 text-sm mt-1">Introduction to Graph Databases</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2016 - Built interactive Photosphere for Google Pixel launch</div>
-								<!-- <div class="text-gray-500 text-sm mt-1">Interactive photosphere for Google popup store in NYC</div> -->
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2015 - Launched GWR Data Forms Portal</div>
-								<div class="text-gray-500 text-sm mt-1">Business critical data collection and reporting system used by 5000+ employees daily.</div>
+								<div class="font-semibold">2014-2016 - Founder of a consultancy and freelance developer</div>
+								<div class="text-gray-500 text-sm mt-1">Working with global brands including HP, Google &amp; GWR, and published in <a href="https://en.wikipedia.org/wiki/Net_(magazine)" target="_blank">net Magazine</a> #300.</div>
 							</div>
 							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2015 - Launched Tesco Mobile POS System</div>
-								<div class="text-gray-500 text-sm mt-1">Point of sale application for retail management</div>
-							</div> -->
-							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2014 - Launched Husky Analytics Platform</div>
-								<div class="text-gray-500 text-sm mt-1">Whitelabel analytics platform built on graph database</div>
-							</div> -->
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2014 - Launched whitelabel Streaming Platform for HP and Universal Music</div>
-								<!-- <div class="text-gray-500 text-sm mt-1">Whitelabel solution with 20k+ MAUs.</div> -->
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2007 - Graduated from New College Swindon with HND Computing</div>
 							</div>
 							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2006 - Migrated student record system at New College Systems</div>
-								<!-- <div class="text-gray-500 text-sm mt-1">Software development and reporting systems</div> -->
 							</div>
 							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2003 - Launched swindonmusic.co.uk</div>
 								<div class="text-gray-500 text-sm mt-1">Local music website and community forum.</div>
 								<div class="text-gray-500 text-sm mt-1">Lead to Radio 1 Big Weekend hosted in Swindon in 2009.</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
+							</div> -->
+							<!-- <div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
 								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
 								<div class="font-semibold">2002 - First paid developer gig</div>
-								<!-- <div class="text-gray-500 text-sm mt-1">Started professional development career</div> -->
-							</div>
+							</div> -->
 						</div>
 					</section>
 				</div>
@@ -179,27 +159,49 @@ const meta_title = 'Curriculum Vitae'
 					<!-- Skills -->
 					<section class="mb-8 -mt-8">
 						<h2 class="text-xl font-bold flex items-center gap-2">
-							<BsTools className="inline" />
+							<!-- <BsTools className="inline" /> -->
 							Skills
 						</h2>
-						<ul class="list-disc pl-4 text-gray-700 mt-4">
-							<li class="mb-2">Software Development
-								<div class="text-sm text-gray-500">Agile, TDD, DDD</div>
+						<ul class="text-gray-700 text-sm mt-4">
+							<li class="mb-3">
+								<div class="font-semibold">Generative AI</div>
+								<div class="text-gray-500 text-xs">Agents, skills, prompt, context &amp; loop engineering, RAG &amp; GraphRAG</div>
 							</li>
-							<li class="mb-2">Frontend
-								<div class="text-sm text-gray-500">React, Vue, HTML/CSS</div>
+							<li class="mb-3">
+								<div class="font-semibold">Leadership</div>
+								<div class="text-gray-500 text-xs">Team management, strategy, hiring</div>
 							</li>
-							<li class="mb-2">Backend
-								<div class="text-sm text-gray-500">TypeScript, Node.js, Java</div>
+							<!-- <li class="mb-3">
+								<div class="font-semibold">Tooling</div>
+								<div class="text-gray-500 text-xs">Claude Code, Cursor, MCP</div>
+							</li> -->
+							<li class="mb-3">
+								<div class="font-semibold">Engineering</div>
+								<div class="text-gray-500 text-xs">TypeScript, Python, React, Java, Neo4j, SQL, TDD, DDD</div>
 							</li>
-							<li class="mb-2">Databases
-								<div class="text-sm text-gray-500">Neo4j, MongoDB, SQL</div>
+						</ul>
+					</section>
+
+					<!-- Speaking -->
+					<section class="mt-8">
+						<h2 class="text-xl font-bold mb-1">Speaking</h2>
+						<p class="text-gray-500 text-xs mb-4 italic">A selection &mdash; many more delivered online and in person.</p>
+						<ul class="text-gray-700 text-sm">
+							<li class="mb-3">
+								<div class="font-semibold">UI in the Age of AI</div>
+								<div class="text-gray-500 text-xs">MCP Dev Summit NA &amp; DEVWorld &middot; 2026</div>
 							</li>
-							<li class="mb-2">Data Analytics
-								<div class="text-sm text-gray-500">Python, pandas, duckdb</div>
+							<li class="mb-3">
+								<div class="font-semibold">Hands-on GraphRAG</div>
+								<div class="text-gray-500 text-xs">AI Engineer, Paris &middot; 2025</div>
 							</li>
-							<li class="mb-2">Generative AI
-								<div class="text-sm text-gray-500">LangChain, LangGraph, MCP</div>
+							<li class="mb-3">
+								<div class="font-semibold">Building AI Tool Integrations with MCP</div>
+								<div class="text-gray-500 text-xs">WeAreDevelopers, Berlin &middot; 2025</div>
+							</li>
+							<li class="mb-3">
+								<div class="font-semibold">Generative AI for Front-end Developers</div>
+								<div class="text-gray-500 text-xs">CityJS Athens &amp; London &middot; 2023&ndash;2024</div>
 							</li>
 						</ul>
 					</section>
@@ -231,16 +233,15 @@ const meta_title = 'Curriculum Vitae'
 					</section> -->
 
 					<!-- Hobbies and Interests -->
-					<section class="mt-8">
+					<!-- <section class="mt-8">
 						<h2 class="text-xl font-bold mb-4">Hobbies & Interests</h2>
 						<ul class="list-disc pl-4 text-gray-700">
 							<li class="mb-2">Football data analysis</li>
 							<li class="mb-2">Playing snooker and pool</li>
-							<!-- <li class="mb-2">Generative AI and machine learning</li> -->
 							<li class="mb-2">Open source development</li>
 							<li class="mb-2">Technical writing and public speaking</li>
 						</ul>
-					</section>
+					</section> -->
 				</div>
 			</div>
 		</div>
@@ -257,18 +258,27 @@ const meta_title = 'Curriculum Vitae'
 					<div class="flex flex-col sm:flex-row gap-8">
 						<div class="sm:w-3/4">
 							<div class="mb-4">
-								<h3 class="font-bold text-lg">Professional Services &amp; Developer Advocacy - Neo4j</h3>
+								<h3 class="font-bold text-lg">Developer Relations &amp; Professional Services - Neo4j</h3>
 							</div>
 							<div class="pl-2">
 								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
 									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Developer Advocate - Developer Education Lead</h4>
-									<p class="text-gray-600 text-sm mb-2">March 2021 - Present</p>
+									<h4 class="font-semibold text-base">Manager, Developer Education</h4>
+									<p class="text-gray-600 text-sm mb-2">April 2025 - Present</p>
 									<ul class="list-disc pl-4">
-										<li>Levelled from Senior to Staff Developer Advocate focussing on developer education.</li>
-										<li><a href="https://medium.com/neo4j/building-an-educational-platform-on-neo4j-d7dc195b9466" target="_blank">Transformed GraphAcademy</a> from static web pages into an interactive learning experience using Neo4j tools.</li>
-										<li>Grew yearly enrolments from <b>2k to over 150k</b>, with an overall <b>44% completion rate</b>.</li>
-										<li>Pioneered Generative AI driven learning experiences, including <a href="https://medium.com/neo4j/building-an-educational-chatbot-for-graphacademy-with-neo4j-f707c4ce311b" target="_blank">learning assistant chatbot</a> and <a href="https://graphacademy.neo4j.com/categories/generative-ai/" target="_blank">courses on Generative AI with Neo4j</a>.</li>
+										<li>Leads the Gen AI-driven transformation of developer enablement at Neo4j &mdash; using Generative AI (Claude Code, frontier models) to rebuild GraphAcademy into an ecosystem the <b>whole team can contribute to</b>, with an <a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c" target="_blank">agent-based learning experience</a> front and centre.</li>
+										<li>Grew and manage a team of <b>six</b>, up from two, and scaled GraphAcademy from <b>2k to over 150k enrolments a year</b> at a <b>44% completion rate</b>.</li>
+										<li>Owns developer-education strategy, with the AI platform work now enabling training across the <b>entire company</b>.</li>
+									</ul>
+								</div>
+
+								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
+									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
+									<h4 class="font-semibold text-base">Developer Advocate - Developer Education Lead</h4>
+									<p class="text-gray-600 text-sm mb-2">March 2021 - April 2025</p>
+									<ul class="list-disc pl-4">
+										<li>Pioneered Generative AI driven learning, including a <a href="https://medium.com/neo4j/building-an-educational-chatbot-for-graphacademy-with-neo4j-f707c4ce311b" target="_blank">learning assistant chatbot</a> and courses on Generative AI with Neo4j.</li>
+										<li>Levelled from Senior to Staff Developer Advocate; <a href="https://medium.com/neo4j/building-an-educational-platform-on-neo4j-d7dc195b9466" target="_blank">transformed GraphAcademy</a> from static pages into an interactive learning experience, growing enrolments from <b>2k to over 150k a year</b>.</li>
 									</ul>
 								</div>
 
@@ -277,10 +287,8 @@ const meta_title = 'Curriculum Vitae'
 									<h4 class="font-semibold text-base">Developer Experience Engineer</h4>
 									<p class="text-gray-600 text-sm mb-2">March 2020 - March 2021</p>
 									<ul class="list-disc pl-4">
-										<li>Cross-organisational collaboration to improve developer experience.</li>
-										<li>Led documentation migration to a modern build system with novel learning utilities.</li>
-										<li>Transformed developer feedback into actionable product improvements, addressing user pain points to improve developer experience.</li>
-										<li>Released and contributed to open-source libraries and tools to accelerate developer growth and onboarding.</li>
+										<li>Improved developer experience across the platform, turning user feedback into product improvements.</li>
+										<li>Led documentation migration to a modern build system and released open-source libraries to accelerate onboarding.</li>
 									</ul>
 								</div>
 
@@ -312,7 +320,7 @@ const meta_title = 'Curriculum Vitae'
 					</div>
 
 					<!-- Commit -->
-					<div class="flex flex-col sm:flex-row gap-8">
+					<div class="flex flex-col sm:flex-row gap-8 print-stack">
 						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Founder &amp; Lead Developer - Commit</h3>
@@ -320,12 +328,12 @@ const meta_title = 'Curriculum Vitae'
 							</div>
 							<ul class="list-disc pl-4">
 								<li>Founded technology consultancy delivering solutions for startups and global companies.</li>
-								<li>Business critical data collection and reporting tool for GWR.</li>
+								<li>Business critical data collection and reporting system for GWR, used by 5,000+ employees daily.</li>
 								<li><a href="https://sensori.al/projects/google-nyc-popup/" target="_blank">Interactive photosphere</a> for a Google popup store in NYC.</li>
 							</ul>
 						</div>
 						<div class="sm:w-1/4">
-							<div class="bg-gray-50 p-4 rounded-lg">
+							<div class="bg-gray-50 p-4 rounded-lg mt-5">
 								<p class="text-gray-700 italic mb-3">"In three months, Adam has delivered a system that is critical to our business what others have failed to deliver in more than 18 months.
 								He quickly understood our business needs and delivered a reliable solution that met every requirement."</p>
 								<div class="text-sm">
@@ -338,7 +346,7 @@ const meta_title = 'Curriculum Vitae'
 					</div>
 
 					<!-- Eskimo Media -->
-					<div class="flex flex-col sm:flex-row gap-8">
+					<div class="flex flex-col sm:flex-row gap-8 print-stack">
 						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Lead Developer - Eskimo Media and Technology</h3>
@@ -354,7 +362,7 @@ const meta_title = 'Curriculum Vitae'
 					</div>
 
 					<!-- New College Swindon -->
-					<div class="flex flex-col sm:flex-row gap-8">
+					<div class="flex flex-col sm:flex-row gap-8 print-stack">
 						<div class="sm:w-3/4">
 							<div class="mb-4">
 								<h3 class="font-bold text-lg">Systems Developer - New College Swindon</h3>
@@ -362,11 +370,11 @@ const meta_title = 'Curriculum Vitae'
 							</div>
 							<ul class="list-disc pl-4">
 								<li>Mapped and migrated over 50k student records to new system.</li>
-								<li>Replaced week-long manual allocation process with 10-second automated system.</li>
+								<li>Replaced week-long manual curriculum allocation process with 10-second automated system.</li>
 							</ul>
 						</div>
 						<div class="sm:w-1/4">
-							<div class="bg-gray-50 p-4 rounded-lg">
+							<div class="bg-gray-50 p-4 rounded-lg mt-5">
 								<p class="text-gray-700 italic mb-3">"Adam is a very dedicated person, with great knowledge of systems development. A great team player, and with a very positive attitude. Easy going, and approachable, always willing to help with requests."</p>
 								<div class="text-sm">
 									<div class="font-semibold text-gray-800">&ndash; Ben Sonoiki</div>
@@ -374,6 +382,28 @@ const meta_title = 'Curriculum Vitae'
 									<div class="text-gray-500 ml-3 text-xs">New College Swindon</div>
 								</div>
 							</div>
+						</div>
+					</div>
+
+					<!-- Education & Certifications -->
+					<div class="flex flex-col sm:flex-row gap-8">
+						<div class="sm:w-1/2">
+							<div class="mb-4">
+								<h3 class="font-bold text-lg">Education</h3>
+							</div>
+							<ul class="">
+								<li><b>HND Computing</b><br> New College Swindon 2005&ndash;2007</li>
+								<li><b>BTEC National Diploma for IT Practitioners (Software)</b> <br> New College Swindon, 2003&ndash;2005</li>
+							</ul>
+						</div>
+						<div class="sm:w-1/2">
+							<h3 class="font-bold text-lg mb-2">Certifications</h3>
+							<ul class="list-disc pl-4 text-sm text-gray-700">
+								<li>Neo4j Certified Professional</li>
+								<li>PFSA Level 2 Opposition Analysis in Football</li>
+								<li>PFSA Level 2 Technical Scouting in Football</li>
+								<li>PFSA Level 1 Talent Identification</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -398,7 +428,13 @@ const meta_title = 'Curriculum Vitae'
 
 		/* Ensure the print message appears on each page */
 		@page {
-			margin-bottom: 2cm;
+			margin: 0;
+		}
+
+		/* Make links clearer in print */
+		#cv a {
+			color: #1d4ed8 !important;
+			text-decoration: underline !important;
 		}
 
 		/* Add page break control */
@@ -426,6 +462,23 @@ const meta_title = 'Curriculum Vitae'
 			width: 25% !important;
 			display: inline-block;
 			vertical-align: top;
+		}
+
+		.sm\:w-1\/2 {
+			width: 50% !important;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		/* Stack the testimonial underneath (full width) for older roles in print */
+		.print-stack {
+			display: block !important;
+		}
+
+		.print-stack .sm\:w-3\/4,
+		.print-stack .sm\:w-1\/4 {
+			width: 100% !important;
+			display: block !important;
 		}
 
 		/* Add page break between pages */
