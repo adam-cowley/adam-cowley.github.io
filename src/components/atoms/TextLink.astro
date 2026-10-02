@@ -1,0 +1,26 @@
+---
+/** Inline link with the animated gold underline. */
+interface Props {
+  href: string;
+  accent?: boolean;
+  mono?: boolean;
+  class?: string;
+}
+const { href, accent = false, mono = false, class: className } = Astro.props;
+const external = href.startsWith("http");
+---
+
+<a
+  href={href}
+  class:list={["u", { accent, mono }, className]}
+  {...(external ? { target: "_blank", rel: "noopener" } : {})}
+><slot />{external && " ↗"}</a>
+
+<style>
+  .accent {
+    color: var(--ac);
+  }
+  .mono {
+    font: 500 13px var(--mono);
+  }
+</style>

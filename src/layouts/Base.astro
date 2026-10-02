@@ -1,17 +1,13 @@
 ---
-import TwSizeIndicator from "@components/TwSizeIndicator.astro";
 import config from "@config/config.json";
-import theme from "@config/theme.json";
 import { plainify } from "@lib/utils/textConverter";
-import Footer from "@partials/Footer.astro";
-import Header from "@partials/Header.astro";
-import "@styles/style.scss";
+import SiteHeader from "@ui/organisms/SiteHeader.astro";
+import SiteFooter from "@ui/organisms/SiteFooter.astro";
+import CommandPalette from "@ui/organisms/CommandPalette.astro";
+import "@styles/global.css";
+import "@styles/prose.css";
 
-// font families
-const pf = theme.fonts.font_family.primary;
-const sf = theme.fonts.font_family.secondary;
-
-// types for frontmatters
+/** Document template: head, theme bootstrap, header, main slot, footer. */
 export interface Props {
   title?: string;
   meta_title?: string;
@@ -19,131 +15,69 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  type?: "website" | "article";
 }
 
-// distructure frontmatters
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const { title, meta_title, description, image, noindex, canonical, type = "website" } = Astro.props;
+
+const pageTitle = plainify(meta_title ?? title ?? config.site.title) ?? config.site.title;
+const fullTitle = pageTitle === config.site.title ? pageTitle : `${pageTitle} | Adam Cowley`;
+const desc = plainify(description ?? config.metadata.meta_description) ?? "";
+const img = `${config.site.base_url}${image ?? config.metadata.meta_image}`;
+const url = `${config.site.base_url}${Astro.url.pathname}`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <!-- favicon -->
-    <link rel="shortcut icon" href={config.site.favicon} />
-    <!-- theme meta -->
-    <meta name="msapplication-TileColor" content="#000000" />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#fff"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#000"
-    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={config.site.favicon} />
+    <link rel="alternate" type="application/rss+xml" title="Adam Cowley" href="/rss.xml" />
     <meta name="generator" content={Astro.generator} />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content={config.metadata.meta_author} />
+    <meta name="theme-color" content="#1b2b23" />
 
-    <!-- google font css -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical ?? url} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={img} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={img} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href={`https://fonts.googleapis.com/css2?family=${pf}${
-        sf ? "&family=" + sf : ""
-      }&display=swap`}
+      href="https://fonts.googleapis.com/css2?family=Gloock&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- responsive meta -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
-
-    <!-- title -->
-    <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
-    </title>
-
-    <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
-
-    <!-- noindex robots -->
-    {noindex && <meta name="robots" content="noindex,nofollow" />}
-
-    <!-- meta-description -->
-    <meta
-      name="description"
-      content={plainify(
-        description ? description : config.metadata.meta_description
-      )}
-    />
-
-    <!-- author from config.json -->
-    <meta name="author" content={config.metadata.meta_author} />
-
-    <!-- og-title -->
-    <meta
-      property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
-      )}
-    />
-
-    <!-- og-description -->
-    <meta
-      property="og:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description
-      )}
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-    />
-
-    <!-- twitter-title -->
-    <meta
-      name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title
-      )}
-    />
-
-    <!-- twitter-description -->
-    <meta
-      name="twitter:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description
-      )}
-    />
-
-    <!-- og-image -->
-    <meta
-      property="og:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
-
-    <!-- twitter-image -->
-    <meta
-      name="twitter:image"
-      content={`${config.site.base_url}${
-        image ? image : config.metadata.meta_image
-      }`}
-    />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- set the theme before first paint to avoid a flash -->
+    <script is:inline>
+      (function () {
+        var t;
+        try { t = localStorage.getItem("ac-theme"); } catch (e) {}
+        if (t !== "light" && t !== "dark") {
+          t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
   </head>
   <body>
-    <TwSizeIndicator />
-    <Header />
-    <main id="main-content" class="min-h-[60vh]">
+    <SiteHeader />
+    <main id="main-content" class="page-enter">
       <slot />
     </main>
-    <Footer />
+    <SiteFooter />
+    <CommandPalette />
   </body>
 </html>

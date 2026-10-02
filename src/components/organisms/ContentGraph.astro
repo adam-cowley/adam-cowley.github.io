@@ -1,0 +1,65 @@
+---
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+import ForceGraph from "@ui/visuals/ForceGraph.astro";
+import { groupBy, type PostView } from "@lib/posts";
+import type { GraphNode, GraphLink } from "@lib/forceGraph";
+
+/** The site's own posts, categories and tags drawn as a graph. */
+interface Props {
+  posts: PostView[];
+}
+const { posts } = Astro.props;
+
+const categories = groupBy(posts, "categories");
+const tags = groupBy(posts, "tags").filter(
+  (t) => t.posts.length >= 2 && !categories.some((c) => c.slug === t.slug)
+);
+
+const nodes: Pick<GraphNode, "id" | "label" | "kind" | "href">[] = [
+  ...categories.map((c) => ({ id: `c:${c.slug}`, label: c.label, kind: "topic" as const, href: `/categories/${c.slug}` })),
+  ...tags.map((t) => ({ id: `t:${t.slug}`, label: `#${t.label}`, kind: "tag" as const, href: `/tags/${t.slug}` })),
+  ...posts.map((p) => ({ id: `p:${p.slug}`, label: p.title, kind: "post" as const, href: p.href })),
+];
+
+const links: GraphLink[] = [];
+const tagIds = new Set(tags.map((t) => t.slug));
+for (const p of posts) {
+  for (const c of p.categories) links.push([`p:${p.slug}`, `c:${c.toLowerCase()}`]);
+  for (const t of p.tags) if (tagIds.has(t.toLowerCase())) links.push([`p:${p.slug}`, `t:${t.toLowerCase()}`]);
+}
+// keep only links whose both ends exist (category slugs may differ from raw casing)
+const ids = new Set(nodes.map((n) => n.id));
+const valid = links.filter(([a, b]) => ids.has(a) && ids.has(b));
+---
+
+<section class="band" id="content-graph">
+  <div class="container">
+    <div class="head">
+      <Eyebrow class="e">The content graph</Eyebrow>
+      <span class="legend">hover a node · posts ● tags ○ topics ●●</span>
+    </div>
+    <ForceGraph nodes={nodes} links={valid} />
+  </div>
+</section>
+
+<style>
+  .band {
+    background: var(--band);
+    color: var(--on-band);
+    padding: 20px 0 40px;
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .head :global(.e) {
+    color: var(--band-ac);
+  }
+  .legend {
+    font: 500 12px var(--mono);
+    letter-spacing: 0.14em;
+    color: var(--band-ac);
+  }
+</style>

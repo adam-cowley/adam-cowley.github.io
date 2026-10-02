@@ -1,0 +1,73 @@
+---
+import ContentGraph from "@ui/organisms/ContentGraph.astro";
+import { getPosts } from "@lib/posts";
+
+const posts = await getPosts();
+---
+
+<dialog id="egg" class="egg" aria-label="The content graph">
+  <ContentGraph posts={posts} />
+  <form method="dialog" class="bar">
+    <button class="close">↑↑↓↓←→←→BA · click or press esc to close</button>
+  </form>
+</dialog>
+
+<style>
+  .egg {
+    border: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    background: var(--band);
+    color: var(--on-band);
+    overflow: hidden;
+  }
+  .egg[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .egg :global(.band),
+  .egg :global(.band > .container) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    max-width: none;
+    width: 100%;
+  }
+  .egg :global(.band) {
+    padding: 16px 24px 0;
+  }
+  .egg :global([data-graph]) {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+  .bar {
+    text-align: center;
+    padding: 12px;
+  }
+  .close {
+    background: none;
+    border: 0;
+    font: 500 13px var(--mono);
+    color: var(--band-ac);
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const seq = "ArrowUp ArrowUp ArrowDown ArrowDown ArrowLeft ArrowRight ArrowLeft ArrowRight b a".split(" ");
+  let buf: string[] = [];
+  document.addEventListener("keydown", (e) => {
+    if ((e.target as HTMLElement)?.closest("input, textarea")) return;
+    buf = [...buf, e.key.length === 1 ? e.key.toLowerCase() : e.key].slice(-seq.length);
+    if (buf.join() !== seq.join()) return;
+    buf = [];
+    document.querySelector<HTMLDialogElement>("#egg")?.showModal();
+    // the graph lays itself out once it has a size, i.e. after the dialog is open
+    document.dispatchEvent(new Event("graph:reveal"));
+  });
+</script>

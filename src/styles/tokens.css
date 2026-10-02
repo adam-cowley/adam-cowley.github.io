@@ -1,0 +1,66 @@
+/*
+ * Design tokens. Every component reads from these custom properties,
+ * so a theme is just a different set of values on :root.
+ */
+:root {
+  --serif: "Gloock", "Young Serif", Georgia, serif;
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --gutter: clamp(20px, 4.6vw, 56px);
+  --maxw: 1200px;
+
+  /* spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* light (paper) */
+  --bg: #f6f2e7;
+  --sf: #ece5d0;
+  --tx: #1b2b23;
+  --mu: #4b5a50;
+  --ac: #6e520d;
+  --ln: rgba(110, 82, 13, 0.5);
+  --ln2: rgba(110, 82, 13, 0.25);
+  --band: #1b2b23;
+  --on-band: #f5f1e6;
+  --band-ac: #c9a24b;
+  --grain-blend: multiply;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1b2b23;
+  --sf: #243830;
+  --tx: #f5f1e6;
+  --mu: #b8bfb0;
+  --ac: #d4ae55;
+  --ln: rgba(201, 162, 75, 0.45);
+  --ln2: rgba(201, 162, 75, 0.2);
+  --band: #14201a;
+  --grain-blend: overlay;
+  color-scheme: dark;
+}
+
+/* no-JS fallback: follow the OS until the theme script has run */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #1b2b23;
+    --sf: #243830;
+    --tx: #f5f1e6;
+    --mu: #b8bfb0;
+    --ac: #d4ae55;
+    --ln: rgba(201, 162, 75, 0.45);
+    --ln2: rgba(201, 162, 75, 0.2);
+    --band: #14201a;
+    --grain-blend: overlay;
+    color-scheme: dark;
+  }
+}

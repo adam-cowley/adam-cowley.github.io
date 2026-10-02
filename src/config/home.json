@@ -1,0 +1,40 @@
+{
+  "name": ["Adam", "Cowley"],
+  "tagline": "I design systems, and use AI to make them better.",
+  "role": "Developer Education · 25+ yrs building · UK",
+  "intro": "From the early web to AI-native learning platforms. I like building the thing, then writing down how it works.",
+  "pillars": [
+    {
+      "title": "Graphs",
+      "description": "Modelling, querying and building applications on Neo4j, from Cypher to production.",
+      "href": "/categories/neo4j"
+    },
+    {
+      "title": "GenAI & agents",
+      "description": "LLMs, GraphRAG and agents that reason over a knowledge graph instead of guessing.",
+      "href": "/categories/genai"
+    },
+    {
+      "title": "Today I learned",
+      "description": "Short, practical notes picked up on the job. The kind you search for at 5pm.",
+      "href": "/categories/til"
+    }
+  ],
+  "categoryLabels": {
+    "genai": "GenAI",
+    "til": "Today I learned",
+    "neo4j": "Neo4j",
+    "llms": "LLMs"
+  },
+  "nav": [
+    { "name": "/posts", "url": "/posts" },
+    { "name": "/categories", "url": "/categories" },
+    { "name": "/about", "url": "/about" }
+  ],
+  "social": [
+    { "name": "GitHub", "key": "github" },
+    { "name": "LinkedIn", "key": "linkedin" },
+    { "name": "X", "key": "twitter" },
+    { "name": "YouTube", "key": "youtube" }
+  ]
+}

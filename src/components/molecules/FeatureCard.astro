@@ -1,0 +1,48 @@
+---
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+import Heading from "@ui/atoms/Heading.astro";
+import type { PostView } from "@lib/posts";
+
+interface Props {
+  post: PostView;
+}
+const { post } = Astro.props;
+---
+
+<a href={post.href} class="card">
+  <Heading as="h3" size="section" class="t">{post.title}</Heading>
+  <Eyebrow class="label">{post.topic}</Eyebrow>
+  <p>{post.description}</p>
+  <span class="go">Read →</span>
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--sf);
+    padding: 28px;
+    border-top: 3px solid var(--ac);
+    transition: transform 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  .card :global(.t) {
+    font-size: 28px;
+    line-height: 1.08;
+  }
+  .card :global(.label) {
+    margin: 18px 0 4px;
+  }
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--mu);
+  }
+  .go {
+    display: block;
+    margin-top: 18px;
+    font: 500 13px var(--mono);
+    color: var(--ac);
+  }
+</style>

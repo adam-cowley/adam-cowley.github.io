@@ -1,21 +1,35 @@
 ---
 import Base from "@layouts/Base.astro";
-import { markdownify } from "@lib/utils/textConverter";
-import { getEntry } from "astro:content";
-const entry = await getEntry("pages", "404");
-if (!entry) throw new Error("404 page not found");
-const { Content } = await entry.render();
+import PageTitle from "@ui/molecules/PageTitle.astro";
+import CircleArt from "@ui/visuals/CircleArt.astro";
+import Button from "@ui/atoms/Button.astro";
 ---
 
-<Base title={entry.data.title}>
-  <section class="section">
-    <div class="container">
-      <div class="flex h-[40vh] items-center justify-center">
-        <div class="text-center">
-          <h1 class="mb-4" set:html={markdownify(entry.data.title)} />
-          <Content />
-        </div>
+<Base title="Not found" noindex>
+  <div class="container">
+    <div class="wrap">
+      <div>
+        <PageTitle kicker="/404" title="Lost the thread">
+          That page isn't in the graph. Try the writing index, or press ⌘K to search.
+        </PageTitle>
+        <Button href="/posts">All writing →</Button>
       </div>
+      <div class="art"><CircleArt variant="lines" /></div>
     </div>
-  </section>
+  </div>
 </Base>
+
+<style>
+  .wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    align-items: center;
+    padding-bottom: 64px;
+  }
+  .art {
+    max-width: 380px;
+    justify-self: center;
+    width: 100%;
+  }
+</style>

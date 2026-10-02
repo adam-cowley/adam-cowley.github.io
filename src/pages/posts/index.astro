@@ -1,0 +1,15 @@
+---
+import Base from "@layouts/Base.astro";
+import PageTitle from "@ui/molecules/PageTitle.astro";
+import PostFilter from "@ui/organisms/PostFilter.astro";
+import { getPosts } from "@lib/posts";
+
+const posts = await getPosts();
+---
+
+<Base title="Writing" description="Posts on Neo4j, graphs, GenAI and agents by Adam Cowley.">
+  <div class="container">
+    <PageTitle kicker="/writing" title="Writing" />
+    <PostFilter posts={posts} />
+  </div>
+</Base>

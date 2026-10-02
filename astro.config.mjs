@@ -7,6 +7,7 @@ import mermaid from "astro-mermaid";
 import theme from './src/config/theme.json'
 import mdx from "@astrojs/mdx";
 import { codeToHtml } from 'shiki';
+import rehypeA11y from './src/lib/rehypeA11y.mjs';
 
 // Output is always 1360×708px (680×354 logical at deviceScaleFactor 2).
 const VIEWPORT = { w: 680, h: 354 }
@@ -126,7 +127,7 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
-    sitemap(),
+    sitemap({ filter: (page) => !page.endsWith("/cv") && !page.endsWith("/cv/") }),
     tailwind({
       config: {
         applyBaseStyles: false
@@ -166,10 +167,16 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [],
+    rehypePlugins: [rehypeA11y],
     shikiConfig: theme.shikiConfig,
     extendDefaultPlugins: true
   },
   redirects: {
+    '/page/2': '/posts',
+    '/page/3': '/posts',
+    '/page/4': '/posts',
+    '/page/5': '/posts',
+    '/search': '/posts',
     '/neo4j/analysing-football-events-neo4j/': '/neo4j/analysing-football-events-neo4j/',
     '/neo4j/importing-wikipedia-data-into-neo4j/': '/posts/importing-wikipedia-data-into-neo4j/',
     '/neo4j/sharding-neo4j-4.0/': '/posts/sharding-neo4j-40/',

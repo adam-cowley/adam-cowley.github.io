@@ -5,15 +5,7 @@ import { getSinglePage } from "@lib/contentParser.astro";
 
 export async function getStaticPaths() {
   const pages = await getSinglePage("pages");
-  const allPages = [...pages, ];
-
-  const paths = allPages.map((page: any) => ({
-    params: {
-      regular: page.slug,
-    },
-    props: { page },
-  }));
-  return paths;
+  return pages.map((page: any) => ({ params: { regular: page.slug }, props: { page } }));
 }
 
 const { page } = Astro.props;
@@ -21,13 +13,6 @@ const { page } = Astro.props;
 const { title, meta_title, description, image } = page.data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  {
-    <Default data={page} />
-  }
+<Base title={title} meta_title={meta_title} description={description} image={image}>
+  <Default data={page} />
 </Base>

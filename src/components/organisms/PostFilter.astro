@@ -1,0 +1,120 @@
+---
+import Chip from "@ui/atoms/Chip.astro";
+import PostRow from "@ui/molecules/PostRow.astro";
+import { groupBy, type PostView } from "@lib/posts";
+
+/** Writing index: search box, topic chips and the full list, filtered client-side. */
+interface Props {
+  posts: PostView[];
+  /** pre-select a topic slug */
+  initial?: string;
+}
+const { posts, initial = "all" } = Astro.props;
+const topics = groupBy(posts, "categories");
+---
+
+<div class="filter" data-filter data-initial={initial}>
+  <div class="controls">
+    <label class="search">
+      <span aria-hidden="true">⌕</span>
+      <input type="search" placeholder="Search posts" aria-label="Search posts" data-q />
+    </label>
+    <div class="chips" role="group" aria-label="Filter by topic">
+      <Chip value="all" pressed={initial === "all"}>All</Chip>
+      {topics.map((t) => <Chip value={t.slug} pressed={initial === t.slug}>{t.label}</Chip>)}
+    </div>
+  </div>
+  <p class="count" aria-live="polite"><span data-count>{posts.length}</span> posts</p>
+  <div class="list">
+    {posts.map((p) => <PostRow post={p} variant="full" level="h2" />)}
+  </div>
+  <p class="none" data-none hidden>No posts match. Try another topic or search term.</p>
+</div>
+
+<style>
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-top: 2px solid var(--tx);
+    border-bottom: 1px solid var(--ln);
+  }
+  .search {
+    flex: 1 1 260px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid var(--ln);
+    padding: 0 14px;
+    font: 400 14px var(--mono);
+    color: var(--ac);
+  }
+  input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 12px 0;
+    color: var(--tx);
+    font: inherit;
+  }
+  input::placeholder {
+    color: var(--mu);
+    opacity: 1;
+  }
+  .search:focus-within {
+    border-color: var(--ac);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .count {
+    padding: 8px 0 12px;
+    font: 400 16px var(--mono);
+    color: var(--mu);
+  }
+  .none {
+    padding: 40px 0;
+    font: 400 14px var(--mono);
+    color: var(--mu);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-filter]").forEach((root) => {
+    const input = root.querySelector<HTMLInputElement>("[data-q]")!;
+    const chips = [...root.querySelectorAll<HTMLButtonElement>(".chips button")];
+    const rows = [...root.querySelectorAll<HTMLElement>(".list > a")];
+    const count = root.querySelector("[data-count]")!;
+    const none = root.querySelector<HTMLElement>("[data-none]")!;
+    let topic = root.dataset.initial ?? "all";
+
+    const apply = () => {
+      const q = input.value.trim().toLowerCase();
+      let n = 0;
+      for (const row of rows) {
+        const okTopic = topic === "all" || (row.dataset.topic ?? "").split(" ").includes(topic);
+        const okText = !q || (row.dataset.search ?? "").includes(q);
+        row.hidden = !(okTopic && okText);
+        if (!row.hidden) n++;
+      }
+      count.textContent = String(n);
+      none.hidden = n > 0;
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.value === topic)));
+    };
+
+    input.addEventListener("input", apply);
+    chips.forEach((c) =>
+      c.addEventListener("click", () => {
+        topic = c.dataset.value ?? "all";
+        apply();
+      })
+    );
+    apply();
+  });
+</script>

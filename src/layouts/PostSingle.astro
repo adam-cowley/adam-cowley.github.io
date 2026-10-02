@@ -1,138 +1,98 @@
 ---
-import { Image } from 'astro:assets';
-import Share from "@components/Share.astro";
-import SimilarPosts from "@components/SimilarPosts.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import dateFormat from "@lib/utils/dateFormat";
-import similerItems from "@lib/utils/similarItems";
-import { humanize,markdownify,slugify } from "@lib/utils/textConverter";
-import { BiCalendarAlt, BiTagAlt } from "react-icons/bi";
+import Tag from "@ui/atoms/Tag.astro";
+import PostHeader from "@ui/organisms/PostHeader.astro";
+import PostToc from "@ui/organisms/PostToc.astro";
+import RelatedPosts from "@ui/organisms/RelatedPosts.astro";
+import config from "@config/config.json";
+import { getPostEntries, toView } from "@lib/posts";
+import similarItems from "@lib/utils/similarItems";
+import { slugify, humanize } from "@lib/utils/textConverter";
+import { getEntry } from "astro:content";
 
-const allAuthors = await getSinglePage("authors");
-const posts = await getSinglePage("posts");
 const { post } = Astro.props;
-const similarPosts = similerItems(post, posts, post.slug);
-const { Content } = await post.render();
-const { title, description, authors, categories, image, date, tags, action } =
-  post.data;
+const { Content, headings } = await post.render();
+const { action, tags, image, title } = post.data;
+const view = toView(post);
+
+const author = await getEntry("authors", "adam");
+const all = await getPostEntries();
+const related = similarItems(post, all, post.slug).slice(0, 3).map(toView);
+const url = `${config.site.base_url}/posts/${post.slug}`;
 ---
 
-<section class="section">
-  <div class="container">
-    <article class="row justify-center">
-      <div class="md:col-10 text-center">
-        <h1 set:html={markdownify(title)} class="h2" />
-        <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
-          <li class="mx-3">
-            {
-              allAuthors
-                .filter((author: any) =>
-                  authors
-                    .map((author: string) => slugify(author))
-                    .includes(slugify(author.data.title))
-                )
-                .map((author: any) => (
-                  <a
-                    href={`/authors/${slugify(author.slug)}`}
-                    class="flex items-center hover:text-primary font-medium"
-                  >
-                    {author.data.image && (
-                      <Image
-                        src={author.data.image}
-                        alt={author.data.title}
-                        height={50}
-                        width={50}
-                        class="mr-2 h-6 w-6 rounded-full"
-                      />
-                    )}
-                    <span>{author.data.title}</span>
-                  </a>
-                ))
-            }
-          </li>
-          <li class="mx-3 flex items-center flex-wrap font-medium">
-            <BiCalendarAlt className="mr-1 h-5 w-5 text-gray-600" />
-            <>{dateFormat(date)}</>
-          </li>
-          <li class="mx-3 flex items-center flex-wrap">
-            <BiTagAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
-            <>
-            <ul>
-              {
-                categories.map((category: string, i: number) => (
-                  <li class="inline-block">
-                    <a
-                      href={`/categories/${slugify(category)}`}
-                      class="mr-2 hover:text-primary font-medium"
-                    >
-                      {humanize(category)}{i !== post.data.categories.length - 1 && ","}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-            </>
-          </li>
-        </ul>
+<article class="container">
+  <PostHeader post={view} author={author?.data.title} />
+
+  <div class="layout">
+    <PostToc headings={headings} url={url} title={title} />
+
+    <div class="main">
+      {image && <img src={image} alt="" class="hero" width="1000" height="500" />}
+
+      <div class="prose">
+        <Content />
       </div>
 
-      <div class="col-12 mt-8 mb-2">
-        {image && (
-          <Image
-            src={image}
-            height={500}
-            width={1000}
-            alt={title}
-            class="rounded-lg"
-          />
-        )}
-      </div>
+      {
+        action && (
+          <aside class="action">
+            <p set:html={action} />
+          </aside>
+        )
+      }
 
-      <div class="md:col-10">
-        <div class="content mb-16 text-left">
-          <Content />
+      <ul class="tags">
+        {tags.map((t: string) => <li><Tag href={`/tags/${slugify(t)}`}>#{humanize(t)}</Tag></li>)}
+      </ul>
 
-          {action && <>
-            <hr />
-            <div class="text-center font-bold bg-slate-100 px-4 py-12 rounded-lg" set:html={action} />
-
-          </>}
-        </div>
-        <div class="flex flex-wrap items-center justify-between">
-          <ul class="mr-4 mb-4 space-x-3">
-            {
-              tags.map((tag: string) => (
-                <li class="inline-block">
-                  <a
-                    href={`/tags/${slugify(tag)}`}
-                    class="block rounded-lg bg-theme-light px-4 py-2 font-semibold text-dark text-sm hover:text-primary transition duration-300"
-                  >
-                    #{humanize(tag)}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-          <Share
-            className="social-share mb-4"
-            title={title}
-            description={description}
-            slug={`/posts/${post.slug}`}
-          />
-        </div>
-      </div>
-    </article>
+      <RelatedPosts posts={related} />
+    </div>
   </div>
-</section>
+</article>
 
-<!-- similar posts -->
-{
-  similarPosts.length > 0 && (
-    <section class="section pt-0">
-      <div class="container">
-        <h2 class="mb-8 text-center h3">Similar Posts</h2>
-        <SimilarPosts posts={similarPosts.slice(0, 3)} />
-      </div>
-    </section>
-  )
-}
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    gap: 40px 64px;
+    border-top: 1px solid var(--ln);
+    padding: 36px 0 64px;
+  }
+  .main {
+    min-width: 0;
+    max-width: 700px;
+  }
+  .hero {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--ln);
+    margin-bottom: 36px;
+    display: block;
+  }
+  .action {
+    margin-top: 40px;
+    padding: 28px;
+    background: var(--sf);
+    border-top: 3px solid var(--ac);
+    text-align: center;
+    font-weight: 600;
+  }
+  .action :global(a) {
+    color: var(--ac);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0;
+  }
+  @media (max-width: 960px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

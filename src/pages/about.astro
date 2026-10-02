@@ -1,73 +1,192 @@
 ---
-import { Image } from 'astro:assets';
 import Base from "@layouts/Base.astro";
-import { markdownify } from "@lib/utils/textConverter";
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+import Heading from "@ui/atoms/Heading.astro";
+import Meta from "@ui/atoms/Meta.astro";
+import Button from "@ui/atoms/Button.astro";
+import SocialLinks from "@ui/molecules/SocialLinks.astro";
+import PillarCard from "@ui/molecules/PillarCard.astro";
+import home from "@config/home.json";
 import { getEntry } from "astro:content";
 
 const entry = await getEntry("about", "index");
 if (!entry) throw new Error("About page not found");
 
+const [first, last] = home.name;
 const { Content } = await entry.render();
-const { title, subtitle, description, meta_title, image, what_i_do } = entry.data;
+const { title, subtitle, description, meta_title, image } = entry.data;
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <section class="section">
-    <div class="container">
-      <div class="row md:gx-4">
-        <div class="xs:col-12 md:col-5 md:offset-1">
-          {image ? (
-            <div class="img-cover mb-8">
-              <Image
-                src={image}
-                width={295}
-                height={395}
-                alt={title}
-                class="rounded-lg w-full"
-              />
-            </div>
-          ) : (
-            <div class="flex flex-col align-middle justify-center text-center h-64 rounded-xl bg-primary text-white">
-              <span class="text-8xl flex flex-col tracking-tighter justify-center align-middle m-auto bg-white text-primary rounded-full w-44 h-44">
-                ac
-              </span>
-            </div>
-          )}
-        </div>
-        <div class="xs:col-12 md:col-6">
-          <h1 set:html={markdownify(title)} class="h3 mb-8" />
+<Base title={title} meta_title={meta_title ?? "About"} description={description ?? subtitle} image={image}>
+  <div class="container">
+    <section class="hero">
+      <div class="talk" role="img" aria-label="Adam speaking at Neo4j GraphSummit">
+        <!-- same cutout stacked 2x: lower body clipped to the circle, everything above the hips (head, arms) left free -->
+        <img class="body" src="/images/adam-hands-cutout.png" alt="" width="779" height="1100" loading="eager" />
+        <img class="head" src="/images/adam-hands-cutout.png" alt="" width="779" height="1100" loading="eager" />
+      </div>
+      <Eyebrow>/about</Eyebrow>
+      <!-- Heading as="h1" size="display" class="name">{first}<br /><em>{last}</em></Heading -->
+      <Heading as="h1" size="display" class="name">{title}</Heading>
+      <div class="blurb">
+        <Heading as="p" size="section" class="tagline">{home.tagline}</Heading>
+        <!-- Meta><p class="role">{home.role}</p></Meta -->
+      </div>
+    </section>
 
-          <p class="subtitle text-xl font-bold italic text-slate-500 mb-12">{subtitle}</p>
-        </div>
+    <div class="top">
+      <div class="copy">
+        <!--
+        <Heading as="h2" size="title" class="h">{title}</Heading>
+        {subtitle && <p class="sub">{subtitle}</p>}
+        -->
+        <div class="prose about-prose"><Content /></div>
       </div>
-      <div class="row md:gx-4">
-        <div class="sm:col-12 md:col-8 md:offset-2">
-          <div class="content">
-            <Content />
-          </div>
-          <!-- <a href="/contact" class="btn btn-primary text-white py-2">Get In Touch</a> -->
+      <!-- aside class="side">
+        <div class="portrait"><img src="/images/adam-cutout.png" alt="Adam Cowley" width="946" height="862" /></div>
+        <SocialLinks inline={false} />
+        <div class="cta">
+          <Button href="/contact">Get in touch</Button>
         </div>
-      </div>
+      </aside -->
     </div>
-  </section>
 
-  {what_i_do && <section class="section pt-0">
-    <div class="container">
-      <h3 class="page-heading mb-20">{what_i_do.title}</h3>
-      <div class="row justify-center gy-4 text-center">
-        {what_i_do.items.map((item: any) => (
-          <div class="lg:col-4 md:col-6">
-            <i class="{{.icon}} fa-3x text-primary mb-4"></i>
-            <h4 class="text-dark font-weight-700 mb-3">{item.title}</h4>
-            <p>{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>}
+    <section class="pillars">
+      {home.pillars.map((p, i) => <PillarCard index={i + 1} {...p} />)}
+    </section>
+  </div>
 </Base>
+
+<style>
+.about-prose {
+  margin: auto;
+}
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 72px;
+    padding: clamp(24px, 4vw, 48px) 0 48px;
+    align-items: flex-start;
+  }
+  .copy {
+    flex: 3 1 420px;
+    min-width: 0;
+  }
+  .copy :global(.h) {
+    margin: 10px 0 20px;
+  }
+  .sub {
+    font: 400 clamp(20px, 2.4vw, 26px) / 1.35 var(--serif);
+    color: var(--ac);
+    margin-bottom: 32px;
+  }
+  .hero {
+    position: relative;
+    padding-top: clamp(24px, 4vw, 40px);
+    min-height: clamp(420px, 48vw, 560px);
+    padding-bottom: clamp(24px, 4vw, 48px);
+    border-bottom: 2px solid var(--ac);
+  }
+  .hero :global(.name) {
+    position: relative;
+    z-index: 2;
+    padding-top: 10px;
+    mix-blend-mode: normal;
+    /* keep the name clear of the photo: wrap onto a second line instead of running underneath it */
+    max-width: calc(100% - clamp(200px, 28vw, 360px) - 24px);
+  }
+  .blurb {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(28px, 5vw, 56px);
+    max-width: min(520px, calc(100% - clamp(200px, 28vw, 360px) - 24px));
+  }
+  .blurb :global(.tagline) {
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.12;
+  }
+  .role {
+    margin: 14px 0 0;
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+  .talk {
+    position: absolute;
+    right: 0;
+    top: clamp(10px, 2vw, 30px);
+    width: clamp(200px, 28vw, 360px);
+    aspect-ratio: 779 / 1100;
+    z-index: 0;
+  }
+  .talk::before {
+    content: "";
+    position: absolute;
+    left: 3%;
+    bottom: 0;
+    width: 94%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .talk img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .talk .body {
+    clip-path: ellipse(47% 33.2% at 50% 66.8%);
+  }
+  .talk .head {
+    clip-path: inset(0 0 21% 0);
+  }
+  .talk .neck {
+    clip-path: inset(0 32% 62% 32%);
+  }
+  .side {
+    flex: 1 1 260px;
+    max-width: 340px;
+    position: sticky;
+    top: 24px;
+  }
+  .portrait {
+    position: relative;
+    aspect-ratio: 1;
+    margin-bottom: 20px;
+  }
+  .portrait::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #3aa9b5, #1f7f86);
+  }
+  .portrait img {
+    position: absolute;
+    left: 6%;
+    bottom: 0;
+    width: 88%;
+    height: auto;
+    display: block;
+    /* head pops out of the circle; body is clipped to its lower half */
+    clip-path: inset(-60% -10% 0 -10% round 0 0 999px 999px);
+  }
+  .cta {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    border-top: 2px solid var(--tx);
+    margin-bottom: 56px;
+  }
+  @media (max-width: 760px) {
+    .side {
+      position: static;
+      max-width: none;
+    }
+  }
+</style>

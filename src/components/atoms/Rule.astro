@@ -1,0 +1,24 @@
+---
+/** Horizontal divider. `strong` is the heavy ink rule used under page titles. */
+interface Props {
+  strong?: boolean;
+  soft?: boolean;
+}
+const { strong = false, soft = false } = Astro.props;
+---
+
+<hr class:list={["rule", { strong, soft }]} />
+
+<style>
+  .rule {
+    border: 0;
+    border-top: 1px solid var(--ln);
+    margin: 0;
+  }
+  .strong {
+    border-top: 2px solid var(--tx);
+  }
+  .soft {
+    border-top-color: var(--ln2);
+  }
+</style>

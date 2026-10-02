@@ -2,7 +2,7 @@
 title: "Hey, I'm Adam."
 subtitle: "I design systems, and use AI to make them better"
 meta_title: "About"
-image: "/images/picture-blurred.png"
+image: "/images/graphsummit-talk.jpg"
 draft: false
 
 # what_i_do:

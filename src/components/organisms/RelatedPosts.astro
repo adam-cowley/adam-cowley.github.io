@@ -1,0 +1,28 @@
+---
+import SectionHeading from "@ui/molecules/SectionHeading.astro";
+import PostRow from "@ui/molecules/PostRow.astro";
+import type { PostView } from "@lib/posts";
+
+interface Props {
+  posts: PostView[];
+  title?: string;
+}
+const { posts, title = "Keep reading" } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <section class="related">
+      <SectionHeading>{title}</SectionHeading>
+      {posts.map((p) => <PostRow post={p} />)}
+    </section>
+  )
+}
+
+<style>
+  .related {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--ln);
+  }
+</style>

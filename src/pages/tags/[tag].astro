@@ -1,35 +1,29 @@
 ---
 import Base from "@layouts/Base.astro";
-import Posts from "@layouts/Posts.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import taxonomyFilter from "@lib/utils/taxonomyFilter";
-import { humanize } from "@lib/utils/textConverter";
+import PageTitle from "@ui/molecules/PageTitle.astro";
+import PostRow from "@ui/molecules/PostRow.astro";
+import { getPosts, groupBy } from "@lib/posts";
 
 export async function getStaticPaths() {
-  const tags = await getTaxonomy("posts", "tags");
-
-  return tags.map((tag: any) => {
-    return {
-      params: { tag },
-    };
-  });
+  const tags = groupBy(await getPosts(), "tags");
+  return tags.map((t) => ({ params: { tag: t.slug }, props: { tag: t } }));
 }
 
-const { tag } = Astro.params;
-
-const posts = await getSinglePage("posts");
-const filterByTags = taxonomyFilter(posts, "tags", tag);
-
-const title = humanize(tag || "");
+const { tag } = Astro.props;
 ---
 
-<Base title={title || "Tag"}>
-  <div class="section">
-    <div class="container">
-      <p class="text-center mb-4">Showing Posts From</p>
-      <h1 class="h2 mb-16 text-center text-primary">{title}</h1>
-      <Posts posts={filterByTags} fluid={false} />
+<Base title={`#${tag.label}`}>
+  <div class="container">
+    <PageTitle kicker="/tags" title={`#${tag.label}`} size="title" />
+    <div class="list">
+      {tag.posts.map((p) => <PostRow post={p} variant="full" level="h2" />)}
     </div>
   </div>
 </Base>
+
+<style>
+  .list {
+    border-top: 2px solid var(--tx);
+    margin-bottom: 56px;
+  }
+</style>

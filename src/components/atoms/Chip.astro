@@ -1,0 +1,26 @@
+---
+/** Toggle button used for filters. `pressed` sets the filled state. */
+interface Props {
+  pressed?: boolean;
+  value?: string;
+}
+const { pressed = false, value } = Astro.props;
+---
+
+<button type="button" class="chip" aria-pressed={pressed} data-value={value}><slot /></button>
+
+<style>
+  .chip {
+    background: transparent;
+    color: var(--tx);
+    border: 1px solid var(--ac);
+    padding: 6px 12px;
+    font: 500 12px var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chip[aria-pressed="true"] {
+    background: var(--ac);
+    color: var(--bg);
+  }
+</style>

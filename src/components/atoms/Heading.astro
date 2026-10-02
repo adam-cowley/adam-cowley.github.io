@@ -1,0 +1,51 @@
+---
+/** Serif heading. `size` picks the fluid type step, `as` the semantic level. */
+interface Props {
+  as?: "h1" | "h2" | "h3" | "h4" | "div" | "p";
+  size?: "display" | "page" | "title" | "section" | "item" | "small";
+  class?: string;
+}
+const { as: Tag = "h2", size = "section", class: className } = Astro.props;
+---
+
+<Tag class:list={["heading", size, className]}><slot /></Tag>
+
+<style>
+  .heading {
+    font-family: var(--serif);
+    font-weight: 400;
+    margin: 0;
+  }
+  .display {
+    font-size: clamp(68px, 14.5vw, 196px);
+    line-height: 0.84;
+    letter-spacing: -0.04em;
+  }
+  .page {
+    font-size: clamp(56px, 11vw, 150px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+  .title {
+    font-size: clamp(36px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .section {
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.1;
+  }
+  .item {
+    font-size: clamp(21px, 2vw, 23px);
+    line-height: 1.18;
+  }
+  .small {
+    font-size: 20px;
+    line-height: 1.18;
+  }
+  .heading :global(em),
+  .heading :global(.accent) {
+    font-style: normal;
+    color: var(--ac);
+  }
+</style>

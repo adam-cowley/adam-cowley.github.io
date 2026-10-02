@@ -1,0 +1,49 @@
+---
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+import Heading from "@ui/atoms/Heading.astro";
+import Meta from "@ui/atoms/Meta.astro";
+import type { PostView } from "@lib/posts";
+import { markdownify } from "@lib/utils/textConverter";
+
+interface Props {
+  post: PostView;
+  author?: string;
+}
+const { post, author } = Astro.props;
+const full = post.date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<header class="post-header">
+  <a class="back u" href="/posts"><Eyebrow as="span">← /writing</Eyebrow></a>
+  <Meta>
+    <div class="meta">
+      <a href={`/categories/${post.topicSlug}`} class="hl">{post.topic}</a> · {full} · {post.minutes} min read
+      {author && <> · {author}</>}
+    </div>
+  </Meta>
+  <Heading as="h1" size="title" class="h" set:html={markdownify(post.title)} />
+  {post.description && <p class="dek">{post.description}</p>}
+</header>
+
+<style>
+  .post-header {
+    padding: clamp(32px, 5vw, 64px) 0 28px;
+    max-width: 900px;
+  }
+  .meta {
+    margin-top: 22px;
+  }
+  .post-header :global(.h) {
+    margin-top: 14px;
+    font-size: clamp(36px, 5.4vw, 72px);
+    line-height: 1.02;
+  }
+  .dek {
+    margin-top: 22px;
+    max-width: 720px;
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 300;
+    line-height: 1.45;
+    color: var(--mu);
+  }
+</style>

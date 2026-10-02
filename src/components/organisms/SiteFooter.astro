@@ -1,0 +1,77 @@
+---
+import Heading from "@ui/atoms/Heading.astro";
+import Button from "@ui/atoms/Button.astro";
+import SocialLinks from "@ui/molecules/SocialLinks.astro";
+import EasterEgg from "@ui/organisms/EasterEgg.astro";
+import config from "@config/config.json";
+
+const year = new Date().getFullYear();
+const copyright = config.params.copyright.replace("{year}", String(year));
+---
+
+<footer class="container">
+  <div class="inner">
+    <!-- div>
+      <Heading as="p" size="title" class="cta">Get the <em>next one</em> in your feed.</Heading>
+      <div class="actions">
+        <Button href="/rss.xml">Subscribe via RSS →</Button>
+        <Button href="/posts" variant="secondary">All writing</Button>
+      </div>
+    </div -->
+    <div class="links">
+      <div class="pages">
+        <a class="u" href="/rss.xml">RSS</a> ·
+        <a class="u" href="/about">/about</a> ·
+        <a class="u" href="/contact">/contact</a> ·
+        <a class="u" href="/tags">/tags</a>
+      </div>
+      <SocialLinks />
+      <div class="hint">↑ ↑ ↓ ↓ ← → ← → B A</div>
+    </div>
+  </div>
+  <p class="copy">{copyright}</p>
+</footer>
+<EasterEgg />
+
+<style>
+  footer {
+    margin-top: 48px;
+  }
+  .inner {
+    padding: 48px 0 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px 56px;
+    border-top: 2px solid var(--tx);
+  }
+  .inner :global(.cta) {
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .links {
+    font: 500 14px var(--mono);
+    line-height: 2.2;
+    color: var(--ac);
+    padding-top: 12px;
+  }
+  .hint {
+    color: var(--mu);
+  }
+  .copy {
+    padding-bottom: 32px;
+    font: 400 16px var(--mono);
+    color: var(--mu);
+  }
+  @media print {
+    footer {
+      display: none;
+    }
+  }
+</style>

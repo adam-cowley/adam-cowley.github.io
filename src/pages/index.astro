@@ -1,23 +1,24 @@
 ---
-import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
-import Pagination from "@layouts/components/Pagination.astro";
-import Posts from "@layouts/Posts.astro";
-import { getSinglePage } from "@lib/contentParser.astro";
-import { sortByDateAndPinned } from "@lib/utils/sortFunctions";
+import Hero from "@ui/organisms/Hero.astro";
+import PillarGrid from "@ui/organisms/PillarGrid.astro";
+import HomeColumns from "@ui/organisms/HomeColumns.astro";
+import FeaturedPosts from "@ui/organisms/FeaturedPosts.astro";
+import { getPosts } from "@lib/posts";
 
-const allPosts = await getSinglePage("posts");
-const posts = allPosts.filter((post: any) => !post.data.categories.includes("thoughts"));
-const sortedPosts = sortByDateAndPinned(posts);
-const totalPages = Math.ceil(posts.length / config.settings.pagination);
-const currentPosts = sortedPosts.slice(0, config.settings.pagination);
+// "thoughts" are standalone posts, kept off the homepage
+const posts = (await getPosts()).filter((p) => !p.categories.includes("thoughts"));
+const latest = posts.slice(0, 5);
+const talks = posts.filter((p) => p.tags.includes("talks")).slice(0, 3);
+const tips = posts.filter((p) => p.categories.includes("til")).slice(0, 4);
+const featured = posts.filter((p) => p.pinned).slice(0, 3);
 ---
 
 <Base>
-  <section class="section">
-    <div class="container">
-      <Posts posts={currentPosts} className="mb-16" />
-      <Pagination currentPage={1} totalPages={totalPages} />
-    </div>
-  </section>
+  <div class="container">
+    <Hero />
+    <PillarGrid />
+    <HomeColumns latest={latest} talks={talks} tips={tips} />
+    <FeaturedPosts posts={featured} />
+  </div>
 </Base>

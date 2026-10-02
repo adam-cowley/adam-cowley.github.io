@@ -1,0 +1,28 @@
+---
+/** Topic / tag pill. Link when `href` is given. */
+interface Props {
+  href?: string;
+  active?: boolean;
+}
+const { href, active = false } = Astro.props;
+const El = href ? "a" : "span";
+---
+
+<El href={href} class:list={["tag", { active }]}><slot /></El>
+
+<style>
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    font: 500 12px var(--mono);
+    letter-spacing: 0.04em;
+    background: color-mix(in srgb, var(--ac) 18%, transparent);
+    color: var(--ac);
+    transition: background 0.2s, color 0.2s;
+  }
+  a.tag:hover,
+  .active {
+    background: var(--ac);
+    color: var(--bg);
+  }
+</style>

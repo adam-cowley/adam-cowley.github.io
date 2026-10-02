@@ -25,3 +25,8 @@ yarn.lock
 .astro
 
 _bin
+
+src/pages/pitch.astro
+# pitch (private)
+src/pages/pitch.astro
+public/images/pitch/

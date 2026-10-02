@@ -1,0 +1,174 @@
+---
+import type { GraphNode, GraphLink } from "@lib/forceGraph";
+
+/**
+ * Interactive graph of the site's own content. Nodes arrive as data attributes;
+ * layout and hover behaviour run in the browser.
+ */
+interface Props {
+  nodes: Pick<GraphNode, "id" | "label" | "kind" | "href">[];
+  links: GraphLink[];
+}
+const { nodes, links } = Astro.props;
+---
+
+<div class="graph" data-graph data-nodes={JSON.stringify(nodes)} data-links={JSON.stringify(links)}>
+  <ul class="sr-only">
+    {nodes.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+  </ul>
+</div>
+
+<style>
+  .graph {
+    height: clamp(320px, 42vw, 460px);
+    position: relative;
+  }
+  .graph :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .graph :global(.edge) {
+    stroke: var(--band-ac);
+    stroke-width: 1;
+    transition: opacity 0.2s;
+  }
+  .graph :global(.node) {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .graph :global(.node text) {
+    font: 400 16px var(--mono);
+    fill: var(--on-band);
+    text-anchor: middle;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .graph :global(.node.show text) {
+    opacity: 1;
+  }
+  .graph :global(.label-bg) {
+    fill: var(--band);
+    fill-opacity: 0.75;
+    stroke: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .graph :global(.node.show .label-bg) {
+    opacity: 1;
+  }
+  .graph :global(.node.topic text) {
+    font-size: 13px;
+  }
+  .graph :global(.node circle) {
+    stroke: var(--band);
+    stroke-width: 1.5;
+  }
+  .graph :global(.topic circle) {
+    fill: var(--band-ac);
+  }
+  .graph :global(.tag circle) {
+    fill: var(--band);
+    stroke: var(--band-ac);
+  }
+  .graph :global(.post circle) {
+    fill: var(--on-band);
+  }
+</style>
+
+<script>
+  import { ForceGraph, type GraphNode, type GraphLink } from "@lib/forceGraph";
+
+  const NS = "http://www.w3.org/2000/svg";
+  const el = <K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}) => {
+    const node = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, String(v));
+    return node;
+  };
+
+  const radius = { topic: 11, tag: 7, post: 5 } as const;
+  const clip = (s: string, n = 34) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+
+  const init = (host: HTMLElement) => {
+    if (host.querySelector("svg")) return;
+    const defs: GraphNode[] = JSON.parse(host.dataset.nodes ?? "[]").map((n: GraphNode) => ({ ...n, x: 0, y: 0, vx: 0, vy: 0 }));
+    const links: GraphLink[] = JSON.parse(host.dataset.links ?? "[]");
+    const { width: W, height: H } = host.getBoundingClientRect();
+    if (!W || !H) return;
+
+    const sim = new ForceGraph(defs, links, W, H);
+    sim.settle();
+
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "group", "aria-label": "Graph connecting posts and topics. Hover a node to see its links." });
+    const edgeEls = links.map(([s, t]) => {
+      const line = el("line", { class: "edge", opacity: 0.3 });
+      svg.append(line);
+      return { line, s, t };
+    });
+    const nodeEls = defs.map((n) => {
+      const g = el("a", { class: `node ${n.kind}`, href: n.href, "aria-label": n.label });
+      const c = el("circle", { r: radius[n.kind] });
+      const bg = el("rect", { class: "label-bg", rx: 3 });
+      const text = el("text");
+      text.textContent = clip(n.label);
+      g.append(c, bg, text);
+      if (n.kind === "topic") g.classList.add("show");
+      svg.append(g);
+      return { g, c, bg, text, n };
+    });
+    host.prepend(svg);
+
+    const draw = () => {
+      for (const e of edgeEls) {
+        const a = sim.byId[e.s];
+        const b = sim.byId[e.t];
+        e.line.setAttribute("x1", a.x.toFixed(1));
+        e.line.setAttribute("y1", a.y.toFixed(1));
+        e.line.setAttribute("x2", b.x.toFixed(1));
+        e.line.setAttribute("y2", b.y.toFixed(1));
+      }
+      for (const { c, text, n } of nodeEls) {
+        c.setAttribute("cx", n.x.toFixed(1));
+        c.setAttribute("cy", n.y.toFixed(1));
+        text.setAttribute("x", n.x.toFixed(1));
+        text.setAttribute("y", (n.y + (n.kind === "topic" ? 26 : -12)).toFixed(1));
+      }
+    };
+    draw();
+
+    const highlight = (id: string | null) => {
+      const near = new Set<string>(id ? [id, ...links.filter((l) => l.includes(id)).flat()] : []);
+      for (const { g, n } of nodeEls) {
+        g.setAttribute("opacity", !id || near.has(n.id) ? "1" : "0.2");
+        g.classList.toggle("show", n.kind === "topic" || (!!id && near.has(n.id)));
+      }
+      // size each visible label's backing plate to its text
+      for (const { g, bg, text } of nodeEls) {
+        if (!g.classList.contains("show")) continue;
+        const b = text.getBBox();
+        bg.setAttribute("x", String(b.x - 6));
+        bg.setAttribute("y", String(b.y - 3));
+        bg.setAttribute("width", String(b.width + 12));
+        bg.setAttribute("height", String(b.height + 6));
+      }
+      for (const { line, s, t } of edgeEls) {
+        line.setAttribute("opacity", !id ? "0.3" : s === id || t === id ? "0.95" : "0.08");
+      }
+    };
+    nodeEls.forEach(({ g, n }) => {
+      g.addEventListener("mouseenter", () => highlight(n.id));
+      g.addEventListener("mouseleave", () => highlight(null));
+      g.addEventListener("focus", () => highlight(n.id));
+      g.addEventListener("blur", () => highlight(null));
+    });
+    highlight(null);
+  };
+
+  // the host may start hidden (revealed later), so lay out once it has a size
+  document.querySelectorAll<HTMLElement>("[data-graph]").forEach((host) => {
+    if (host.getClientRects().length) init(host);
+    else document.addEventListener("graph:reveal", () => init(host), { once: true });
+  });
+</script>

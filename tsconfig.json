@@ -6,6 +6,9 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "paths": {
+      "@ui/*": [
+        "./src/components/*"
+      ],
       "@layouts/*": [
         "./src/layouts/*"
       ],

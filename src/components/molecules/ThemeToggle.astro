@@ -1,0 +1,43 @@
+---
+/** Light/dark switch. The `data-theme` attribute is set pre-paint by the head script in Base. */
+---
+
+<button type="button" class="toggle" data-theme-toggle aria-label="Toggle colour theme">
+  <span data-theme-label>○ Light</span>
+</button>
+
+<style>
+  .toggle {
+    background: none;
+    border: 1px solid var(--tx);
+    border-radius: 99px;
+    padding: 4px 12px;
+    font: 500 13px var(--mono);
+    min-width: 84px;
+  }
+  .toggle:hover {
+    border-color: var(--ac);
+    color: var(--ac);
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const sync = () => {
+    const dark = root.dataset.theme === "dark";
+    document.querySelectorAll("[data-theme-label]").forEach((el) => {
+      el.textContent = dark ? "● Dark" : "○ Light";
+    });
+  };
+  sync();
+  document.addEventListener("click", (e) => {
+    if (!(e.target as Element).closest("[data-theme-toggle]")) return;
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("ac-theme", next);
+    } catch {}
+    sync();
+    document.dispatchEvent(new CustomEvent("themechange", { detail: next }));
+  });
+</script>

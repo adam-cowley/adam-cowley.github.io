@@ -1,0 +1,40 @@
+---
+import Brand from "@ui/molecules/Brand.astro";
+import NavLinks from "@ui/molecules/NavLinks.astro";
+import SearchTrigger from "@ui/molecules/SearchTrigger.astro";
+import ThemeToggle from "@ui/molecules/ThemeToggle.astro";
+---
+
+<header class="container">
+  <div class="bar">
+    <Brand />
+    <div class="right">
+      <NavLinks />
+      <SearchTrigger />
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
+
+<style>
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ln);
+  }
+  .right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+  }
+  @media print {
+    header {
+      display: none;
+    }
+  }
+</style>

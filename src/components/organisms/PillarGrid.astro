@@ -1,0 +1,29 @@
+---
+import PillarCard from "@ui/molecules/PillarCard.astro";
+import home from "@config/home.json";
+---
+
+<section class="pillars" aria-label="What I do">
+  {home.pillars.map((p, i) => <PillarCard index={i + 1} {...p} />)}
+</section>
+
+<style>
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    border-top: 1px solid var(--ln);
+    border-bottom: 1px solid var(--ln);
+    margin-top: 56px;
+  }
+  .pillars > :global(:first-child) {
+    border-left: 0;
+  }
+  @media (max-width: 820px) {
+    .pillars {
+      border-bottom: 0;
+    }
+    .pillars > :global(:first-child) {
+      border-top: 0;
+    }
+  }
+</style>

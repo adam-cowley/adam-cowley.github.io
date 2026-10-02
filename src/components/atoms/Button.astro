@@ -1,0 +1,59 @@
+---
+/** Mono call-to-action. Renders <a> with href, otherwise <button>. */
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary";
+  type?: "button" | "submit";
+  class?: string;
+  [attr: string]: unknown;
+}
+const { href, variant = "primary", type = "button", class: className, ...rest } = Astro.props;
+const external = href?.startsWith("http");
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class:list={["btn", variant, className]}
+      {...(external ? { target: "_blank", rel: "noopener" } : {})}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={["btn", variant, className]} {...rest}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font: 500 13px var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--ac);
+    transition: background 0.2s, color 0.2s;
+  }
+  .primary {
+    background: var(--ac);
+    color: var(--bg);
+  }
+  .primary:hover {
+    background: var(--tx);
+    border-color: var(--tx);
+  }
+  .secondary {
+    background: transparent;
+    color: var(--tx);
+  }
+  .secondary:hover {
+    background: var(--ac);
+    color: var(--bg);
+  }
+</style>

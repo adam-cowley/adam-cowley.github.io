@@ -1,32 +1,35 @@
 ---
 import Base from "@layouts/Base.astro";
-import { getTaxonomy } from "@lib/taxonomyParser.astro";
-import { humanize } from "@lib/utils/textConverter";
+import PageTitle from "@ui/molecules/PageTitle.astro";
+import PillarCard from "@ui/molecules/PillarCard.astro";
+import { getPosts, groupBy } from "@lib/posts";
 
-const categories = await getTaxonomy("posts", "categories");
-
-import { BiCategoryAlt } from "react-icons/bi";
+const topics = groupBy(await getPosts(), "categories");
 ---
 
-<Base title={"Categories"}>
-  <section class="section">
-    <div class="container text-center">
-      <h1 class="h2 page-heading">Categories</h1>
-      <ul class="space-x-4">
-        {
-          categories.map((category: any) => (
-            <li class="inline-block">
-              <a
-                href={`/categories/${category}`}
-                class="rounded-lg bg-theme-light px-4 py-2 text-dark transition hover:bg-primary hover:text-white flex items-center group"
-              >
-                <BiCategoryAlt className="mr-1 text-primary group-hover:text-white transition h-6 w-6 scale-75" />
-                <>{humanize(category || "")}</>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+<Base title="Topics">
+  <div class="container">
+    <PageTitle kicker="/topics" title="Topics" />
+    <div class="grid">
+      {
+        topics.map((t, i) => (
+          <PillarCard
+            index={i + 1}
+            title={t.label}
+            description={`${t.posts.length} ${t.posts.length === 1 ? "post" : "posts"}, latest: ${t.posts[0].title}`}
+            href={`/categories/${t.slug}`}
+          />
+        ))
+      }
     </div>
-  </section>
+  </div>
 </Base>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    border-top: 2px solid var(--tx);
+    margin-bottom: 56px;
+  }
+</style>

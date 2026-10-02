@@ -1,0 +1,75 @@
+---
+/** Illustrated portrait whose eyes follow the cursor. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 240 290"
+  class:list={["avatar", className]}
+  data-avatar
+  role="img"
+  aria-label="Illustrated portrait of Adam, eyes following the cursor"
+>
+  <path d="M8 290 C8 232 52 208 98 198 L142 198 C188 208 232 232 232 290Z" fill="#243830"></path>
+  <path d="M98 198 L120 244 L142 198Z" fill="#F5F1E6"></path>
+  <path d="M98 198 L84 232 L120 290 L120 244Z M142 198 L156 232 L120 290 L120 244Z" fill="#1B2B23"></path>
+  <path d="M99 150 L99 204 Q120 226 141 204 L141 150Z" fill="#D2A87F"></path>
+  <ellipse cx="62" cy="108" rx="8" ry="15" fill="#D2A87F"></ellipse>
+  <ellipse cx="178" cy="108" rx="8" ry="15" fill="#D2A87F"></ellipse>
+  <path d="M62 104 C62 58 88 34 120 34 C152 34 178 58 178 104 C178 132 172 152 156 166 C144 176 132 182 120 182 C108 182 96 176 84 166 C68 152 62 132 62 104Z" fill="#E9C7A2"></path>
+  <path d="M64 112 C66 154 92 180 120 182 C148 180 174 154 176 112 C170 134 156 146 142 148 C132 142 108 142 98 148 C84 146 70 134 64 112Z" fill="#2F2219" opacity=".4"></path>
+  <path d="M58 100 C50 54 82 20 124 22 C168 24 192 54 182 100 C178 82 170 68 154 60 C138 68 108 66 90 56 C74 66 64 82 58 100Z" fill="#2F2219"></path>
+  <path d="M88 88 Q100 79 113 85 M127 85 Q140 79 153 88" fill="none" stroke="#2F2219" stroke-width="5" stroke-linecap="round"></path>
+  <path d="M85 104 Q99 92 113 104 Q99 113 85 104Z" fill="#FBF8EE"></path>
+  <path d="M127 104 Q141 92 155 104 Q141 113 127 104Z" fill="#FBF8EE"></path>
+  <circle data-pupil cx="99" cy="103" r="5.2" fill="#1B2B23"></circle>
+  <circle data-pupil cx="141" cy="103" r="5.2" fill="#1B2B23"></circle>
+  <circle data-pupil cx="100.5" cy="101.5" r="1.5" fill="#fff"></circle>
+  <circle data-pupil cx="142.5" cy="101.5" r="1.5" fill="#fff"></circle>
+  <path d="M120 108 C117 124 112 130 114 135 C118 139 126 139 128 135" fill="none" stroke="#D2A87F" stroke-width="3" stroke-linecap="round"></path>
+  <path d="M102 152 Q120 170 138 152 Q120 158 102 152Z" fill="#FBF8EE" stroke="#2F2219" stroke-width="2" stroke-linejoin="round"></path>
+</svg>
+
+<style>
+  .avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<script>
+  if (
+    !matchMedia("(pointer: coarse)").matches &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const avatars = [...document.querySelectorAll<SVGSVGElement>("[data-avatar]")];
+    let pending: MouseEvent | null = null;
+
+    const update = () => {
+      const e = pending;
+      pending = null;
+      if (!e) return;
+      for (const svg of avatars) {
+        const b = svg.getBoundingClientRect();
+        const cx = b.left + b.width * 0.5;
+        const cy = b.top + b.height * 0.36;
+        const a = Math.atan2(e.clientY - cy, e.clientX - cx);
+        const d = Math.min(1, Math.hypot(e.clientX - cx, e.clientY - cy) / 240) * 3.6;
+        const dx = Math.cos(a) * d;
+        const dy = Math.sin(a) * d * 0.6;
+        svg
+          .querySelectorAll<SVGElement>("[data-pupil]")
+          .forEach((p) => p.setAttribute("transform", `translate(${dx.toFixed(2)} ${dy.toFixed(2)})`));
+      }
+    };
+
+    window.addEventListener("mousemove", (e) => {
+      if (!pending) requestAnimationFrame(update);
+      pending = e;
+    });
+  }
+</script>

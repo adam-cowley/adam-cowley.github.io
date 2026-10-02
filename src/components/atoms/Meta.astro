@@ -1,0 +1,20 @@
+---
+/** Muted mono metadata line (date · reading time · topic). */
+---
+
+<div class="meta"><slot /></div>
+
+<style>
+  .meta {
+    font: 400 16px var(--mono);
+    color: var(--mu);
+  }
+  .meta :global(.hl) {
+    color: var(--ac);
+  }
+  /* links inside text must not rely on colour alone */
+  .meta :global(a.hl) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

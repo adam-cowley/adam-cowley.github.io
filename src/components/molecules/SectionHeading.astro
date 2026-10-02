@@ -1,0 +1,28 @@
+---
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+
+/** Eyebrow label with the gold rule underneath, heads each column/section. */
+interface Props {
+  rule?: boolean;
+}
+const { rule = true } = Astro.props;
+---
+
+<div class:list={["section-heading", { rule }]}>
+  <Eyebrow as="h2"><slot /></Eyebrow>
+  <slot name="aside" />
+</div>
+
+<style>
+  .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .rule {
+    border-bottom: 1px solid var(--ln);
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+  }
+</style>

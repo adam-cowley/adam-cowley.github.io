@@ -1,0 +1,23 @@
+---
+/** Small tracked mono label: section titles, kickers. */
+interface Props {
+  as?: "div" | "span" | "h2" | "h3";
+  muted?: boolean;
+  class?: string;
+}
+const { as: Tag = "div", muted = false, class: className } = Astro.props;
+---
+
+<Tag class:list={["eyebrow", { muted }, className]}><slot /></Tag>
+
+<style>
+  .eyebrow {
+    font: 500 12px var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ac);
+  }
+  .muted {
+    color: var(--mu);
+  }
+</style>

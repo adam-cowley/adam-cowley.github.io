@@ -1,531 +1,305 @@
 ---
-import Base from "@layouts/Base.astro";
-import { BsTools } from "react-icons/bs";
-import { FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaMedium } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaLinkedin } from "react-icons/fa";
+import config from "@config/config.json";
 
-const title = 'Curriculum Vitae | Adam Cowley'
-const meta_title = 'Curriculum Vitae'
+const title = "Curriculum Vitae | Adam Cowley";
+const url = `${config.site.base_url}/cv`;
+
+const timeline = [
+  { y: "2026", t: `<a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c">Rebuilt GraphAcademy</a> with frontier models — 90%+ AI-generated, placing AI front and centre`, d: "Complete rebuild in three months; replaced the RAG chatbot with an agent that acts on the learner's behalf." },
+  { y: "2025", t: "Promoted to Manager, Developer Education", d: "Took formal ownership of Generative AI strategy for developer enablement, growing the team from two to six." },
+  { y: "2023", t: "Data analysis for Swindon Town FC — contributed to several first-team signings", d: "Applied AI and data automation to opposition scouting and player profiling for recruitment." },
+  { y: "2022", t: `<a href="https://medium.com/neo4j/introducing-the-new-graphacademy-fd9b1dbce753">Relaunched GraphAcademy</a>, growing enrolments from 2k to over 150k a year`, d: "Rebuilt the platform as a hands-on, interactive product from the ground up." },
+  { y: "2020", t: "Transitioned to Developer Relations at Neo4j", d: "Built open-source tools and libraries to improve developer experience and adoption." },
+  { y: "2017", t: "Joined Neo4j as a Professional Services Consultant", d: "Consultancy, training and technical account management for key accounts across EMEA." },
+  { y: "2014–2016", t: "Founder of a consultancy and freelance developer", d: `Working with global brands including HP, Google & GWR, and published in <a href="https://en.wikipedia.org/wiki/Net_(magazine)">net Magazine</a> #300.` },
+];
+
+const skills = [
+  ["Generative AI", "Agents, skills, prompt, context & loop engineering, RAG & GraphRAG"],
+  ["Leadership", "Team management, strategy, hiring"],
+  ["Engineering", "TypeScript, Python, React, Java, Neo4j, SQL, TDD, DDD"],
+];
+
+const talks = [
+  ["UI in the Age of AI", "MCP Dev Summit NA & DEVWorld · 2026"],
+  ["Hands-on GraphRAG", "AI Engineer, Paris · 2025"],
+  ["Building AI Tool Integrations with MCP", "WeAreDevelopers, Berlin · 2025"],
+  ["Generative AI for Front-end Developers", "CityJS Athens & London · 2023–2024"],
+];
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  >
-  	<!-- image={image} -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={config.site.favicon} />
+    <title>{title}</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href={url} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+  <main>
+    <div class="sheet" id="cv">
+      <section class="page">
+        <header class="head">
+          <img src="/images/picture-blurred.png" alt="Adam Cowley" />
+          <div>
+            <h1>Adam Cowley</h1>
+            <p class="tag">I design and build systems — in code and beyond — using AI to make them faster to build and better over time.</p>
+            <div class="contact">
+              <span><FaMapMarkerAlt /> Wiltshire, UK</span>
+              <span><FaEnvelope /> <a href="mailto:hello@adamcowley.co.uk">hello@adamcowley.co.uk</a></span>
+              <span><FaLinkedin /> <a href="https://linkedin.com/in/adamcowley">/in/adamcowley</a></span>
+            </div>
+          </div>
+        </header>
 
-	<div class="max-w-4xl mx-auto px-4 py-8" id="cv">
-		<!-- Print-only message -->
-		<!-- <div class="print:block hidden">
-			<p class="text-center text-sm text-gray-500 mb-4">
-				Visit <a href="https://adamcowley.co.uk/cv" class="text-blue-500 hover:underline">adamcowley.co.uk/cv</a> for the full experience.
-			</p>
-		</div> -->
+        <ul class="summary">
+          <li>Designs and builds systems — and the teams that ship them — leading Generative AI education at Neo4j.</li>
+          <li>Rebuilt GraphAcademy as an agent-led product — scaling the team from two to six and enrolments from <b>2k to 150k+ a year</b> at <b>44% completion</b>.</li>
+          <li>International conference speaker on Generative AI, MCP, GraphRAG and agents.</li>
+        </ul>
 
-		<!-- Header with profile picture -->
-		<div class="flex flex-row items-start gap-6 pb-4">
-			<!-- Profile Picture -->
-			<div class="w-32 h-32 flex-shrink-0 mb-6">
-				<img src="/images/picture-blurred.png" alt="Adam Cowley" class="w-full h-full object-cover rounded-lg shadow-md" />
-			</div>
+        <div class="cols">
+          <ol class="timeline">
+            {timeline.map((e) => (
+              <li>
+                <div class="t"><span class="y">{e.y}</span> – <Fragment set:html={e.t} /></div>
+                <div class="d" set:html={e.d} />
+              </li>
+            ))}
+          </ol>
+          <aside>
+            <h2>Skills</h2>
+            <ul class="mini">
+              {skills.map(([a, b]) => <li><b>{a}</b><span>{b}</span></li>)}
+            </ul>
+            <h2>Speaking</h2>
+            <p class="note">A selection — many more delivered online and in person.</p>
+            <ul class="mini">
+              {talks.map(([a, b]) => <li><b>{a}</b><span>{b}</span></li>)}
+            </ul>
+          </aside>
+        </div>
+      </section>
 
-			<!-- Main Header Content -->
-			<div class="flex-grow flex flex-col justify-center">
-				<h1 class="text-3xl font-bold mb-2">Adam Cowley</h1>
-				<p class="text-lg text-gray-600 italic mb-4">I design and build systems — in code and beyond — using AI to make them faster to build and better over time.</p>
+      <section class="page">
+        <h2 class="big">Employment</h2>
 
-				<!-- Contact Details with Icons -->
-				<div class="flex flex-wrap text-sm text-gray-700">
-					<div class="flex items-center pr-8">
-						<FaMapMarkerAlt className="text-gray-500 mr-2" />
-						<span class="font-bold text-blue-800">Wiltshire, UK</span>
-					</div>
-					<div class="flex items-center pr-8">
-						<FaEnvelope className="text-gray-500 mr-2" />
-						<a href="mailto:hello@adamcowley.co.uk" class="text-blue-800 hover:text-blue-600">hello@adamcowley.co.uk</a>
-					</div>
-					<!-- <div class="flex items-center gap-2 pr-8">
-						<FaGlobe className="text-gray-500" />
-						<a href="https://adamcowley.co.uk" class="hover:text-blue-600">adamcowley.co.uk</a>
-					</div> -->
-					<div class="flex items-center  pr-8">
-						<FaLinkedin className="text-gray-500 mr-2" />
-						<a href="https://linkedin.com/in/adamcowley" class="text-blue-800 hover:text-blue-600">/in/adamcowley</a>
-					</div>
-					<!-- <div class="flex items-center  pr-8">
-						<FaMedium className="text-gray-500 mr-2" />
-						<a href="https://medium.com/@adam.cowley" class="text-blue-800 hover:text-blue-600">@adam.cowley</a>
-					</div> -->
-					<!-- <div class="flex items-center gap-2 pr-8">
-						<FaGithub className="text-gray-500" />
-						<a href="https://github.com/adam-cowley" class="hover:text-blue-600">adam-cowley</a>
-					</div> -->
-					<!-- <div class="flex items-center gap-2 pr-8">
-						<FaTwitter className="text-gray-500" />
-						<a href="https://twitter.com/adamcowley" class="hover:text-blue-600">@adamcowley</a>
-					</div> -->
-				</div>
-			</div>
-		</div>
+        <div class="job">
+          <div class="main">
+            <h3>Developer Relations &amp; Professional Services — Neo4j</h3>
+            <div class="role">
+              <h4>Manager, Developer Education <em>April 2025 – Present</em></h4>
+              <ul>
+                <li>Leads the Gen AI-driven transformation of developer enablement at Neo4j — using Generative AI (Claude Code, frontier models) to rebuild GraphAcademy into an ecosystem the <b>whole team can contribute to</b>, with an <a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c">agent-based learning experience</a> front and centre.</li>
+                <li>Grew and manage a team of <b>six</b>, up from two, and scaled GraphAcademy from <b>2k to over 150k enrolments a year</b> at a <b>44% completion rate</b>.</li>
+                <li>Owns developer-education strategy, with the AI platform work now enabling training across the <b>entire company</b>.</li>
+              </ul>
+            </div>
+            <div class="role">
+              <h4>Developer Advocate – Developer Education Lead <em>March 2021 – April 2025</em></h4>
+              <ul>
+                <li>Pioneered Generative AI driven learning, including a <a href="https://medium.com/neo4j/building-an-educational-chatbot-for-graphacademy-with-neo4j-f707c4ce311b">learning assistant chatbot</a> and courses on Generative AI with Neo4j.</li>
+                <li>Levelled from Senior to Staff Developer Advocate; <a href="https://medium.com/neo4j/building-an-educational-platform-on-neo4j-d7dc195b9466">transformed GraphAcademy</a> from static pages into an interactive learning experience, growing enrolments from <b>2k to over 150k a year</b>.</li>
+              </ul>
+            </div>
+            <div class="role">
+              <h4>Developer Experience Engineer <em>March 2020 – March 2021</em></h4>
+              <ul>
+                <li>Improved developer experience across the platform, turning user feedback into product improvements.</li>
+                <li>Led documentation migration to a modern build system and released open-source libraries to accelerate onboarding.</li>
+              </ul>
+            </div>
+            <div class="role">
+              <h4>Senior Professional Services Consultant <em>July 2017 – March 2020</em></h4>
+              <ul>
+                <li>Delivered high-impact graph-based solutions across EMEA.</li>
+                <li>Led innovation labs, bootcamps and training programs for enterprise clients.</li>
+              </ul>
+            </div>
+          </div>
+          <blockquote>
+            “Adam’s analytical acumen, combined with his agility and precision, significantly advanced our clients’ digital initiatives, leading to measurable business impacts. He expertly translated complex technical concepts into clear, actionable strategies. Adam also excelled in leading the technical components of our workshops, adeptly managing diverse groups—from engineers to C-level executives—ensuring all participants remained engaged and aligned.”
+            <footer><b>Stefan Wendin</b>Head of Innovation Lab, Neo4j</footer>
+          </blockquote>
+        </div>
 
-		<!-- Page 1 -->
-		<div class="flex flex-col gap-4 border-b-2 border-gray-200">
-			<!-- Overview -->
-			<section class="border-b border-gray-200 pb-8">
-				<ul class="list-disc pl-4 text-base">
-					<li>Designs and builds systems — and the teams that ship them — leading Generative AI education at Neo4j. <!-- &mdash; from frontier-model product builds to the teams that ship them.--></li>
-					<!--
-					<li>Builds agents, platforms and ecosystems with Generative AI that whole teams can contribute to.</li>
-					-->
-					<li>Rebuilt GraphAcademy as an agent-led product &mdash; scaling the team from two to six and enrolments from <b>2k to 150k+ a year</b> at <b>44% completion</b>.</li>
-					<li>International conference speaker on Generative AI, MCP, GraphRAG and agents.</li>
-				</ul>
-			</section>
+        <div class="job">
+          <div class="main">
+            <h3>Founder &amp; Lead Developer — Commit <em>April 2015 – April 2019</em></h3>
+            <ul>
+              <li>Founded technology consultancy delivering solutions for startups and global companies.</li>
+              <li>Business critical data collection and reporting system for GWR, used by 5,000+ employees daily.</li>
+              <li><a href="https://sensori.al/projects/google-nyc-popup/">Interactive photosphere</a> for a Google popup store in NYC.</li>
+            </ul>
+          </div>
+          <blockquote>
+            “In three months, Adam has delivered a system that is critical to our business what others have failed to deliver in more than 18 months. He quickly understood our business needs and delivered a reliable solution that met every requirement.”
+            <footer><b>George Hart</b>Head of PMO, Great Western Railway (GWR)</footer>
+          </blockquote>
+        </div>
 
-			<!-- Main content for page 1 -->
-			<div class="flex flex-col sm:flex-row gap-8">
-				<!-- Left column (3/4 width) -->
-				<div class="sm:w-3/4 order-2 sm:order-1">
-					<!-- Timeline of Goals and Achievements -->
-					<section class="mb-8">
-						<div class="mt-4">
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2026 - <a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c" target="_blank">Rebuilt GraphAcademy</a> with frontier models &mdash; 90%+ AI-generated, placing AI front and centre</div>
-								<div class="text-gray-500 text-sm mt-1">Complete rebuild in three months; replaced the RAG chatbot with an agent that acts on the learner's behalf.</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2025 - Promoted to Manager, Developer Education</div>
-								<div class="text-gray-500 text-sm mt-1">Took formal ownership of Generative AI strategy for developer enablement, growing the team from two to six.</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2023 - Data analysis for Swindon Town FC &mdash; contributed to several first-team signings</div>
-								<div class="text-gray-500 text-sm mt-1">Applied AI and data automation to opposition scouting and player profiling for recruitment.</div>
-							</div>
-							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2023 - Launched Neo4j VS Code Extension via Neo4j Labs</div>
-							</div> -->
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2022 - <a href="https://medium.com/neo4j/introducing-the-new-graphacademy-fd9b1dbce753" target="_blank">Relaunched GraphAcademy</a>, growing enrolments from 2k to over 150k a year</div>
-								<div class="text-gray-500 text-sm mt-1">Rebuilt the platform as a hands-on, interactive product from the ground up.</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2020 - Transitioned to Developer Relations at Neo4j</div>
-								<div class="text-gray-500 text-sm mt-1">Built open-source tools and libraries to improve developer experience and adoption.</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2017 - Joined Neo4j as a Professional Services Consultant</div>
-								<div class="text-gray-500 text-sm mt-1">Consultancy, training and technical account management for key accounts across EMEA.</div>
-							</div>
-							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2017 - Released <code>neode</code></div>
-								<div class="text-gray-500 text-sm mt-1">Open-source TypeScript library to enhance developer experience and increase adoption.</div>
-							</div> -->
-							<div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2014-2016 - Founder of a consultancy and freelance developer</div>
-								<div class="text-gray-500 text-sm mt-1">Working with global brands including HP, Google &amp; GWR, and published in <a href="https://en.wikipedia.org/wiki/Net_(magazine)" target="_blank">net Magazine</a> #300.</div>
-							</div>
-							<!-- <div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2007 - Graduated from New College Swindon with HND Computing</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2006 - Migrated student record system at New College Systems</div>
-							</div>
-							<div class="relative pl-8 border-l-2 border-dashed border-gray-400 pb-8">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2003 - Launched swindonmusic.co.uk</div>
-								<div class="text-gray-500 text-sm mt-1">Local music website and community forum.</div>
-								<div class="text-gray-500 text-sm mt-1">Lead to Radio 1 Big Weekend hosted in Swindon in 2009.</div>
-							</div> -->
-							<!-- <div class="relative pl-8 border-l-2 border-dashed border-white pb-4">
-								<div class="absolute left-[-7px] top-[5px] w-3 h-3 bg-white border-gray-400 border-2 rounded-full"></div>
-								<div class="font-semibold">2002 - First paid developer gig</div>
-							</div> -->
-						</div>
-					</section>
-				</div>
+        <div class="job">
+          <div class="main">
+            <h3>Lead Developer — Eskimo Media and Technology <em>June 2013 – June 2015</em></h3>
+            <ul>
+              <li>HP Connected Music — streaming platform for HP and Universal Music; 20k+ MAUs.</li>
+            </ul>
+          </div>
+        </div>
 
-				<!-- Right column (1/4 width) -->
-				<div class="sm:w-1/4 order-1 sm:order-2">
-					<!-- Skills -->
-					<section class="mb-8 -mt-8">
-						<h2 class="text-xl font-bold flex items-center gap-2">
-							<!-- <BsTools className="inline" /> -->
-							Skills
-						</h2>
-						<ul class="text-gray-700 text-sm mt-4">
-							<li class="mb-3">
-								<div class="font-semibold">Generative AI</div>
-								<div class="text-gray-500 text-xs">Agents, skills, prompt, context &amp; loop engineering, RAG &amp; GraphRAG</div>
-							</li>
-							<li class="mb-3">
-								<div class="font-semibold">Leadership</div>
-								<div class="text-gray-500 text-xs">Team management, strategy, hiring</div>
-							</li>
-							<!-- <li class="mb-3">
-								<div class="font-semibold">Tooling</div>
-								<div class="text-gray-500 text-xs">Claude Code, Cursor, MCP</div>
-							</li> -->
-							<li class="mb-3">
-								<div class="font-semibold">Engineering</div>
-								<div class="text-gray-500 text-xs">TypeScript, Python, React, Java, Neo4j, SQL, TDD, DDD</div>
-							</li>
-						</ul>
-					</section>
+        <div class="job">
+          <div class="main">
+            <h3>Systems Developer — New College Swindon <em>June 2006 – May 2010</em></h3>
+            <ul>
+              <li>Mapped and migrated over 50k student records to new system.</li>
+              <li>Replaced week-long manual curriculum allocation process with 10-second automated system.</li>
+            </ul>
+          </div>
+          <blockquote>
+            “Adam is a very dedicated person, with great knowledge of systems development. A great team player, and with a very positive attitude. Easy going, and approachable, always willing to help with requests.”
+            <footer><b>Ben Sonoiki</b>Learner Data Manager, New College Swindon</footer>
+          </blockquote>
+        </div>
 
-					<!-- Speaking -->
-					<section class="mt-8">
-						<h2 class="text-xl font-bold mb-1">Speaking</h2>
-						<p class="text-gray-500 text-xs mb-4 italic">A selection &mdash; many more delivered online and in person.</p>
-						<ul class="text-gray-700 text-sm">
-							<li class="mb-3">
-								<div class="font-semibold">UI in the Age of AI</div>
-								<div class="text-gray-500 text-xs">MCP Dev Summit NA &amp; DEVWorld &middot; 2026</div>
-							</li>
-							<li class="mb-3">
-								<div class="font-semibold">Hands-on GraphRAG</div>
-								<div class="text-gray-500 text-xs">AI Engineer, Paris &middot; 2025</div>
-							</li>
-							<li class="mb-3">
-								<div class="font-semibold">Building AI Tool Integrations with MCP</div>
-								<div class="text-gray-500 text-xs">WeAreDevelopers, Berlin &middot; 2025</div>
-							</li>
-							<li class="mb-3">
-								<div class="font-semibold">Generative AI for Front-end Developers</div>
-								<div class="text-gray-500 text-xs">CityJS Athens &amp; London &middot; 2023&ndash;2024</div>
-							</li>
-						</ul>
-					</section>
+        <div class="edu">
+          <div>
+            <h3>Education</h3>
+            <ul class="plain">
+              <li><b>HND Computing</b><br />New College Swindon, 2005–2007</li>
+              <li><b>BTEC National Diploma for IT Practitioners (Software)</b><br />New College Swindon, 2003–2005</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Certifications</h3>
+            <ul>
+              <li>Neo4j Certified Professional</li>
+              <li>PFSA Level 2 Opposition Analysis in Football</li>
+              <li>PFSA Level 2 Technical Scouting in Football</li>
+              <li>PFSA Level 1 Talent Identification</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  </body>
+</html>
 
-					<!-- Education -->
-					<!-- <section>
-						<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
-							<BsBook className="inline" />
-							Education
-						</h2>
-						<ul class="list-disc pl-4 text-gray-700">
-							<li>
-								<strong>HND Computing</strong>
-								<div class="text-sm text-gray-400">New College Swindon</div>
-								<div class="text-xs text-gray-400">2005 - 2007</div>
-							</li>
-						</ul>
+<style is:global>
+  :root {
+    --bg: #f6f2e7;
+    --paper: #fffdf7;
+    --tx: #1b2b23;
+    --mu: #4b5a50;
+    --ac: #7f5f10;
+    --ln: rgba(154, 116, 22, 0.5);
+    --ln2: rgba(154, 116, 22, 0.25);
+    --sf: #ece5d0;
+    --gr: #1f4d3a;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--tx);
+    font: 400 14px/1.45 "Geist", system-ui, sans-serif;
+  }
+  #cv a { color: var(--ac); text-decoration: underline; text-underline-offset: 2px; }
+  #cv h1, #cv h2.big { font-family: "Gloock", Georgia, serif; font-weight: 400; margin: 0; }
+  #cv h1, #cv h2, #cv h3, #cv h4 { margin: 0; color: var(--gr); font-family: "Gloock", Georgia, serif; font-weight: 400; }
+  #cv ul, #cv ol { margin: 0; list-style: disc; }
 
-						<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-							<BsAward className="inline" />
-							Certifications
-						</h3>
-						<ul class="text-gray-700 text-sm">
-							<li class="mb-2"><BsDatabase className="inline mr-1" /> Neo4j Certified Developer</li>
-							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 1 Talent Identification</li>
-							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Opposition Analysis in Football</li>
-							<li class="mb-2"><FaFutbol className="inline mr-1" /> PFSA Level 2 Technical Scouting in Football</li>
-						</ul>
-					</section> -->
+  .sheet { max-width: 210mm; margin: 24px auto; display: grid; gap: 24px; }
+  .page { background: var(--paper); padding: 14mm 15mm; box-shadow: 0 1px 12px rgba(27, 43, 35, 0.12); }
 
-					<!-- Hobbies and Interests -->
-					<!-- <section class="mt-8">
-						<h2 class="text-xl font-bold mb-4">Hobbies & Interests</h2>
-						<ul class="list-disc pl-4 text-gray-700">
-							<li class="mb-2">Football data analysis</li>
-							<li class="mb-2">Playing snooker and pool</li>
-							<li class="mb-2">Open source development</li>
-							<li class="mb-2">Technical writing and public speaking</li>
-						</ul>
-					</section> -->
-				</div>
-			</div>
-		</div>
+  .head { display: flex; gap: 20px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--ln); }
+  .head img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; flex: none; }
+  h1 { font-size: 34px; line-height: 1.1; }
+  .tag { margin: 4px 0 8px; font-style: italic; color: var(--mu); font-size: 14.5px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12.5px; }
+  .contact span { display: inline-flex; align-items: center; gap: 6px; }
+  .contact svg { color: var(--ac); }
 
-		<!-- Page 2 -->
-		<div class="flex flex-col gap-8">
-			<!-- Employment History Timeline -->
-			<section>
-				<!-- <div class="flex items-center gap-2 mb-6">
-					<h2 class="text-2xl font-bold flex justify-center">Employment History</h2>
-				</div> -->
-				<div class="space-y-2">
-					<!-- Neo4j -->
-					<div class="flex flex-col sm:flex-row gap-8">
-						<div class="sm:w-3/4">
-							<div class="mb-4">
-								<h3 class="font-bold text-lg">Developer Relations &amp; Professional Services - Neo4j</h3>
-							</div>
-							<div class="pl-2">
-								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
-									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Manager, Developer Education</h4>
-									<p class="text-gray-600 text-sm mb-2">April 2025 - Present</p>
-									<ul class="list-disc pl-4">
-										<li>Leads the Gen AI-driven transformation of developer enablement at Neo4j &mdash; using Generative AI (Claude Code, frontier models) to rebuild GraphAcademy into an ecosystem the <b>whole team can contribute to</b>, with an <a href="https://medium.com/neo4j/why-im-replacing-my-rag-based-chatbot-with-agents-1718ec7e384c" target="_blank">agent-based learning experience</a> front and centre.</li>
-										<li>Grew and manage a team of <b>six</b>, up from two, and scaled GraphAcademy from <b>2k to over 150k enrolments a year</b> at a <b>44% completion rate</b>.</li>
-										<li>Owns developer-education strategy, with the AI platform work now enabling training across the <b>entire company</b>.</li>
-									</ul>
-								</div>
+  .summary { padding-left: 18px !important; margin: 14px 0 16px !important; }
+  .summary li + li { margin-top: 2px; }
 
-								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
-									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Developer Advocate - Developer Education Lead</h4>
-									<p class="text-gray-600 text-sm mb-2">March 2021 - April 2025</p>
-									<ul class="list-disc pl-4">
-										<li>Pioneered Generative AI driven learning, including a <a href="https://medium.com/neo4j/building-an-educational-chatbot-for-graphacademy-with-neo4j-f707c4ce311b" target="_blank">learning assistant chatbot</a> and courses on Generative AI with Neo4j.</li>
-										<li>Levelled from Senior to Staff Developer Advocate; <a href="https://medium.com/neo4j/building-an-educational-platform-on-neo4j-d7dc195b9466" target="_blank">transformed GraphAcademy</a> from static pages into an interactive learning experience, growing enrolments from <b>2k to over 150k a year</b>.</li>
-									</ul>
-								</div>
+  .cols { display: grid; grid-template-columns: 1fr 64mm; gap: 8mm; padding-top: 18px; border-top: 1px solid var(--ln2); }
+  .timeline { list-style: none; padding: 0 0 0 18px; border-left: 2px dashed rgba(31, 77, 58, 0.45); }
+  .timeline li { position: relative; padding-bottom: 14px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before { content: ""; position: absolute; left: -25px; top: 3px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--paper); border: 2px solid var(--gr); }
+  .timeline .t { font-weight: 600; margin-bottom: 1px; }
+  .timeline .y { color: var(--gr); }
+  .timeline .d { color: var(--mu); font-size: 12.5px; margin-top: 2px; }
 
-								<div class="relative pl-8 border-l-2 border-gray-400 pb-4">
-									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Developer Experience Engineer</h4>
-									<p class="text-gray-600 text-sm mb-2">March 2020 - March 2021</p>
-									<ul class="list-disc pl-4">
-										<li>Improved developer experience across the platform, turning user feedback into product improvements.</li>
-										<li>Led documentation migration to a modern build system and released open-source libraries to accelerate onboarding.</li>
-									</ul>
-								</div>
+  aside h2 { font-size: 18px; margin-bottom: 8px; }
+  aside h2:not(:first-child) { margin-top: 20px; }
+  #cv .mini, #cv .timeline, #cv .edu ul.plain { list-style: none; }
+  .mini { padding: 0; }
+  .mini li { margin-bottom: 8px; }
+  .mini b { display: block; font-weight: 600; font-size: 13px; }
+  .mini span { color: var(--mu); font-size: 12px; }
+  .note { margin: 0 0 8px; color: var(--mu); font-size: 12px; font-style: italic; }
 
-								<div class="relative pl-8 border-l-2 border-white">
-									<div class="absolute left-[-9px] top-0 w-4 h-4 bg-white border-gray-400 border-2 rounded-full"></div>
-									<h4 class="font-semibold text-base">Senior Professional Services Consultant</h4>
-									<p class="text-gray-600 text-sm mb-2">July 2017 - March 2020</p>
-									<ul class="list-disc pl-4">
-										<li>Delivered high-impact graph-based solutions across EMEA.</li>
-										<li>Led innovation labs, bootcamps and training programs for enterprise clients.</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="sm:w-1/4">
-							<div class="bg-gray-50 p-4 rounded-lg mt-10 mb-8">
-								<p class="text-gray-700 italic mb-3">"Adam’s analytical acumen, combined with his agility and precision, significantly advanced
-									our clients’ digital initiatives, leading to measurable business impacts. He expertly translated
-									complex technical concepts into clear, actionable strategies.  Adam also excelled in leading
-									the technical components of our workshops, adeptly managing diverse groups—from
-									engineers to C-level executives—ensuring all participants remained engaged and aligned."</p>
-								<div class="text-sm">
-									<div class="font-semibold text-gray-800">&ndash; Stefan Wendin</div>
-									<div class="text-gray-500 ml-3">Head of Innovation Lab</div>
-									<div class="text-gray-500 ml-3 text-xs">Neo4j</div>
-								</div>
-							</div>
-						</div>
-					</div>
+  h2.big { font-size: 26px; margin-bottom: 14px; }
+  .job { display: grid; grid-template-columns: 1fr 58mm; gap: 8mm; padding: 14px 0; border-top: 1px solid var(--ln2); break-inside: avoid; }
+  .job:not(:has(blockquote)) { grid-template-columns: 1fr; }
+  h3 { font-size: 17px; line-height: 1.25; }
+  h3 em, h4 em { font-family: "Geist", system-ui, sans-serif; font-style: normal; font-weight: 400; color: var(--mu); font-size: 12px; margin-left: 8px; white-space: nowrap; }
+  .role { margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--ln); }
+  h4 { font-size: 14.5px; }
+  .job ul { padding-left: 18px; margin-top: 5px !important; font-size: 13px; }
+  .job li + li { margin-top: 2px; }
+  blockquote { margin: 0; align-self: start; background: var(--sf); border-radius: 8px; padding: 10px 12px; font-style: italic; font-size: 11.5px; line-height: 1.4; color: var(--mu); }
+  blockquote footer { margin-top: 6px; font-style: normal; font-size: 11px; }
+  blockquote footer b { display: block; color: var(--gr); }
 
-					<!-- Commit -->
-					<div class="flex flex-col sm:flex-row gap-8 print-stack">
-						<div class="sm:w-3/4">
-							<div class="mb-4">
-								<h3 class="font-bold text-lg">Founder &amp; Lead Developer - Commit</h3>
-								<p class="text-gray-600">April 2015 - April 2019</p>
-							</div>
-							<ul class="list-disc pl-4">
-								<li>Founded technology consultancy delivering solutions for startups and global companies.</li>
-								<li>Business critical data collection and reporting system for GWR, used by 5,000+ employees daily.</li>
-								<li><a href="https://sensori.al/projects/google-nyc-popup/" target="_blank">Interactive photosphere</a> for a Google popup store in NYC.</li>
-							</ul>
-						</div>
-						<div class="sm:w-1/4">
-							<div class="bg-gray-50 p-4 rounded-lg mt-5">
-								<p class="text-gray-700 italic mb-3">"In three months, Adam has delivered a system that is critical to our business what others have failed to deliver in more than 18 months.
-								He quickly understood our business needs and delivered a reliable solution that met every requirement."</p>
-								<div class="text-sm">
-									<div class="font-semibold text-gray-800">&ndash; George Hart</div>
-									<div class="text-gray-500 ml-3">Head of PMO</div>
-									<div class="text-gray-500 ml-3 text-xs">Great Western Railway (GWR)</div>
-								</div>
-							</div>
-						</div>
-					</div>
+  .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; padding-top: 14px; border-top: 1px solid var(--ln2); font-size: 13px; }
+  .edu ul { padding-left: 18px; margin-top: 6px !important; }
+  .edu ul.plain { list-style: none; padding-left: 0; }
+  .edu li + li { margin-top: 3px; }
 
-					<!-- Eskimo Media -->
-					<div class="flex flex-col sm:flex-row gap-8 print-stack">
-						<div class="sm:w-3/4">
-							<div class="mb-4">
-								<h3 class="font-bold text-lg">Lead Developer - Eskimo Media and Technology</h3>
-								<p class="text-gray-600">June 2013 - June 2015</p>
-							</div>
-							<ul class="list-disc pl-4">
-								<li>HP Connected Music - streaming platform for HP and Universal Music; 20k+ MAUs.</li>
-							</ul>
-						</div>
-						<div class="sm:w-1/4">
-							<!-- Empty space for alignment -->
-						</div>
-					</div>
+  @media (max-width: 720px) {
+    .page { padding: 20px 16px; }
+    .cols, .job, .edu { grid-template-columns: 1fr; }
+    .head { flex-direction: column; align-items: flex-start; }
+  }
 
-					<!-- New College Swindon -->
-					<div class="flex flex-col sm:flex-row gap-8 print-stack">
-						<div class="sm:w-3/4">
-							<div class="mb-4">
-								<h3 class="font-bold text-lg">Systems Developer - New College Swindon</h3>
-								<p class="text-gray-600">June 2006 - May 2010</p>
-							</div>
-							<ul class="list-disc pl-4">
-								<li>Mapped and migrated over 50k student records to new system.</li>
-								<li>Replaced week-long manual curriculum allocation process with 10-second automated system.</li>
-							</ul>
-						</div>
-						<div class="sm:w-1/4">
-							<div class="bg-gray-50 p-4 rounded-lg mt-5">
-								<p class="text-gray-700 italic mb-3">"Adam is a very dedicated person, with great knowledge of systems development. A great team player, and with a very positive attitude. Easy going, and approachable, always willing to help with requests."</p>
-								<div class="text-sm">
-									<div class="font-semibold text-gray-800">&ndash; Ben Sonoiki</div>
-									<div class="text-gray-500 ml-3">Learner Data Manager</div>
-									<div class="text-gray-500 ml-3 text-xs">New College Swindon</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Education & Certifications -->
-					<div class="flex flex-col sm:flex-row gap-8">
-						<div class="sm:w-1/2">
-							<div class="mb-4">
-								<h3 class="font-bold text-lg">Education</h3>
-							</div>
-							<ul class="">
-								<li><b>HND Computing</b><br> New College Swindon 2005&ndash;2007</li>
-								<li><b>BTEC National Diploma for IT Practitioners (Software)</b> <br> New College Swindon, 2003&ndash;2005</li>
-							</ul>
-						</div>
-						<div class="sm:w-1/2">
-							<h3 class="font-bold text-lg mb-2">Certifications</h3>
-							<ul class="list-disc pl-4 text-sm text-gray-700">
-								<li>Neo4j Certified Professional</li>
-								<li>PFSA Level 2 Opposition Analysis in Football</li>
-								<li>PFSA Level 2 Technical Scouting in Football</li>
-								<li>PFSA Level 1 Talent Identification</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
-</Base>
-
-<style>
-	/* Print-specific styles */
-	#cv {
-		padding-left: 40px !important;
-		padding-right: 40px !important;
-		background: white;
-	}
-
-	@media print {
-		/* Hide navigation and other non-essential elements */
-		nav, footer, .print\:hidden {
-			display: none !important;
-		}
-
-		/* Ensure the print message appears on each page */
-		@page {
-			margin: 0;
-		}
-
-		/* Make links clearer in print */
-		#cv a {
-			color: #1d4ed8 !important;
-			text-decoration: underline !important;
-		}
-
-		/* Add page break control */
-		section {
-			break-inside: avoid;
-		}
-
-		/* Maintain column layout in print */
-		.flex-col {
-			flex-direction: column !important;
-		}
-
-		.flex-row {
-			flex-direction: row !important;
-		}
-
-		/* Keep column widths */
-		.sm\:w-3\/4 {
-			width: 75% !important;
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		.sm\:w-1\/4 {
-			width: 25% !important;
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		.sm\:w-1\/2 {
-			width: 50% !important;
-			display: inline-block;
-			vertical-align: top;
-		}
-
-		/* Stack the testimonial underneath (full width) for older roles in print */
-		.print-stack {
-			display: block !important;
-		}
-
-		.print-stack .sm\:w-3\/4,
-		.print-stack .sm\:w-1\/4 {
-			width: 100% !important;
-			display: block !important;
-		}
-
-		/* Add page break between pages */
-		.mb-12 {
-			break-after: page;
-		}
-
-		/* Hide the border on print */
-		.border-b-2 {
-			border-bottom: none !important;
-		}
-
-		/* Ensure proper spacing in print */
-		.gap-8 {
-			gap: 1rem !important;
-		}
-
-		/* Ensure testimonials stay with their jobs */
-		.sm\:flex-row > div {
-			break-inside: avoid;
-		}
-
-		/* Ensure proper container width */
-		.max-w-4xl {
-			max-width: none !important;
-		}
-
-		/* Add padding for print */
-		.max-w-4xl {
-			padding: 1.5rem !important;
-		}
-
-		/* Remove horizontal padding from inner elements */
-		.px-4 {
-			padding-left: 0 !important;
-			padding-right: 0 !important;
-		}
-
-		/* Ensure flex containers maintain their layout */
-		.flex {
-			display: flex !important;
-		}
-
-		/* Ensure flex row containers maintain their layout */
-		.sm\:flex-row {
-			display: flex !important;
-			flex-direction: row !important;
-		}
-	}
+  @page { size: A4; margin: 6mm 0; }
+  @media print {
+    html, body { background: #fff; }
+    body { font-size: 12.5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet { margin: 0; max-width: none; gap: 0; display: block; }
+    .page { box-shadow: none; background: #fff; width: 100%; max-width: none; height: auto; overflow: visible; padding: 9mm 13mm 0; break-after: page; break-inside: avoid; }
+    .page:last-child { break-after: auto; }
+    .edu, .edu > div { break-inside: avoid; }
+    .cols { grid-template-columns: 1fr 62mm; }
+    .job { grid-template-columns: 1fr 56mm !important; }
+    .job:not(:has(blockquote)) { grid-template-columns: 1fr !important; }
+    .edu { grid-template-columns: 1fr 1fr !important; }
+    .head { flex-direction: row !important; align-items: center !important; }
+    .page:nth-child(2) { font-size: 11px; }
+    .page:nth-child(2) h2.big { font-size: 24px; margin-bottom: 8px; }
+    .page:nth-child(2) .job { padding: 6px 0; gap: 6mm; }
+    .page:nth-child(1) .timeline li { padding-bottom: 22px; }
+    .page:nth-child(1) .head { padding-bottom: 18px; }
+    .page:nth-child(1) .summary { margin: 20px 0 22px !important; font-size: 13.5px; }
+    .page:nth-child(1) .cols { padding-top: 26px; }
+    .page:nth-child(1) aside h2:not(:first-child) { margin-top: 28px; }
+    .page:nth-child(1) .mini li { margin-bottom: 12px; }
+    .page:nth-child(2) .job ul, .page:nth-child(2) .edu { font-size: 11px; }
+    .page:nth-child(2) .role { margin-top: 6px; }
+    .page:nth-child(2) blockquote { font-size: 10px; padding: 8px 10px; }
+    .page:nth-child(2) h3 { font-size: 15px; }
+    .page:nth-child(2) h4 { font-size: 13px; }
+    .page:nth-child(2) .edu { padding-top: 8px; }
+  }
 </style>

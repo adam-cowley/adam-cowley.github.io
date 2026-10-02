@@ -1,16 +1,20 @@
 ---
-import { markdownify } from "@lib/utils/textConverter";
+import PageTitle from "@ui/molecules/PageTitle.astro";
 
+/** Plain markdown page (contact, etc). */
 const { data } = Astro.props;
 const { title } = data.data;
 const { Content } = await data.render();
 ---
 
-<section class="section">
-  <div class="container">
-    <h1 set:html={markdownify(title)} class="h2 page-heading" />
-    <div class="content">
-      <Content />
-    </div>
-  </div>
-</section>
+<div class="container">
+  <PageTitle kicker={`/${data.slug}`} title={title} size="title" />
+  <div class="prose body"><Content /></div>
+</div>
+
+<style>
+  .body {
+    border-top: 2px solid var(--tx);
+    padding: 32px 0 48px;
+  }
+</style>

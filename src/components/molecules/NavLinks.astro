@@ -1,0 +1,39 @@
+---
+import home from "@config/home.json";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (url: string) => path === url || path.startsWith(url + "/");
+---
+
+<nav aria-label="Main">
+  <ul>
+    {
+      home.nav.map((item) => (
+        <li>
+          <a
+            href={item.url}
+            class="u"
+            aria-current={isCurrent(item.url) ? "page" : undefined}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: 500 13px var(--mono);
+  }
+  a[aria-current="page"] {
+    color: var(--ac);
+  }
+</style>

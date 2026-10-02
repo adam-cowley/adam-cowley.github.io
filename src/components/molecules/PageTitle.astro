@@ -1,0 +1,34 @@
+---
+import Eyebrow from "@ui/atoms/Eyebrow.astro";
+import Heading from "@ui/atoms/Heading.astro";
+
+/** Poster-scale page header: mono kicker, giant serif title, optional lede. */
+interface Props {
+  kicker: string;
+  title: string;
+  size?: "page" | "title";
+}
+const { kicker, title, size = "page" } = Astro.props;
+---
+
+<header class="page-title">
+  <Eyebrow>{kicker}</Eyebrow>
+  <Heading as="h1" size={size} class="h">{title}</Heading>
+  {Astro.slots.has("default") && <div class="lede"><slot /></div>}
+</header>
+
+<style>
+  .page-title {
+    padding: clamp(32px, 6vw, 72px) 0 28px;
+  }
+  .page-title :global(.h) {
+    margin-top: 10px;
+  }
+  .lede {
+    max-width: 560px;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--mu);
+  }
+</style>

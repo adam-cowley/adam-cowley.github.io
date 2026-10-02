@@ -7,6 +7,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "lint": "astro check",
+    "test:a11y": "node scripts/a11y.js",
     "preview": "astro preview",
     "astro": "astro",
     "generate:cv": "node scripts/generate-pdf.js",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "axe-core": "^4.13.0",
     "puppeteer": "^24.5.0",
     "sass": "^1.77.8"
   }

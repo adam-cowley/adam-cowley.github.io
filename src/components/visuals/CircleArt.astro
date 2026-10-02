@@ -1,0 +1,94 @@
+---
+import { circleArt, type ArtVariant } from "@lib/circleArt";
+
+/** Animated abstract artwork. Colours follow the theme tokens. */
+interface Props {
+  variant?: ArtVariant;
+  class?: string;
+  /** Set false for a static render. */
+  animate?: boolean;
+}
+const { variant = "overlap", class: className, animate = true } = Astro.props;
+const shapes = circleArt(variant, 0);
+---
+
+<svg
+  viewBox="0 0 400 400"
+  class:list={["art", className]}
+  data-circle-art={animate ? variant : undefined}
+  role="img"
+  aria-label="Abstract animated circle artwork"
+>
+  {
+    shapes.map((s) => {
+      const Tag = s.tag;
+      return (
+        <Tag
+          {...s.attrs}
+          class:list={[s.fill && `f-${s.fill}`, s.stroke && `s-${s.stroke}`]}
+          fill-opacity={s.fillOpacity}
+          stroke-width={s.strokeWidth}
+        />
+      );
+    })
+  }
+</svg>
+
+<style>
+  .art {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .f-ink {
+    fill: var(--tx);
+  }
+  .f-ac {
+    fill: var(--ac);
+  }
+  .f-paper {
+    fill: var(--bg);
+  }
+  .f-none {
+    fill: none;
+  }
+  .s-ink {
+    stroke: var(--tx);
+  }
+  .s-ac {
+    stroke: var(--ac);
+  }
+  .s-none {
+    stroke: none;
+  }
+</style>
+
+<script>
+  import { circleArt, type ArtVariant } from "@lib/circleArt";
+
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll<SVGSVGElement>("[data-circle-art]").forEach((svg) => {
+    if (still) return;
+    const variant = svg.dataset.circleArt as ArtVariant;
+    const els = [...svg.children] as SVGElement[];
+    let raf = 0;
+    let visible = true;
+    const start = performance.now();
+
+    const frame = (now: number) => {
+      const shapes = circleArt(variant, (now - start) / 1000);
+      shapes.forEach((s, i) => {
+        for (const [k, v] of Object.entries(s.attrs)) els[i]?.setAttribute(k, v.toFixed(2));
+      });
+      if (visible) raf = requestAnimationFrame(frame);
+    };
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      cancelAnimationFrame(raf);
+      if (visible) raf = requestAnimationFrame(frame);
+    }).observe(svg);
+  });
+</script>

@@ -1,0 +1,96 @@
+---
+import Heading from "@ui/atoms/Heading.astro";
+import Meta from "@ui/atoms/Meta.astro";
+import type { PostView } from "@lib/posts";
+
+interface Props {
+  post: PostView;
+  /** `compact` is a title + meta line; `full` adds the description and a right-hand meta column. */
+  variant?: "compact" | "full";
+  /** heading level; use h2 on list pages that have no section heading above */
+  level?: "h2" | "h3";
+}
+const { post, variant = "compact", level = "h3" } = Astro.props;
+---
+
+<a
+  href={post.href}
+  class:list={["row", variant]}
+  data-topic={post.categories.map((c) => c.toLowerCase()).join(" ")}
+  data-search={`${post.title} ${post.description} ${post.topic} ${post.tags.join(" ")}`.toLowerCase()}
+>
+  <div>
+    <Heading as={level} size={variant === "full" ? "title" : "item"} class="title">{post.title}</Heading>
+    {variant === "full" && <p class="desc">{post.description}</p>}
+    {
+      variant === "compact" && (
+        <Meta>
+          <span class="hl">{post.topic}</span> · {post.dateLabel} · {post.minutes} min
+        </Meta>
+      )
+    }
+  </div>
+  {
+    variant === "full" && (
+      <Meta>
+        <div class="side">
+          <span class="hl">{post.topic}</span>
+          <br />
+          {post.dateLabel}
+          <br />
+          {post.minutes} min
+        </div>
+      </Meta>
+    )
+  }
+</a>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ln2);
+  }
+  .row[hidden] {
+    display: none;
+  }
+  .row :global(.title) {
+    margin-bottom: 7px;
+    transition: color 0.2s;
+  }
+  .row:hover :global(.title) {
+    color: var(--ac);
+  }
+  .full {
+    padding: 22px 0;
+  }
+  .full :global(.title) {
+    font-size: clamp(22px, 2.4vw, 28px);
+    letter-spacing: 0;
+    line-height: 1.15;
+    margin-bottom: 0;
+  }
+  .desc {
+    color: var(--mu);
+    font-size: 18px;
+    margin-top: 6px;
+    max-width: 640px;
+  }
+  .side {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .compact {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 560px) {
+    .full {
+      grid-template-columns: 1fr;
+    }
+    .side {
+      text-align: left;
+    }
+  }
+</style>
