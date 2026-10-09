@@ -29,4 +29,5 @@ _bin
 src/pages/pitch.astro
 # pitch (private)
 src/pages/pitch.astro
+src/config/pitch-snippet.py
 public/images/pitch/

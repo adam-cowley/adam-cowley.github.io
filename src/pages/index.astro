@@ -17,7 +17,9 @@ const featured = posts.filter((p) => p.pinned).slice(0, 3);
 <Base>
   <div class="container">
     <Hero />
-    <PillarGrid />
+  </div>
+  <PillarGrid />
+  <div class="container">
     <HomeColumns latest={latest} talks={talks} tips={tips} />
     <FeaturedPosts posts={featured} />
   </div>

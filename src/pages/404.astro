@@ -1,7 +1,6 @@
 ---
 import Base from "@layouts/Base.astro";
 import PageTitle from "@ui/molecules/PageTitle.astro";
-import CircleArt from "@ui/visuals/CircleArt.astro";
 import Button from "@ui/atoms/Button.astro";
 ---
 
@@ -14,22 +13,12 @@ import Button from "@ui/atoms/Button.astro";
         </PageTitle>
         <Button href="/posts">All writing →</Button>
       </div>
-      <div class="art"><CircleArt variant="lines" /></div>
     </div>
   </div>
 </Base>
 
 <style>
   .wrap {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-    align-items: center;
     padding-bottom: 64px;
-  }
-  .art {
-    max-width: 380px;
-    justify-self: center;
-    width: 100%;
   }
 </style>

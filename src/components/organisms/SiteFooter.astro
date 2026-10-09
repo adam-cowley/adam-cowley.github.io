@@ -11,63 +11,115 @@ const copyright = config.params.copyright.replace("{year}", String(year));
 
 <footer class="container">
   <div class="inner">
-    <!-- div>
-      <Heading as="p" size="title" class="cta">Get the <em>next one</em> in your feed.</Heading>
-      <div class="actions">
-        <Button href="/rss.xml">Subscribe via RSS →</Button>
-        <Button href="/posts" variant="secondary">All writing</Button>
-      </div>
-    </div -->
-    <div class="links">
-      <div class="pages">
-        <a class="u" href="/rss.xml">RSS</a> ·
-        <a class="u" href="/about">/about</a> ·
-        <a class="u" href="/contact">/contact</a> ·
-        <a class="u" href="/tags">/tags</a>
-      </div>
-      <SocialLinks />
-      <div class="hint">↑ ↑ ↓ ↓ ← → ← → B A</div>
+    <div class="about">
+      <div class="portrait"><img src="/images/adam-cutout.png" alt="Adam Cowley" width="946" height="862" /></div>
+      <p class="blurb">
+        I design and build systems, and increasingly use AI to make them faster to build and better over time.
+      </p>
+    </div>
+    <nav class="col" aria-label="Site">
+      <span class="label">Site</span>
+      <a class="u" href="/about">/about</a>
+      <a class="u" href="/contact">/contact</a>
+      <a class="u" href="/tags">/tags</a>
+      <a class="u" href="/rss.xml">RSS</a>
+    </nav>
+    <div class="col">
+      <span class="label">Elsewhere</span>
+      <SocialLinks inline={false} />
     </div>
   </div>
-  <p class="copy">{copyright}</p>
+  <div class="base">
+    <p class="copy">{copyright}</p>
+    <div class="hint" aria-hidden="true">↑ ↑ ↓ ↓ ← → ← → B A</div>
+  </div>
 </footer>
 <EasterEgg />
 
 <style>
   footer {
-    margin-top: 48px;
+    margin-top: 40px;
   }
   .inner {
-    padding: 48px 0 32px;
+    padding: 40px 0 32px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px 56px;
-    border-top: 2px solid var(--tx);
+    grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
+    gap: 32px 56px;
+    align-items: start;
+    border-top: 1px solid var(--ln);
   }
-  .inner :global(.cta) {
-    font-size: clamp(40px, 5.2vw, 64px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
+  .about {
+    display: flex;
+    align-items: center;
+    gap: 24px;
   }
-  .actions {
+  .portrait {
+    position: relative;
+    flex: none;
+    aspect-ratio: 1;
+    width: 112px;
+  }
+  .portrait::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #3aa9b5, #1f7f86);
+  }
+  .portrait img {
+    position: absolute;
+    left: 6%;
+    bottom: 0;
+    width: 88%;
+    height: auto;
+    display: block;
+    /* head pops out of the circle; body is clipped to its lower half */
+    clip-path: inset(-60% -10% 0 -10% round 0 0 999px 999px);
+  }
+  .blurb {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--mu);
+    max-width: 38ch;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font: 500 14px var(--mono);
+    line-height: 1.8;
+    color: var(--ac);
+  }
+  .label {
+    font: 500 11px var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mu);
+    margin-bottom: 4px;
+  }
+  .base {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-  }
-  .links {
-    font: 500 14px var(--mono);
-    line-height: 2.2;
-    color: var(--ac);
-    padding-top: 12px;
-  }
-  .hint {
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding: 20px 0 32px;
+    border-top: 1px solid var(--ln2);
+    font: 400 13px var(--mono);
     color: var(--mu);
   }
   .copy {
-    padding-bottom: 32px;
-    font: 400 16px var(--mono);
-    color: var(--mu);
+    margin: 0;
+  }
+  .hint {
+    opacity: 0.7;
+  }
+  @media (max-width: 820px) {
+    .inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
   }
   @media print {
     footer {

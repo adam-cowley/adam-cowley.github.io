@@ -1,7 +1,6 @@
 ---
 import SectionHeading from "@ui/molecules/SectionHeading.astro";
 import PostRow from "@ui/molecules/PostRow.astro";
-import SocialLinks from "@ui/molecules/SocialLinks.astro";
 import TextLink from "@ui/atoms/TextLink.astro";
 import type { PostView } from "@lib/posts";
 
@@ -21,30 +20,15 @@ const { latest, talks, tips } = Astro.props;
   </div>
 
   <div class="col mid">
-    {
-      talks.length > 0 && (
-        <>
-          <SectionHeading>Talks</SectionHeading>
-          {talks.map((p) => <PostRow post={p} />)}
-          <div class="gap" />
-        </>
-      )
-    }
     <SectionHeading>Today I learned</SectionHeading>
     {tips.map((p) => <PostRow post={p} />)}
     <p class="more"><TextLink href="/categories/til" accent mono>More notes →</TextLink></p>
   </div>
 
-  <div class="col about">
-    <SectionHeading>About</SectionHeading>
-    <div class="portrait"><img src="/images/adam-cutout.png" alt="Adam Cowley" width="946" height="862" /></div>
-    <p class="blurb">
-      I design and build systems, and increasingly use AI to make them faster to build and better over time.
-    </p>
-    <ul class="links">
-      <li><TextLink href="/about" accent mono>Full about →</TextLink></li>
-    </ul>
-    <SocialLinks />
+  <div class="col last">
+    <SectionHeading>Talks</SectionHeading>
+    {talks.map((p) => <PostRow post={p} />)}
+    <p class="more"><TextLink href="/tags/talks" accent mono>All talks →</TextLink></p>
   </div>
 </section>
 
@@ -62,48 +46,11 @@ const { latest, talks, tips } = Astro.props;
     border-left: 1px solid var(--ln);
     border-right: 1px solid var(--ln);
   }
-  .about {
+  .last {
     padding: 0 0 0 32px;
-  }
-  .gap {
-    height: 32px;
   }
   .more {
     margin-top: 16px;
-  }
-  .portrait {
-    position: relative;
-    aspect-ratio: 1;
-    width: 140px;
-    margin: 24px 0 16px;
-  }
-  .portrait::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #3aa9b5, #1f7f86);
-  }
-  .portrait img {
-    position: absolute;
-    left: 6%;
-    bottom: 0;
-    width: 88%;
-    height: auto;
-    display: block;
-    /* head pops out of the circle; body is clipped to its lower half */
-    clip-path: inset(-60% -10% 0 -10% round 0 0 999px 999px);
-  }
-  .blurb {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--mu);
-  }
-  .links {
-    list-style: none;
-    padding: 0;
-    margin: 16px 0 4px;
-    line-height: 2;
   }
   @media (max-width: 900px) {
     .columns {
@@ -113,7 +60,7 @@ const { latest, talks, tips } = Astro.props;
     }
     .col,
     .mid,
-    .about {
+    .last {
       padding: 0;
       border: 0;
     }
