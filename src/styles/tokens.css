@@ -32,7 +32,6 @@
   --band: #1b2b23;
   --on-band: #f5f1e6;
   --band-ac: #c9a24b;
-  --grain-blend: multiply;
   color-scheme: light;
 }
 
@@ -45,7 +44,6 @@
   --ln: rgba(201, 162, 75, 0.45);
   --ln2: rgba(201, 162, 75, 0.2);
   --band: #14201a;
-  --grain-blend: overlay;
   color-scheme: dark;
 }
 
@@ -60,7 +58,6 @@
     --ln: rgba(201, 162, 75, 0.45);
     --ln2: rgba(201, 162, 75, 0.2);
     --band: #14201a;
-    --grain-blend: overlay;
     color-scheme: dark;
   }
 }
