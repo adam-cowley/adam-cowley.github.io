@@ -6,6 +6,7 @@ image: /uploads/analysing-football-events-neo4j/suarez-overhead-kick.jpg
 categories:
 - neo4j
 tags:
+- talks
 - neo4j
 - football
 ---

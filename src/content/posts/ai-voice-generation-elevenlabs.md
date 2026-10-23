@@ -1,5 +1,5 @@
 ---
-title: "Automating Voiceover with ElevenLabs: The Reality Check"
+title: "A reality check on voiceover automation with ElevenLabs"
 date: 2026-03-24T16:00:00+00:00
 description: An honest look at using AI voice generation for production video content—the wins, the friction, and whether it's actually worth it.
 image: "/images/posts/ai-voice-generation-elevenlabs.png"
